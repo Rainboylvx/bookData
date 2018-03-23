@@ -39,8 +39,5 @@
 
 ## 作业
 
- - [方圆游戏](https://wenku.baidu.com/view/abf24aad76eeaeaad1f33088.html)
- - [删数问题1](https://www.luogu.org/problemnew/show/1106)
  - [删数问题2](https://www.luogu.org/problemnew/show/1323)
- - [汽车加油](https://wenku.baidu.com/view/abf24aad76eeaeaad1f33088.html)
  - [DVD服务请求](https://www.luogu.org/problemnew/show/1733)
