@@ -19,7 +19,11 @@
 
  - [视频-UESTCACM 每周算法讲堂 主席树](https://www.bilibili.com/video/av4619406/?from=search&seid=15426933771046703959)
  - [视频-【算法讲堂】【电子科技大学】【ACM】权值线段树与主席树](https://www.bilibili.com/video/av16552942/?from=search&seid=15426933771046703959)
+ - [主席树（可持久化线段树）入门专题](https://blog.csdn.net/htt_h/article/details/47704209)
+ - [可持续化线段树（主席树）](https://www.cnblogs.com/shenben/p/5598371.html)
 
 ## 题目引入
 
-    poj-2104
+ - poj-2104 查询区间第k小
+ - hdu 4417 区间查询<=H的数有多少个
+ - hdu 4348 可持久化线段树，区间更新，不下放的懒惰标记（空间优化）
