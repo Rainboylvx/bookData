@@ -36,7 +36,7 @@ void dfs( state arguments){
 // 状态大的时候,
 用全局变量来表示状态,每次操作都修改这个全局变量,但是在回溯的时候又把这个全局变量重置回来.
 
-```
+```c
  state arguments
 void dfs(){
     
