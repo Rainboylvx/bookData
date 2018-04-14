@@ -46,7 +46,9 @@ do{
 
 如果open_list 为空了也没有找到终点,那就是说明路径不存在
 ```
+## 题目:
 
+题目地址 [P2324 [SCOI2005]骑士精神](https://www.luogu.org/problemnew/show/P2324)
 
 ## 参考
 
