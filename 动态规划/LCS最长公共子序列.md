@@ -148,7 +148,7 @@ int main(){
 最后的整个过程就是下面的这个图了:
 
 
-![lcs](/images/lcs.png)
+![lcs](/book/images/lcs.png)
 
 
 ## 输出LCS
