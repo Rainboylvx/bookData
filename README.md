@@ -4,13 +4,13 @@
 
 《NoipBook 算法书》是一本开源的算法书，是`Rainboy`写给自己学生看的书,使用`C++`语言描述
 
-![cover](/images/cover.jpg)
+![cover](/book/images/cover.jpg)
 
 
 
 ## **作者**
 
-![logo](/images/RainboyLogo.jpg)
+![logo](/book/images/RainboyLogo.jpg)
 
 ### 版权许可
 
