@@ -41,7 +41,112 @@
 
 最短路径问题 ，项目管理，网络流优化等；
 
-POJ动态规划题目列表：
+## 刷题表
+
+
+**入门:**
+
+| 名称           | 来源  | 所在OJ | 说明 |
+|----------------|-------|--------|------|
+| 总分           | USACO | moonoj |      |
+| 邮票           | USACO | moonoj |      |
+| 家的范围       | USACO | moonoj |      |
+| 游戏           | USACO | moonoj |      |
+| 商店购物       | USACO | moonoj |      |
+| “破锣摇滚”乐队 | USACO | moonoj |      |
+| 麦香牛块       | USACO | moonoj |      |
+| 最长前缀       | USACO | moonoj |      |
+| 货币系统       | USACO | moonoj |      |
+| 垃圾陷阱       | USACO | moonoj |      |
+| 神秘的咒语     | USACO | moonoj |      |
+| 天堂的馈赠     | USACO | moonoj |      |
+| 上帝的爱好     | USACO | moonoj |      |
+| 苹果旅游       | USACO | moonoj |      |
+| 文科生的悲哀   | USACO | moonoj |      |
+| 硬件           | USACO | moonoj |      |
+| 糖果盒         | USACO | moonoj |      |
+| 能量项链       | USACO | moonoj |      |
+| 金明的预算方案 | USACO | moonoj |      |
+| 潜水员         | USACO | moonoj |      |
+| 观光游览       | USACO | moonoj |      |
+| 任务安排       | USACO | moonoj |      |
+| 筷子           | USACO | moonoj |      |
+| 递增序列       | USACO | moonoj |      |
+| power          | USACO | moonoj |      |
+| 清扫           | USACO | moonoj |      |
+| 破译密码       | USACO | moonoj |      |
+| 奶牛家谱       | USACO | moonoj |      |
+| 集合           | USACO | moonoj |      |
+| 书本整理       | USACO | moonoj |      |
+| 城堡           | USACO | moonoj |      |
+| 佳佳的魔杖     | USACO | moonoj |      |
+| 编码           | USACO | moonoj |      |
+| 将功补过       | USACO | moonoj |      |
+| 质数取石子     | USACO | moonoj |      |
+| 多人背包       | USACO | moonoj |      |
+| 不听话的机器人 | USACO | moonoj |      |
+| 路灯的改建计划 | USACO | moonoj |      |
+| 吃西瓜         | USACO | moonoj |      |
+| 给MM的生日礼物 | USACO | moonoj |      |
+| 最勇敢的机器人 | USACO | moonoj |      |
+| 创意吃鱼法     | USACO | moonoj |      |
+| 爱心蜗牛       | USACO | moonoj |      |
+| 工作           | USACO | moonoj |      |
+| 最大矩形       | USACO | moonoj |      |
+| 座位安排       | USACO | moonoj |      |
+
+## DP按分类刷题表
+
+以下问题在moonoj上搜索
+
+
+**1.背包问题:**
+
+ - 砝码称重
+ - 积木城堡 来源：vijos P1059
+ - 采药 来源：NOIP2005（普及组） 第三题
+ - 开心的金明
+ - 金明的预算方案 来源：NOIP2006 第二题
+ - Money Systems 来源：USACO 2.3
+ - 新年趣事之打牌 来源： vijos P1071
+ - 挖地雷问题 来源：NOIP1996(提高组)
+ - Party Lamps
+ - 奶牛家谱
+ - 分配时间（WFTSC2009T）  分组背包
+
+**2.线型Dp:**
+
+ - 乌龟棋 noip2010
+ - 诗人小G
+ - 模糊 POJ1229
+
+**3.区间DP:**
+
+ - 石子归并
+ - 回文词 IOI2000
+ - 决斗问题（POI99）
+ - Blocks（POJ1390
+
+**4.矩形模型:**
+
+ - 降维拆成链：滑雪 SHTSC2002
+ - 子矩形：采油区域 APIO2009
+ - 行列：棋盘分割 (NOI99)
+ - 对角线：转纸条
+ - 传纸条(NOIP2008T)
+
+
+**5.树型DP**
+
+ - 没有上司的舞会
+ - A Binary Apple Tree 苹果二叉树
+ - 加分二叉树 （NOIP2003）
+ - 选课（CTSC99）
+ - 贪吃的九头龙（NOI2002）
+ - 树的最长链
+ - 树的最小点支配集 Cell Phone Network（POJ3659）
+
+## POJ动态规划题目列表：
 
 容易：
 
@@ -78,7 +183,6 @@ POJ动态规划题目列表：
 
 DP分成两大类:
     - 时间
-    - 空间(moonoj 公主的分块)
 
 时间:基本按问题操作的顺序进行分解子问题(LIS,LCS,背包等)
 
