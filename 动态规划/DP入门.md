@@ -1,6 +1,10 @@
 ## 引入:数塔问题(NOIP)
 
-题目地址:cogs 77
+题目地址:
+
+ - cogs 77
+ - [luogu P1216](https://www.luogu.org/problemnew/show/P1216)
+
 
 ### 问题描述
 
@@ -180,7 +184,60 @@ DP可以很高效的算出来
 
 
 
-## DP代码
+## DP代码1: 只求最大值
+
+```c
+#include <cstdio>
+
+//二维数组存数塔
+int s[100][100]={0};
+int f[100][100]={0};
+int n;
+int max=0;
+int sum=0;
+
+int main(){
+    scanf("%d",&n);
+    int i,j;
+    for(i=1;i<=n;i++)//读入
+        for(j=1;j<=i;j++)
+            scanf("%d",&s[i][j]);
+    f[1][1] = s[1][1];
+    
+    for(i=2;i<=n;i++)
+        for(j=1;j<=i;j++){
+            int m;
+            if(f[i-1][j-1] >=f[i-1][j]){
+                m = f[i-1][j-1];
+            }
+            else {
+                m = f[i-1][j];
+            }
+            f[i][j] = s[i][j]+ m;
+        }
+    int _max = 0;
+    int _max_index; // 最后一层,最大的那个下标
+    for(i=1;i<=n;i++)
+        if(max < f[n][i])
+            max = f[n][i],_max_index = i;
+    printf("%d\n",max);
+
+    return 0;
+}
+```
+
+
+## DP代码2: 输出路径
+
+
+**如何输出路径呢?**  
+想一想:每一个点都都需要选上一层和自己有联系的点中$$f$$值最大的那个点.我们设一个值$$path[i][j]$$表示:**第i行的第j个点是由第i-1行的哪一个点来(转移)的**.  
+同时我们遍历最后一行的$$f$$值的时候,可以知道最后一行的哪个点最大.设它为$$m$$点.  
+那么你就如下图的一种关系:
+
+![4](./数塔路线.png)
+
+所以最终你只要倒过来查找一遍,然后正过来输出就ok了,上体看代码.
 
 ```c
 #include <cstdio>
