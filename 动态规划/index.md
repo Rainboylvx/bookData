@@ -46,54 +46,55 @@
 
 **入门:**
 
-| 名称           | 来源  | 所在OJ | 说明 |
-|----------------|-------|--------|------|
-| 总分           | USACO | moonoj |      |
-| 邮票           | USACO | moonoj |      |
-| 家的范围       | USACO | moonoj |      |
-| 游戏           | USACO | moonoj |      |
-| 商店购物       | USACO | moonoj |      |
-| “破锣摇滚”乐队 | USACO | moonoj |      |
-| 麦香牛块       | USACO | moonoj |      |
-| 最长前缀       | USACO | moonoj |      |
-| 货币系统       | USACO | moonoj |      |
-| 垃圾陷阱       | USACO | moonoj |      |
-| 神秘的咒语     | USACO | moonoj |      |
-| 天堂的馈赠     | USACO | moonoj |      |
-| 上帝的爱好     | USACO | moonoj |      |
-| 苹果旅游       | USACO | moonoj |      |
-| 文科生的悲哀   | USACO | moonoj |      |
-| 硬件           | USACO | moonoj |      |
-| 糖果盒         | USACO | moonoj |      |
-| 能量项链       | USACO | moonoj |      |
-| 金明的预算方案 | USACO | moonoj |      |
-| 潜水员         | USACO | moonoj |      |
-| 观光游览       | USACO | moonoj |      |
-| 任务安排       | USACO | moonoj |      |
-| 筷子           | USACO | moonoj |      |
-| 递增序列       | USACO | moonoj |      |
-| power          | USACO | moonoj |      |
-| 清扫           | USACO | moonoj |      |
-| 破译密码       | USACO | moonoj |      |
-| 奶牛家谱       | USACO | moonoj |      |
-| 集合           | USACO | moonoj |      |
-| 书本整理       | USACO | moonoj |      |
-| 城堡           | USACO | moonoj |      |
-| 佳佳的魔杖     | USACO | moonoj |      |
-| 编码           | USACO | moonoj |      |
-| 将功补过       | USACO | moonoj |      |
-| 质数取石子     | USACO | moonoj |      |
-| 多人背包       | USACO | moonoj |      |
-| 不听话的机器人 | USACO | moonoj |      |
-| 路灯的改建计划 | USACO | moonoj |      |
-| 吃西瓜         | USACO | moonoj |      |
-| 给MM的生日礼物 | USACO | moonoj |      |
-| 最勇敢的机器人 | USACO | moonoj |      |
-| 创意吃鱼法     | USACO | moonoj |      |
-| 爱心蜗牛       | USACO | moonoj |      |
-| 工作           | USACO | moonoj |      |
-| 最大矩形       | USACO | moonoj |      |
-| 座位安排       | USACO | moonoj |      |
+| 名称           | 来源  | 所在OJ | 说明                                    |
+|----------------|-------|--------|-----------------------------------------|
+| 总分           | USACO | moonoj | luogu P2722 总分 基础01背包             |
+| 邮票           | USACO | moonoj | luogu P2725 邮票 Stamps 背包            |
+| 家的范围       | USACO | moonoj |                                         |
+| 游戏           | USACO | moonoj |                                         |
+| 商店购物       | USACO | moonoj |                                         |
+| “破锣摇滚”乐队 | USACO | moonoj | luogo P2736 有趣的"二维"背包            |
+| 麦香牛块       | USACO | moonoj | luogo P2737 数论+背包                   |
+| 最长前缀       | USACO | moonoj |                                         |
+| 货币系统       | USACO | moonoj | luogo P1474 货币系统 Money Systems 背包 |
+| 垃圾陷阱       | USACO | moonoj |                                         |
+| 神秘的咒语     | USACO | moonoj |                                         |
+| 天堂的馈赠     | USACO | moonoj |                                         |
+| 上帝的爱好     | USACO | moonoj |                                         |
+| 苹果旅游       | USACO | moonoj |                                         |
+| 文科生的悲哀   | USACO | moonoj |                                         |
+| 硬件           | USACO | moonoj |                                         |
+| 糖果盒         | USACO | moonoj |                                         |
+| 能量项链       | USACO | moonoj |                                         |
+| 金明的预算方案 | USACO | moonoj |                                         |
+| 潜水员         | USACO | moonoj |                                         |
+| 观光游览       | USACO | moonoj |                                         |
+| 任务安排       | USACO | moonoj |                                         |
+| 筷子           | USACO | moonoj |                                         |
+| 递增序列       | USACO | moonoj |                                         |
+| power          | USACO | moonoj |                                         |
+| 清扫           | USACO | moonoj |                                         |
+| 破译密码       | USACO | moonoj |                                         |
+| 奶牛家谱       | USACO | moonoj |                                         |
+| 集合           | USACO | moonoj | luogo  P1466  背包                      |
+| 书本整理       | USACO | moonoj |                                         |
+| 城堡           | USACO | moonoj |                                         |
+| 佳佳的魔杖     | USACO | moonoj |                                         |
+| 编码           | USACO | moonoj |                                         |
+| 将功补过       | USACO | moonoj |                                         |
+| 质数取石子     | USACO | moonoj |                                         |
+| 多人背包       | USACO | moonoj |                                         |
+| 不听话的机器人 | USACO | moonoj |                                         |
+| 路灯的改建计划 | USACO | moonoj |                                         |
+| 吃西瓜         | USACO | moonoj |                                         |
+| 给MM的生日礼物 | USACO | moonoj |                                         |
+| 最勇敢的机器人 | USACO | moonoj |                                         |
+| 创意吃鱼法     | USACO | moonoj |                                         |
+| 爱心蜗牛       | USACO | moonoj |                                         |
+| 工作           | USACO | moonoj |                                         |
+| 最大矩形       | USACO | moonoj |                                         |
+| 座位安排       | USACO | moonoj |                                         |
+| i量取牛奶      | USACO | moonoj | luogo P2744 很怪的背包                  |
 
 ## DP按分类刷题表
 
