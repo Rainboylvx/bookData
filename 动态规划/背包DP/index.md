@@ -154,12 +154,12 @@
 
 背包九讲-网页版-1.1版:
 
-http://love-oriented.com/pack/
-
+http://noip.gitee.io/9_knapsack/V1/Index.html
 
 背包九讲-Github版-2.0版:
 
-https://github.com/tianyicui/pack
+ - 原作者GITHUB https://github.com/tianyicui/pack
+ - Rainboy迁移到国内 http://noip.gitee.io/9_knapsack/V2.pdf
 
 ## 引用说明
 
