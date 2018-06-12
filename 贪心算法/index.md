@@ -39,5 +39,12 @@
 
 ## 作业
 
+
+**简单贪心**
+
+ - luogu P1208 [USACO1.3]混合牛奶 Mixing Milk
+
+
+
  - [删数问题2](https://www.luogu.org/problemnew/show/1323)
  - [DVD服务请求](https://www.luogu.org/problemnew/show/1733)
