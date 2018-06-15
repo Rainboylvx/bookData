@@ -164,5 +164,6 @@ http://noip.gitee.io/9_knapsack/V1/Index.html
 ## 引用说明
 
  - [金矿模型]()
+ - [背包九讲系列2](https://www.jianshu.com/p/efa8fbc0fea4)
 
 
