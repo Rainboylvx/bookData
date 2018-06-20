@@ -218,6 +218,8 @@
     * [离散化](/book/其它算法/离散化)
     * [hash](/book/其它算法/hash)
     * [KMP算法](/book/其它算法/KMP算法)
+    * [模拟退火](/book/其它算法/KMP算法)
+    * [遗传算法](/book/其它算法/KMP算法)
 * [网络流](/book/网络流/index)
     * [最大流](/book/网络流/最大流)
     * [Dinic算法](/book/网络流/dinic)
