@@ -42,7 +42,7 @@
 **状态转移方程:**
 
 ```math
-F[k] = Max\{F[i]+1\},1\leqslant i&lt; k,a[i]&lt;a[k],k&gt; 1
+F[k] = Max\{F[i]+1\},1\leqslant i&lt; k,a[i] \leqslant a[k],k&gt; 1
 ```
 
 这个状态转移方程的意思就是，$$F(k)$$的值，就是在$$a_k$$左边，“终点”数值小于$$a_k$$，且长度最大的那个上升子序列的长度再加1。因为$$a_k$$左边任何“终点”小于$$a_k$$的子序列，加上$$a_k$$后就能形成一个更长的上升子序列。
@@ -123,12 +123,13 @@ int main(){
         scanf("%d",&a[i]);
     }
 
+    //每个点的f值不可能小于1
     for(i=1;i<=n;i++) f[i] =1;
 
-    int max = -1;//这里是-1,想想为什么
+    int max = 1;//这里是1,想想为什么
     for (i=2;i<=n;i++){
         for(j=1;j<i;j++){
-            if( a[j] < a[i] && f[i] < f[j]+1){
+            if( a[j] <= a[i] && f[i] < f[j]+1){
                 f[i] = f[j]+1;
                 if(max < f[i])
                     max = f[i];
