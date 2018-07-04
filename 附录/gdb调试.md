@@ -47,20 +47,19 @@ g++是编译器，gdb是调试工具。我们使用的GUIDE就是建立在这两
 | b *<代码地址> | break           | 使用**执行地址**设置断点                                                                                  |                                                                                                                         |
 | d [编号]      | delete          | d: Delete breakpoint的简写，删除指定编号的某个断点，或删除所有断点。断点编号从1开始递增。                 |                                                                                                                         |
 | r             | run             | 运行程序。                                                                                                | 一直运行，直到遇到断点或程序结束。                                                                                      |
-| c             | continue        | 继续运行。                                                                                                | 中断之后使用。                                                                                                          |
 | k             | kill            | 杀死正在调试的进程。                                                                                      | 停止调试。                                                                                                              |
 | u             | until           | 让程序运行到指定位置。                                                                                    | u 9：运行到第九行，然后暂停。<br>u search：运行到search()的入口，然后暂停。                                             |
 | disp          | display         | 相当于IDE里的“Watch”。                                                                                    | disp x：每次程序暂停，自动输出x的值。<br>disp x+1：自动输出表达式“x+1”的值。<br>dis disp或en disp：禁用/启用所有Watch。 |
 | n<br>s        | next<br>step    | 单步运行-步过。	<br>单步运行-步入                                                                         | 单步执行。它们区别是一旦遇到函数，“s”要进入函数内部，而“n”直接计算函数的值然后继续。<br> n 10 执行10次n                 |
-| P             | print           | 计算表达式。                                                                                              | p a：输出变量a的值。<br>p 1+1：计算“1＋1”的值。                                                                         |
-|               | call            | 执行一条C++代码，如果有返回值，就输出到屏幕上                                                             | call j=2：改变变量j的值<br>call print()：调用print()                                                                    |
+| p             | print           | 计算表达式。                                                                                              | p a：输出变量a的值。<br>p 1+1：计算“1＋1”的值。                                                                         |
+| call          | call            | 执行一条C++代码，如果有返回值，就输出到屏幕上                                                             | call j=2：改变变量j的值<br>call print()：调用print()                                                                    |
 | i             | info            | 显示信息。                                                                                                | i b：显示所有断点<br>i lo（info locals）：显示所有局部变量。<br>i disp：显示所有“Watch”。                               |
-| d             | delete          | 删除。                                                                                                    | d disp：删除所有“Watch”。<br>d breakpoints：删除所有断点。<br>bt	backtrace	查看调用栈。                            |
 | q             | quit            | 退出gdb。                                                                                                 |                                                                                                                         |
 | h             | help            | 获得帮助信息。                                                                                            | 全部是英语。                                                                                                            |
-|               | whatis          | 查看变量类型                                                                                              | whatis n：查看n的类型                                                                                                   |
+| whatis        | whatis          | 查看变量类型                                                                                              | whatis n：查看n的类型                                                                                                   |
 | 直接回车      |                 | 执行上一条命令。                                                                                          | 在输入n或s后一路回车，相当于打了一路n或s。                                                                              |
 | bt            | backtrace       | 查看堆栈                                                                                                  | bt 可以知道当前在哪一行                                                                                                 |
+
 以下是和断点有关的命令。使用之前，要知道断点的编号（可用`i b`查看）：
 
 | 命令 | 全称      | 作用                                  | 实例和说明                                                                |
@@ -71,6 +70,7 @@ g++是编译器，gdb是调试工具。我们使用的GUIDE就是建立在这两
 | wa   | watch     | 当变量或表达式的值发生改变时停下来。  | wa i：当i的值发生改变时停下来。                                           |
 | aw   | awatch    | 变量被读写时都会停下来。              | aw i：当i被读写时都会停下来。                                             |
 | rw   | rwatch    | 当变量被读的时候停下来。              | rw i：当i被读时停下来。                                                   |
+| b 3 if i==3 | | 下一个条件断点|给第三行下一个断点,且这个断点只有在i==3的时候停下来|
 
 
 
@@ -145,7 +145,6 @@ g++ -g -o aplusb aplusb.cpp
 
  - disp 表达式
  - dis disp 或者 en disp
- -
 
 6.其它
 
@@ -171,6 +170,7 @@ int main(){
 }
 ```
 
+ - if
  - ig
  - cond
 
@@ -178,7 +178,7 @@ int main(){
 找到最大值
 
 ```c
-int a ={4,5,7,9,2,7,1,7,3,6,7,1,2,4};
+int a[] ={4,5,7,9,2,7,1,7,3,6,7,1,2,4};
 int main(){
     int i,max = 0xffffffff;
     for(i=0;i<sizeof(a);i++)
@@ -298,7 +298,7 @@ s <1.in >1.out
 
 ### 题目1:使用GDB的调试功能,找到下面代码的2个错误
 
-代码要实现的功能:输入数字n(0<=n<=60),输了Fibonacci前n项,
+代码要实现的功能:输入数字n(1<=n<=60),输了Fibonacci前n项,
 
 修改要求:增加或删除的字符数==2(把代码自己重写一遍是错误的)
 
