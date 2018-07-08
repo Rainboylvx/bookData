@@ -2,7 +2,8 @@
 
 ## 题目
 
-cogs 476
+cogs 476  
+[luogu p1439【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
 
 ### 【问题描述】
 
@@ -180,3 +181,9 @@ int main(){
 
 ```c
 ```
+
+## 练习题目
+
+ - [友好城市](https://www.luogu.org/problemnew/show/P2782)
+ - [Palindrome](https://vjudge.net/problem/POJ-1159)
+ - [Make Palindrome ](https://vjudge.net/problem/UVA-10453)
