@@ -8,7 +8,9 @@
 
 
 
-## **作者**
+## **作者:Rainboy**
+
+关于作者:[个人简介/联系方式](https://rainboy.gitee.io/resume/)
 
 ![logo](/book/images/RainboyLogo.jpg)
 
