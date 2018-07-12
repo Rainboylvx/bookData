@@ -128,3 +128,16 @@ int main(){
     return 0;
 }
 ```
+
+## 练习题目
+
+ - P1440 求m区间内的最小值
+ - P1816 忠诚
+ - P2048 [NOI2010]超级钢琴
+ - P2214 [USACO14MAR]哞哞哞Mooo Moo
+ - P2216 [HAOI2007]理想的正方形
+ - P2251 质量检测
+ - P2471 [SCOI2007]降雨量
+ - P2880 [USACO07JAN]平衡的阵容Balanced Lineup
+ - P3763 [TJOI2017]DNA
+ - P4085 [USACO17DEC]Haybale Feas
