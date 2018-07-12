@@ -5,3 +5,12 @@
 ![1](./自然界的BFS.jpg)
 
 
+## 练习题目列表
+
+ - 穿越泥地 Mud Puddles[地址](https://vjudge.net/problem/POJ-3626)
+ - 抓住那头牛 bfs 剪枝 poj 3278
+ - 素数路    数位bfs poj 3126
+ - 推箱子    bfs  poj 1457
+ - dearboy's Puzzle bfs poj 2308
+ - 八数码  bfs  poj 1077
+ - bzoj 1306 剪枝
