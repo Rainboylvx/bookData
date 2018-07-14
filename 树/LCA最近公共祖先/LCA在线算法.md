@@ -8,7 +8,7 @@ LCA在线算法
 
 在讲解之前,我们先想两个问题,这两个问题也是LCA在线算法的核心:
 
-![LCA1](/images/LCA1.png)
+![LCA1](/book/images/LCA1.png)
 
 ### 问题1:
 
@@ -73,7 +73,7 @@ for(i=k;i>=0;i--)
 
 ### 问题2
 
-![LCA2](/images/LCA2.png)
+![LCA2](/book/images/LCA2.png)
 
 看上图,树上的点依然有它的`超能爬树`这个能力,现在最上面的点`1,2`是有色的点,点7不能到达有色的点,但是它想到离有色部分最近的点怎么做?
 
@@ -109,7 +109,7 @@ for(i=k;k>=0;k--){
 
 ## 转为代码
 
-![LCA3](/images/LCA3.png)
+![LCA3](/book/images/LCA3.png)
 
 看这个图,我们分为这几个步骤来做
 
