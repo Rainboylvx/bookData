@@ -13,3 +13,6 @@ http://www.cnblogs.com/szy-wlxy/p/4622662.html
 
 https://www.luogu.org/problemnew/show/P1886
 https://www.luogu.org/problemnew/show/P1714
+
+看这个
+https://blog.csdn.net/Dacc123/article/details/50545577
