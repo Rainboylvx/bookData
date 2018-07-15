@@ -108,3 +108,9 @@ int main(){
     return 0;
 }
 ```
+
+## 练习题目
+
+ - luogu P2126 Mzc家中的男家丁
+ - luogu P1550 [USACO08OCT]打井Watering Hole
+ - luogu P1265 公路修建 

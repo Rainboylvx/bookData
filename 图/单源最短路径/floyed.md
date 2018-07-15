@@ -47,8 +47,8 @@ A(i,j) = min\{A(i,j),A(i,k)+A(k,j)\}
 
 解释图:
 
-todo??
-
+[floyed压缩k维正确性解释](./floyed压缩k维正确性解释)
+todo
 
 
 <br>
@@ -57,6 +57,24 @@ todo??
 floyd算法的原理: i,j 经过中间点k的最短路径,不停的枚举k
 </center>
 <br>
+
+**核心代码:**
+
+```c
+void floyd(){
+    int k,i,j;
+    for(k=1;k<=n;k++){ //k在最外层
+
+        for (i=1;i<=n;i++)
+            for(j=1;j<=n;j++)
+                if(f[i][k]+f[k][j]<f[i][j]){ //松弛法,如果能更小,那就更小
+                    f[i][j] = f[i][k]+f[k][j]; 
+                }
+    }
+}
+```
+
+
 
 
 ## 如何输出路径
