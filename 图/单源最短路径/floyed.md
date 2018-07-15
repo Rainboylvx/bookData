@@ -215,12 +215,12 @@ int main(){
 
     return 0;
 }
-
 ```
 
 
 
 ## 练习题目
 
- - luogu P2910 [USACO08OPEN]寻宝之路Clear And Present Danger 
+ - luogu P2910 [USACO08OPEN]寻宝之路Clear And Present Danger  [pcs 题目解析地址](http://pcs.rainboy.top/#/article/B1qpkDuXm)
  - luogu P1744 采购特价商品
+ - [hdu 1385 Minimum Transport Cost](https://vjudge.net/problem/HDU-1385) 要求输出路径
