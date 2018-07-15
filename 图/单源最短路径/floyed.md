@@ -47,7 +47,8 @@ A(i,j) = min\{A(i,j),A(i,k)+A(k,j)\}
 
 解释图:
 
-[floyed压缩k维正确性解释](./floyed压缩k维正确性解释)
+![floyed压缩k维正确性解释](./floyed压缩k维正确性解释)
+
 todo
 
 
