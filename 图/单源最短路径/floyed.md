@@ -84,18 +84,28 @@ void floyd(){
 
 ![3](./floyed3.png)
 
-如果我们要输出$$s \rightarrow t$$的最短路径,我们先设$$pre(i,j)$$表示$$ i \rightarrow j$$的最短路上的$$j$$前面的那个点.
+如果我们要输出$$s \rightarrow t$$的最短路径,我们先设$$path(i,j)$$表示$$ i \rightarrow j$$的最短路上的$$i$$后面的那个点.
 
-根据:$$f(s,t) = min\{f(s,t),f(s,k)+f(k,t)\}$$  
-如果$$f(s,t)$$能被$$ f(s,k)+f(k,t)$$更新,那么$$pre(s,t) = pre(k,t)$$,我们设$$pre(k,t) = x$$
+根据:$$f(s,t) = min\\{f(s,t),f(s,k)+f(k,t)\\}$$  
+如果$$f(s,t)$$能被$$ f(s,k)+f(k,t)$$更新,那么$$path(s,t) = path(i,k)$$,我们设$$path(i,k) = x$$
 
 
-根据**最优子结构的性质**:如果路径$$A$$是$$ s \rightarrow t $$ 的最短路径.那么路径$$A$$的一部分$$s \rightarrow x $$ 一定是$$s$$到$$x$$最短的,所以最短路径$$s \rightarrow t$$的前一个点的前一个点一写是$$pre(s,x)$$
+根据**最优子结构的性质**:如果路径$$A$$是$$ s \rightarrow t $$ 的最短路径.那么路径$$A$$的一部分$$x \rightarrow t $$ 一定是$$s$$到$$x$$最短的,所以最短路径$$s \rightarrow t$$的后一个点的后一个点一定是$$path(s,k)$$
 
 边界:
 
- - $$pre(i,i) = -1$$
- - $$pre(i,j) = i$$,$$i$$与$$j$$相连
+ - $$path(i,i) = -1$$,表示没有后趋.
+ - $$path(i,j) = j$$,$$i$$与$$j$$相连
+
+$$s$$到$$t$$的最短路径可能不止一个,**如何输出字典序最小的呢?**,看如下的代码.
+
+```c
+if( f[i][j] == f[i][k]+ f[k][j]) //表示有多条最短路径
+{
+    if( path[i][j] > path[i][k])
+        path[i][j] = path[i][k];
+}
+```
 
 ## 代码:
 
@@ -164,7 +174,7 @@ void floyd(){
 
 #define N 100
 const int INF = 0x7f7f7f7f/3; //这里要这样写,防止溢出
-int f[N][N],pre[N][N]; //pre 记录前趋
+int f[N][N],path[N][N]; //path 记录前趋
 int n,m;//n个点,m条边
 int s,t;//起点 终点
 
@@ -176,8 +186,7 @@ void floyd(){
             for(j=1;j<=n;j++)
                 if(f[i][k]+f[k][j]<f[i][j]){ //松弛法,如果能更小,那就更小
                     f[i][j] = f[i][k]+f[k][j]; 
-                    //pre[i][j]=k;
-                    pre[i][j] = pre[k][j];
+                    path[i][j] = path[i][k];
                 }
     }
 }
@@ -187,8 +196,6 @@ int main(){
     scanf("%d%d",&n,&m);
     scanf("%d%d",&s,&t);
 
-    /* 初始化 */
-    memset(pre,-1,sizeof(pre));
 
     for(i=1;i<=n;i++)
         for(j=1;j<=n;j++){
@@ -198,8 +205,8 @@ int main(){
     for(k=1;k<=m;k++){
         scanf("%d%d%d",&i,&j,&l);
         f[i][j]=f[j][i]=l;//边界,也就是不经过任何点的时候,两个点的最短路径
-        pre[i][j] = i; // pre的边界
-        pre[j][i] = j;
+        path[i][j] = j; // path的边界
+        path[j][i] = i;
     }
 
     /* 调用floyd */
@@ -209,9 +216,9 @@ int main(){
     printf("%d\n",f[s][t]);
 
     /* 输出路径 */
-    //printf("%d ",t); //终点
-    for(j=t;j!=-1;j=pre[s][j])
+    for(j=s;j!=t;j=path[j][t])
         printf("%d ",j);
+    printf("%d",t);
 
     return 0;
 }
@@ -221,6 +228,6 @@ int main(){
 
 ## 练习题目
 
- - luogu P2910 [USACO08OPEN]寻宝之路Clear And Present Danger  [pcs 题目解析地址](http://pcs.rainboy.top/#/article/B1qpkDuXm)
+ - luogu P2910 [USACO08OPEN]寻宝之路Clear And present Danger  [pcs 题目解析地址](http://pcs.rainboy.top/#/article/B1qpkDuXm)
  - luogu P1744 采购特价商品
- - [hdu 1385 Minimum Transport Cost](https://vjudge.net/problem/HDU-1385) 要求输出路径
+ - [hdu 1385 Minimum Transport Cost](https://vjudge.net/problem/HDU-1385) 要求输出路径 [pcs 题目解析](http://pcs.rainboy.top/#/article/HyAwPKu7X)
