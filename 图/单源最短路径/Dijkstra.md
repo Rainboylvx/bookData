@@ -27,7 +27,7 @@ Dijstra算法:**贪心**
 
 ## 代码
 
-![二个图](/images/二个图.png)
+![二个图](/book/images/二个图.png)
 
 
 输入数据
