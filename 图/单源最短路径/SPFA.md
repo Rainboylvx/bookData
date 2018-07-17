@@ -31,7 +31,7 @@ SPFA算法原理：
 ## 代码
 
 
-![二个图](/images/二个图.png)
+![二个图](/book/images/二个图.png)
 
 输入数据
 
@@ -60,12 +60,9 @@ SPFA算法原理：
 * Title : SPFA算法--边集数组实现
 * Author: Rainboy
 * Time  : 2016-04-12 10:13
-* update: 2016-08-29 16:54
+* update: 2018-07-16 14:34
 * © Copyright 2016 Rainboy. All Rights Reserved.
 *=============================================================================*/
-
-
-
 
 /*-----------------------------------------------------------------------------
  *  SPFA算法原理：
@@ -84,84 +81,95 @@ SPFA算法原理：
 #define maxe 1000
 
 const int INF = 0x7f7f7f7f;
-
 const int lq =  2*maxv+5; //队列长度  能找都要那么多
-
 int dis[maxv];
+
+//队列
 int queue[lq+1];
-int head,tail;
+int head=0,tail=0;
+
+void push(int x){ queue[tail++] = x; }
+bool empty() {return head == tail;}
+int pop() { return queue[head++];}
+
+
+//向量星
+int first[100];
+struct E {
+    int u,v,w,next;
+} edge[10000];
+int edge_cnt = 0;
+
+void addEdge(int u,int v,int w){
+    edge_cnt++;
+    edge[edge_cnt].u  = u;
+    edge[edge_cnt].v  = v;
+    edge[edge_cnt].w  = w;
+    edge[edge_cnt].next  = first[u];
+    first[u] = edge_cnt;
+}
 
 bool inQueue[maxv] = {0};//点是否在队列中
 int pre[maxv]={0};      //前趋
-
-//邻接表-数组实现
-int u[maxe],v[maxe],w[maxe];
-int first[maxv];
-int next[maxe];
-
-
 int s,t;//起点,终点
 int n,e;// 多少点，多少边
 
 
-void spfa(int s){
-    /* s点加入队列 */
-    dis[s] =0;
-    head =tail = -1;
-    queue[++tail] =s;
-    inQueue[s] = 1;
+/* 初始化 */
+void init(){
+    memset(dis,0x7f,sizeof(dis));
+    memset(first,-1,sizeof(first));
 
-    int i,tmp;
-    while( head != tail){ //队列非空
-        tmp = queue[++head];  //取首点
-        inQueue[tmp] = false;     //不在队列中
-
-        for(i=first[tmp];i!=-1;i=next[i])   //更新周围的点
-            if(dis[v[i]] > dis[tmp] + w[i]){
-                dis[v[i]] = dis[tmp] +w[i];
-                pre[v[i]] = tmp;
-
-                /* 被更新的点不在队列中,那就加入队列中 */
-                if(!inQueue[v[i]]){
-                    queue[++tail]=v[i];
-                    inQueue[v[i]] = 1;
-                }
-            }
-    }
-}
-
-
-int main(){
-    int i,j,k;
-
-    //初始化
+    //读取数据
     scanf("%d%d",&n,&e);
     scanf("%d%d",&s,&t);
 
-    memset(dis,0x7f,sizeof(dis));
-
-    /* 邻接表来存图 */
-    memset(first,-1,sizeof(first));//初始化first
-    for(i=1;i<=2*e;i+=2){
-        scanf("%d%d%d",&u[i],&v[i],&w[i]);
-        v[i+1] = u[i],u[i+1] =v[i],w[i+1]=w[i]; //无向图 一条边存两遍
-
-        next[i] = first[u[i]];
-        first[u[i]] = i;
-
-        next[i+1] = first[u[i+1]];
-        first[u[i+1]] =i+1;
+    int i,t1,t2,t3;
+    for(i=1;i<=e;i++) { //读取边
+        scanf("%d%d%d",&t1,&t2,&t3);
+        addEdge(t1,t2,t3); //无向图
+        addEdge(t2,t1,t3);
     }
+}
 
-    spfa(s);
+void spfa(){
+    push(s);
+    dis[s] = 0;
+    inQueue[s] = 1;
+    pre[s] = -1;
 
-    /* 输出终点dis */
-    printf("dis[%d] = %d\n",t,dis[t]);
 
-    /* 输出路径 */
-    for(i=t;i!=0;i=pre[i])
-        printf("%d ",i);
+    int i;
+    while( empty() == false){
+        int t = pop();  //取队首
+        inQueue[t] = 0; // 不在队中
+
+        for(i = first[t];i !=-1;i = edge[i].next){
+            int tv = edge[i].v;
+            int tw = edge[i].w;
+            if( dis[tv] > dis[t] + tw){ //理新
+                dis[tv] = dis[t] + tw;
+    
+                /* 不在队列中,就加入队列 */
+                if( inQueue[tv] == 0){
+                    push(tv);
+                    inQueue[tv] = 1;
+                }
+            }
+        }
+    }
+}
+
+int main(){
+    init();
+    spfa();
+    int i;
+    printf("%d->%d = %d\n",s,t,dis[t]);
     return 0;
 }
 
 ```
+
+## SPFA的优化
+
+不使用队列,使用DFS,思想如下:
