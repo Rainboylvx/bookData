@@ -29,3 +29,9 @@
 | Candies                      | ★★★☆☆ |                                              |
 | Burn the Linked Camp         | ★★★☆☆ |                                              |
 | Instrction Arrangement       | ★★★☆☆ |                                              |
+
+
+## 相关资料
+
+ - [数与图的完美结合—浅析差分约束系统](https://wenku.baidu.com/view/0162ad40ed630b1c59eeb5f2.html?rec_flag=default&sxts=1531878763253)
+ - [冯威《数与图的完美结合——浅析差分约束系统》](https://wenku.baidu.com/view/108cab976bec0975f465e2d5.html)
