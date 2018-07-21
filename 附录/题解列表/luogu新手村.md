@@ -1,0 +1,5 @@
+ - 过程函数与递归
+   - [P1028 数的计算](http://pcs.rainboy.top/#/article/rybzz7JE7)
+   - [P1036 选数]()
+   - [P1149 火柴棒等式]()
+   - [P1217 USACO1.5 回文质数 Prime Palindromes]()
