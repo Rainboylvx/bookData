@@ -292,3 +292,8 @@ int main(){
     return 0;
 }
 ```
+
+## 练习题目
+
+ - luogu P1002 过河卒
+ - luogu 挖地雷
