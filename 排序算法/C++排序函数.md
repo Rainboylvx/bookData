@@ -41,8 +41,8 @@ using namespace std;
 
 int a[100];
 
-/* 原是是为真的时候,第一个数字放前面 */
-int mycmp(int &a,int &b){ 
+/* 原理是为真的时候,第一个数字放前面 */
+bool mycmp(int &a,int &b){ 
     if(a > b)
         return 1;
     return 0;
@@ -61,3 +61,5 @@ int main(){
     return 0;
 }
 ```
+
+**重点: 原理是为真的时候,mycmp函数的第一个参数放前面**

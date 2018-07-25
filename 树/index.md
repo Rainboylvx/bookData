@@ -9,9 +9,6 @@
 ![树](/book/images/树.png)
 
 
-
-
-
 树（tree）是包含`n（n>0）`个结点的有穷集，其中：
 
  - （1）每个元素称为**结点**（node）；
@@ -244,104 +241,6 @@ int main(){
 }
 ```
 
+## 练习题目
 
-## 树的遍历
-
-在就用树的结构解决问题时,往往要求按照某种次序获得树中全部结点的信息,这种操作叫作树的遍历,遍历的方法有多种,这里主要说:
-
-
- - 先序(根)遍历
- - 中序(根)遍历
- - 后序(根)遍历
-
-**代码如下:**
-
-```c
-#include <cstdio>
-
-struct _node {
-    int data;
-    struct _node *p[2];
-    struct _node *father;
-};
-
-_node tree[10];
-
-/* 动态化静态 */
-int cnt =0;
-_node * newnode(){
-    _node *u = &tree[cnt++];
-    u->p[0] = u->p[1]= u->father=NULL;
-    return u;
-}
-
-/* 
- *     1
- *   2   3
- *  4  5    6
- * */
-
-
-/*添加一个点,父亲为fa,数据为data */
-void add_node_to_tree(_node *fa,int child,int data){
-    fa->p[child] = newnode();
-    fa->p[child]->data= data;
-    fa->p[child]->father = fa;
-}
-
-/* 先序 */
-void first(_node *t){
-    if(t == NULL) return;
-    printf("%d",t->data);
-    first(t->p[0]);
-    first(t->p[1]);
-}
-
-
-/* 中序 */
-void middle(_node *t){
-    if(t == NULL) return;
-    middle(t->p[0]);
-    printf("%d",t->data);
-    middle(t->p[1]);
-}
-
-/* 后序 */
-void last(_node *t){
-    if(t == NULL) return;
-    last(t->p[0]);
-    last(t->p[1]);
-    printf("%d",t->data);
-}
-
-int main(){
-    _node *tmp_node ;
-
-    _node *root = newnode();
-    root ->data = 1;
-
-    tmp_node = root;
-    add_node_to_tree(tmp_node,0,2);
-    add_node_to_tree(tmp_node,1,3);
-
-    tmp_node = root->p[1];
-    add_node_to_tree(tmp_node,1,6);
-
-    tmp_node = root->p[0];
-    add_node_to_tree(tmp_node,0,4);
-    add_node_to_tree(tmp_node,1,5);
-
-    printf("先序遍历:");
-    first(root);
-    printf("\n");
-
-
-    printf("中序遍历:");
-    middle(root);
-    printf("\n");
-
-    printf("后序遍历:");
-    last(root);
-    printf("\n");
-}
-```
+todo!!!
