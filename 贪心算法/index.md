@@ -41,10 +41,23 @@
 
 
 **简单贪心**
+
  - luogu P2096 最佳旅游线路
  - luogu P1208 [USACO1.3]混合牛奶 Mixing Milk
-
-
  - [UVA11292 Dragon of Loowater](https://www.luogu.org/problemnew/show/UVA11292) pcs 恶龙
  - [删数问题2](https://www.luogu.org/problemnew/show/1323)
  - [DVD服务请求](https://www.luogu.org/problemnew/show/1733)
+
+**进阶**
+
+ - loj 10000 「一本通 1.1 例 1」活动安排
+ - loj 10001 「一本通 1.1 例 2」种树
+ - loj 10002 「一本通 1.1 例 3」喷水装置
+ - loj 10003 「一本通 1.1 例 4」加工生产调度
+ - loj 10004 「一本通 1.1 例 5」智力大冲浪
+ - loj 10005 「一本通 1.1 练习 1」数列极差
+ - loj 10006 「一本通 1.1 练习 2」数列分段
+ - loj 10007 「一本通 1.1 练习 3」线段
+ - loj 10008 「一本通 1.1 练习 4」家庭作业
+ - loj 10009 「一本通 1.1 练习 5」钓鱼
+ - loj 10010 「一本通 1.1 练习 6」糖果传递
