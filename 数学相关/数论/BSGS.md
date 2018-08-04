@@ -169,8 +169,14 @@ int main(){
 
 ```
 ## 练习题目
+ - [poj2417 Discrete Logging]https://vjudge.net/problem/poj-2417
 
 
 经典的裸题SDOI2011 计算器
 
 题目解析 http://hzwer.com/5878.html
+
+
+## 拓展BSGS
+todo!!
+http://tonyfang.is-programmer.com/posts/178997.html
