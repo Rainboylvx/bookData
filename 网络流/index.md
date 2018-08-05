@@ -83,3 +83,24 @@ $$
  - 洛谷 P2488 [SDOI2011]工作安排
  - 洛谷 P2050 [NOI2012]美食节
  - 洛谷 [SCOI2007]修车
+
+
+## 其它
+
+最大流算法
+sap
+    isap
+    gap优化isap
+    
+    dinic
+    dinic 当前弧优化
+
+http://www.aiuxian.com/article/p-1041515.html
+
+
+最大流算法的选择：Dinic还是SAP？
+http://fanhq666.blog.163.com/blog/static/81943426201072554322479/
+
+结论：学Dinic 代码量少,容易记忆！
+
+Sap,Isap，知道就可以
