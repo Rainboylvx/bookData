@@ -58,6 +58,16 @@
 11 12
 ```
 
+
+## 练习题目
+
+- luogu P3979 遥远的国度
+- luogu P3384 【模板】树链剖分
+- luogu
+- luogu
+- luogu
+
 ## 引用
 
  - [树链剖分ppt](https://wenku.baidu.com/view/a088de01eff9aef8941e06c3.html)
+

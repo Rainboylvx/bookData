@@ -65,13 +65,14 @@ int query(int l,int r){
     //第一种方法
     int x = int( log(r-l+1)/log(2));
 
-    //第二种方法
+    //第二种方法,这种写法比上面的写法慢
+    // 例如，luogu3865 就过不了
     int k =0;
     while( (1<<k) <=(r-l+1) ) k ++;
     k--;
 
     //return max(f[l][k],f[r-(1<<k)+1][r]);
-    return max(f[l][x],f[r-(1<<x)+1][r]);
+    return max(f[l][x],f[r-(1<<x)+1][x]);
 }
 ```
 ## 具体代码
@@ -108,7 +109,7 @@ int max(int a,int b){
 
 int query(int l,int r){
     int x = int( log(r-l+1)/log(2));
-    return max(f[l][x],f[r-(1<<x)+1][r]);
+    return max(f[l][x],f[r-(1<<x)+1][x]);
 }
 
 void rmq(){ //预处理
