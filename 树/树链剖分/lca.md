@@ -199,7 +199,6 @@ int find(int x,int y){
 #include <cstdio>
 #include <cstring>
 
-
 #define maxn 100
 
 int m,n;
@@ -209,7 +208,7 @@ int head[maxn];
 struct edge {
     int next;
     int v;
-}E[maxn];
+}E[maxn<<1]; //存两遍边
 int cnt = 0;
 
 void addedge(int x,int y){
@@ -249,7 +248,7 @@ void dfs2(int u,int sf){
 
     for(i=head[u];i!=-1;i=E[i].next){
         int v = E[i].v;
-        if( v!= son[u])
+        if( v!= son[u] && v != fa[u])
             dfs2(v,v);
     }
 }
@@ -296,8 +295,8 @@ int main(){
         scanf("%d%d",&x,&y);
         addedge(x,y);
     }
-    dfs1(1,1,1);
-    dfs2(1,1);
+    dfs1(root,root,1);
+    dfs2(root,root);
     
     scanf("%d",&n);
     int x,y;
@@ -310,4 +309,91 @@ int main(){
     return 0;
 }
 ```
+## 练习题目２　
 
+题目地址：[【模板】最近公共祖先（LCA）](https://www.luogu.org/problemnew/show/P3379)
+
+
+**代码**
+
+```c
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#define maxn 500005
+using namespace std;
+int m,n,root;
+struct edge{
+	int next;
+	int v;
+}E[maxn<<1]; //存两遍边
+int head[maxn];
+int son[maxn],top[maxn],size[maxn],fa[maxn],dep[maxn];
+int cnt=0;
+void addEdge(int x,int y){
+	cnt++;
+	E[cnt].v=y;
+	E[cnt].next=head[x];
+	head[x]=cnt;
+}
+void dfs1(int u,int pre,int d){
+	dep[u]=d;
+	fa[u]=pre;
+	size[u]=1;
+	for(int i=head[u];i!=-1;i=E[i].next){
+		int v=E[i].v;
+		if( v == pre ) continue;
+		dfs1(v,u,d+1);
+		size[u]+=size[v];
+		if(son[u]==-1 || size[v]>size[son[u]]){
+			son[u]=v;
+		}
+	}
+}
+void dfs2(int u,int sf){
+	top[u]=sf;
+	if(son[u]!=-1){
+		dfs2(son[u],top[u]);
+	}
+	else return ;
+	for(int i=head[u];i!=-1;i=E[i].next){
+		int v=E[i].v;
+		if(v!=son[u] && v != fa[u]) 
+		    dfs2(v,v);
+	}
+}
+int find(int x,int y){
+	int f1=top[x],f2=top[y];
+	while(f1!=f2){
+		if(dep[f1]<dep[f2]){
+			swap(f1,f2);
+			swap(x,y);
+		}
+		x=fa[f1];
+		f1=top[x];
+	}
+	if(dep[x]>dep[y]){
+		swap(x,y);
+	}
+	return x;
+}
+int main(){
+	memset(son,-1,sizeof(son));
+	memset(head,-1,sizeof(head));
+	scanf("%d%d%d",&n,&m,&root);
+	for(int i=1;i<=n-1;i++){
+		int a,b;
+		scanf("%d%d",&a,&b);
+		addEdge(a,b);
+		addEdge(b,a);
+	}
+	dfs1(root,root,1);
+	dfs2(root,root);
+	for(int i=1;i<=m;i++){
+		int a,b;
+		scanf("%d%d",&a,&b);
+		printf("%d\n",find(a,b));
+	}
+	return 0;
+}
+```
