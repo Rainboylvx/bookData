@@ -30,7 +30,7 @@ while True:
         exit(1)
     else:
         print("test right {}".format(cnt))
-        cnt++
+        cnt = cnt+1
 ```
 
 
