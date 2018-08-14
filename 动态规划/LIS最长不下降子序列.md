@@ -229,7 +229,7 @@ int main(){
 
 ```c
 a: 7 2 9 3 4 10 6 1  原数组
-b: 1 1 2 2 3  4 4 1　lis数组
+b: 1 1 2 2 3  4 4 1　长度为ｉ的最长不下降子序列的最小右端值数组
 
 c: 7
    2
@@ -246,30 +246,56 @@ c: 7
 
 
 ```c
-int a[n],c[n],f[n],m;
-//a 为数组,f存最大长度
-//c是符合条件的最长非降序列
-//c[i]表示长度为i的LIS最小右端值
+// 求最长不下降子序列
+#include <cstdio>
+#include <cstring>
 
-memset(c,0x7f,siezof);
+int n;
+int a[100];
+int c[100],f[100];
 
-int LIS(){
-    int i;
-    for(i=1;i<=n;i++){
-        int min=1,max=i;
-
-        while(min<max){     //寻找最大c[x],使c[x]<=a[i]
-            int mid  = (min+max)>>1;
-            if(c[mid] <= a[i])
-                min = mid+1;
-            else
-                max= mid;
-        }
-
-        f[i]=min;   //保有答案
-        c[min]=a[i];//更新最小值
+//[l,r)
+int upper_bound(int l,int r,int key){
+    while(l < r){
+        int m  = (l+r)>>1;
+        if( c[m] <= key)
+            l = m+1;
+        else
+            r = m;
     }
-    return f[n];
+    return l;
+}
+
+void init(){
+    memset(c,0x7f,sizeof(c));
+    scanf("%d",&n);
+    int i;
+    for (i=1;i<=n;i++){
+        scanf("%d",&a[i]);
+    }
+}
+
+void lis(){
+    int i,j,k;
+    c[1] = a[1];
+    f[1] = 1;
+    for(i=2;i<=n;i++){
+        int pos = upper_bound(1,i,a[i]);
+        pos--;
+        f[i] = pos+1;
+        if( c[ f[i] ]  > a[i])
+             c[ f[i] ]  = a[i];
+    }
+}
+int main(){
+    init();
+    lis();
+    int i;
+    for (i=1;i<=n;i++){
+        printf("%d %d\n",i,f[i]);
+    }
+
+    return 0;
 }
 ```
 
@@ -277,6 +303,7 @@ int LIS(){
 
  - [P1020 导弹拦截](https://www.luogu.org/problemnew/show/P1020)
  - [P1091 合唱队形](https://www.luogu.org/problemnew/show/P1091)
+ - [luogu p1439【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
  - [uscao 4.3 buy low but lower](https://www.luogu.org/problemnew/show/P2687)
  - [友好城市](https://www.luogu.org/problemnew/show/P2782)
  - [P2215 HAOI2007上升序列](https://www.luogu.org/problemnew/show/P2215)

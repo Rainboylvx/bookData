@@ -3,7 +3,6 @@
 ## 题目
 
 cogs 476  
-[luogu p1439【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
 
 ### 【问题描述】
 
@@ -184,8 +183,6 @@ int main(){
 
 ## LCS转LIS
 
-设有序列A，B。记序列A中各个元素在B 中的位子(降序排列)，然后按在A中的位置依次列出按后求A的最长递增子序列。
-
 使用,求下面的两个序列的LCS
 ```
 2 1 3
@@ -197,12 +194,11 @@ int main(){
 所以:**LCS 转 LIS ：将序列 A 和 B 当中的相同字母配对都找出来，呈现成索引值数对，再以特殊规则排序，最后找 LIS ，就是 A 和 B 的 LCS **
 
 
-
 练习题目：[P1439 【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
 
 
 
-**使用$$nlog(n)$$的lis算法**
+**使用$$nlog(n)$$的lis算法的代码**
 ```c
 #include <cstdio>
 #include <cstring>
@@ -269,6 +265,12 @@ int main(){
     return 0;
 }
 ```
+=======
+
+## LCS转LIS
+
+todo!!
+>>>>>>> Stashed changes
 
 ## 练习题目
 
