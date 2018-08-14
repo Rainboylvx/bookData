@@ -182,6 +182,94 @@ int main(){
 ```c
 ```
 
+## LCS转LIS
+
+设有序列A，B。记序列A中各个元素在B 中的位子(降序排列)，然后按在A中的位置依次列出按后求A的最长递增子序列。
+
+使用,求下面的两个序列的LCS
+```
+2 1 3
+1 2 3
+```
+
+因为第二个序列是有序且上升的,第一个序列和第二个序列的LCS序列必然也是上升的,也就是求第一个序列的LIS.
+
+所以:**LCS 转 LIS ：将序列 A 和 B 当中的相同字母配对都找出来，呈现成索引值数对，再以特殊规则排序，最后找 LIS ，就是 A 和 B 的 LCS **
+
+
+
+练习题目：[P1439 【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
+
+
+
+**使用$$nlog(n)$$的lis算法**
+```c
+#include <cstdio>
+#include <cstring>
+
+#define N 100005
+
+int n;
+int a[N],tag[N],c[N],b[N],f[N],C[N];
+
+int max(int a,int b){
+    if(a >b) return a;
+    return b;
+}
+
+int min(int a,int b){
+    if( a < b) return a;
+    return b;
+}
+
+//找到第一个 > key 的数
+int lower_bound(int s,int t,int key){
+    while( s < t){
+        int m = (s+t)>> 1;
+        if( c[m] <= key)
+            s = m+1;
+        else
+            t = m;
+    }
+    return s;
+}
+
+void init(){
+    memset(c,0x7f,sizeof(c));
+    scanf("%d",&n);
+    int i,j,k;
+    
+    for (i=1;i<=n;i++){
+        scanf("%d",&a[i]);
+        tag[ a[i] ]  =i;
+    }
+    for (i=1;i<=n;i++){
+        scanf("%d",&b[i]);
+        b[i] = tag[b[i]];
+        f[i] = 1;
+    }
+}
+
+int main(){
+    init();
+    int i,j,k;
+    int mm = -1;
+    //lis
+    c[1] = b[1];
+    c[0] = 0;
+    for (i=2;i<=n;i++){
+        int p = lower_bound(1,i,b[i]);
+        p--;
+        f[i] = p+1;
+        mm = max(mm,f[i]);
+        c[ f[i] ] = min(c[f[i]],b[i]);
+    }
+    printf("%d\n",mm);
+
+    return 0;
+}
+```
+
 ## 练习题目
 
  - [友好城市](https://www.luogu.org/problemnew/show/P2782)
