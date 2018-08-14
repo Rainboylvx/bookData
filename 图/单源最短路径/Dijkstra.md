@@ -140,24 +140,77 @@ int main(){
 ```
 
 
-## Dijkstra + heap( 没有写完)
+## Dijkstra + 堆优化( 没有写完)
+
+但我们发现每次找一个最近点有点耗时，因为要支持减值和求最小的操作，就用小根堆.
+
+为了减少代码量,这里我们使用**STL中的priority_queue**,优先队列.
 
 ```c
 /*-------------------------------------------------
 *  Author:Rainboy
-*  time: 2016-04-11 11:43
-*  © Copyright 2016 Rainboy. All Rights Reserved.
+*  2018-08-14 15:47
 *-------------------------------------------------*/
-
-/*  dijkstra的heap优化:这样可以快速取到最小的点
- *      为了减小代码,我们使用了STL--> priority_queue
- *
- * */
-
-void dijkstra(int s){
-    int i;
-    for()
-
+#include<iostream>
+#include<cstdio>
+#include<queue>
+using namespace std;
+int n,m,S,tot,Next[500010],head[20000],tree[500010],val[500010];
+bool visit[20000];
+long long dis[20000];
+struct cmp
+{
+    bool operator()(int a,int b)
+    {
+        return dis[a]>dis[b]; //小根堆
+    }
+};
+priority_queue<int,vector<int>,cmp> Q;
+void add(int x,int y,int z)
+{
+    tot++;
+    Next[tot]=head[x];
+    head[x]=tot;
+    tree[tot]=y;
+    val[tot]=z;
+}
+int main()
+{
+    scanf("%d%d%d",&n,&m,&S);
+    tot=0;
+    for (int i=1;i<=m;i++)
+    {
+        int x,y,z;
+        scanf("%d%d%d",&x,&y,&z);
+        if (x==y) continue;
+        add(x,y,z);
+    }
+    for (int i=1;i<=n;i++) 
+    {
+        visit[i]=false;
+        dis[i]=2147483647;
+    }
+    Q.push(S);
+    dis[S]=0;
+    while (!Q.empty())
+    {
+        int u=Q.top();
+        Q.pop();
+        if (visit[u]) continue; // 取出的点已经标记过了,不进行运算
+        visit[u]=true;
+        for (int i=head[u];i;i=Next[i])
+        {
+            int v=tree[i];
+            if (!visit[v]&&dis[v]>dis[u]+(long long)val[i])
+            {   
+                dis[v]=dis[u]+val[i];
+                Q.push(v);
+            }
+        }
+    }
+    for (int i=1;i<=n-1;i++) printf("%lld ",dis[i]);
+    printf("%lld\n",dis[n]);
+    return 0;
 }
 ```
 
