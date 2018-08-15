@@ -166,7 +166,7 @@ int dfn[maxn] ={0};
 int color[maxn]; // color[i] 点i的强连通分量编号,给强连通分量涂色
 int stack[maxn],top=0; // 自己维护的stack ,可以用 STL stack
 int cnt =0; //记录有几个强连通分量
-int dfn = 0; // 点的访问时间序号
+int idx =0; // 点的访问时间序号
 int vis[maxn] = {0}; // 标记是否访问
 //存图
 
@@ -202,7 +202,7 @@ int min (int a,int b){
 
 void tarjan(int u){
     vis[u] =1;//标记访问
-    dfn[u] = low[u] = ++dfn;
+    dfn[u] = low[u] = ++idx;
     instack[u] =true; //在栈内,可以用来判断这个是不是已经被访问过
     push(u);
     int i;
