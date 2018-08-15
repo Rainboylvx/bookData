@@ -66,9 +66,9 @@
 
 ## 算法过程
 
-我们维护两个数组,**index[i]**,**low[i]**,一个堆栈**stack**
+我们维护两个数组,**dfn[i]**,**low[i]**,一个堆栈**stack**
 
- - `index[i]`表示点`i`开始访问的时间序号,也写作`DFN[i]`
+ - `dfn[i]`表示点`i`开始访问的时间序号
  - `low[i]`表示点`i`能访问访问过点中的最小的时间序号(其时,只要比当前点的时间序号小就可以)
  - `stack`按访问顺序压入点,DFS回溯到强连通分量的根的时候,弹出根后面的点
 
@@ -77,12 +77,12 @@
 
 ```
 low[i] = min {
-    index[i],
+    dfn[i],
     low(j),(i,j)存在边i-->j,dfs树的树枝边
-    index(j),(i,j)存在,但j已经访问过了,为指向栈中节点的后向边
+    dfn(j),(i,j)存在,但j已经访问过了,为指向栈中节点的后向边
 }
 ```
-当$$index(i)=Low(i)$$时，以i为根的搜索子树上所有节点是一个强连通分量
+当$$dfn(i)=Low(i)$$时，以i为根的搜索子树上所有节点是一个强连通分量
 
 ![2](/book/images/Tarjan过程.png)
 
@@ -92,7 +92,7 @@ low[i] = min {
 ```c
 tarjan(u)
 {
-    DFN[u]=Low[u]=++Index                      // 为节点u设定次序编号和Low初值
+    DFN[u]=Low[u]=++dfn                      // 为节点u设定次序编号和Low初值
     Stack.push(u)                              // 将节点u压入栈中
     for each (u, v) in E                       // 枚举每一条点u开头的边
         if (v is not visted)               // 如果节点v未被访问过
@@ -109,11 +109,9 @@ tarjan(u)
 
 ## 一句话算法:
 
-<center>
- - 当(u,v)是树枝边时`low[u] = min(low[u],low[v])
- - 当(u,v)是回边,且另一个点没有被输出(在stack内)时,`low[u] = min(low[u],dfn[v])`
- - 当dfs退出点u,判断u是不是强连通分量的根,`dfn[u] == low[u]`
-</center>
+ - 当(u,v)是树枝边时$$low[u] = min(low[u],low[v])$$
+ - 当(u,v)是回边,且另一个点没有被输出(在stack内)时,$$low[u] = min(low[u],dfn[v])$$
+ - 当dfs退出点u,判断u是不是强连通分量的根,$$dfn[u] == low[u]$$
 
 
 ## 具体代码
@@ -121,11 +119,11 @@ tarjan(u)
 **算法实现过程:**
 
  - 对于dfs中的每个点
- - 初始化`index[x]`和`low[x]`
+ - 初始化`dfn[x]`和`low[x]`
  - 对`x`的所有临接点'v':
   - 如果没有被访问过,则访问v,同时维护low[x]
   - 如果被访问过,但没有被输出,就维护low[x]
- - 如果`index[x] == low[x]`,输出
+ - 如果`dfn[x] == low[x]`,输出
 
 
 数据:
@@ -168,7 +166,7 @@ int dfn[maxn] ={0};
 int color[maxn]; // color[i] 点i的强连通分量编号,给强连通分量涂色
 int stack[maxn],top=0; // 自己维护的stack ,可以用 STL stack
 int cnt =0; //记录有几个强连通分量
-int idx = 0; // 点的访问时间序号
+int dfn = 0; // 点的访问时间序号
 int vis[maxn] = {0}; // 标记是否访问
 //存图
 
@@ -204,7 +202,7 @@ int min (int a,int b){
 
 void tarjan(int u){
     vis[u] =1;//标记访问
-    dfn[u] = low[u] = ++idx;
+    dfn[u] = low[u] = ++dfn;
     instack[u] =true; //在栈内,可以用来判断这个是不是已经被访问过
     push(u);
     int i;
@@ -318,6 +316,29 @@ low[u] 可以通过孩子来更新,一个强连通分量内的能回到的最早
 为什么`low[u] = min(low[u],dfn[i])`是正确的?
 
 我们只要证明一个点能回到更早的点就行了,这个点可以通过那个点继续回到更早的点,但是有一个点不能回到更早的点:强连通分量子树的根,我们主要是找这个点.
+
+
+## 缩点
+
+因为**强连通分量**上点可以互相到达,所以可以把它们当成一个点,这种操作叫作**缩点**
+
+一个图进行缩点后,一定是个**DAG图**(有向无环图)
+
+[luogu P2863  USACO06JAN 牛的舞会The Cow Prom](https://www.luogu.org/problemnew/show/P2863)
+
+**分析**
+
+todo
+
+**代码**
+
+todo
+## 练习题目
+
+ - luogu P2661 信息传递
+ - luogu P2835 刻录光盘
+ - luogu P2002 消息扩散 (缩点)
+ - luogu P1262 间谍网络 (缩点)
 
 ## 引用
  
