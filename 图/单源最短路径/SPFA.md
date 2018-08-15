@@ -147,7 +147,7 @@ void spfa(){
         for(i = first[t];i !=-1;i = edge[i].next){
             int tv = edge[i].v;
             int tw = edge[i].w;
-            if( dis[tv] > dis[t] + tw){ //理新
+            if( dis[tv] > dis[t] + tw){ //更新
                 dis[tv] = dis[t] + tw;
     
                 /* 不在队列中,就加入队列 */
