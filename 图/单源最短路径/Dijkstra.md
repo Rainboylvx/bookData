@@ -50,8 +50,88 @@ Dijstra算法:**贪心**
 3 5 6
 ```
 
+**代码:向量星版本**
 
-**代码**
+```c
+/*-------------------------------------------------
+*  Author:Rainboy   time:2018-08-19 20:09
+*-------------------------------------------------*/
+#include <cstdio>
+#include <cstring>
+
+#define N 100
+#define inf 0x7f7f7f7f
+
+int n,m;
+int s,t;
+int dis[N]; //每个点到起点的最短距离
+bool flag[N] = {0}; //某个点是不是已经标记
+
+int first[N];
+int edge_cnt = 0;
+struct _e{
+    int u,v,w,next;
+}e[N<<2];
+
+void addEdge(int u,int v,int w){
+    edge_cnt++;
+    e[edge_cnt].u = u;
+    e[edge_cnt].v= v;
+    e[edge_cnt].w=w;
+    e[edge_cnt].next = first[u];
+    first[u] = edge_cnt;
+}
+
+void init(){
+    memset(first,-1,sizeof(first));
+    scanf("%d%d",&n,&m);
+    scanf("%d%d",&s,&t);
+    int i,j,k,l;
+    for (i=1;i<=m;i++){
+        scanf("%d%d%d",&j,&k,&l);
+        addEdge(j,k,l);
+        addEdge(k,j,l);
+    }
+
+    memset(dis,0x7f,sizeof(dis));
+    dis[s] =0;
+
+}
+
+void dijkstra(){
+    int i,j;
+    for (i=1;i<=n;i++){ //进行ｎ次循环，每次标记一个点
+        int min = inf; //记录最小值
+        int tmp =-1; // 记录dis最的末标记的点
+        for(j=1;j<=n;j++)
+            if( flag[j] == 0 && min > dis[j])
+                tmp = j, min = dis[j];
+
+        if( tmp == -1)  //证明tmp没有被更新
+             return;    //也就是有可能还存在末标记点
+                        //但是它的值是无穷，证明从起点到达不了这个点
+                        //那就不要再进行算法了
+
+        flag[tmp] = 1; //标记
+        //用新标记的点去更新它周围的末标记点
+        for(j=first[tmp];j!=-1;j=e[j].next){
+            int v  = e[j].v;
+            if( flag[v] == 0 && dis[v]>dis[tmp]+e[j].w)
+                dis[v]=dis[tmp]+e[j].w;
+        }
+    }
+}
+int main(){
+    init(); //读取数据
+    dijkstra();
+    //输出结果
+    printf("%d\n",dis[t]);
+    return 0;
+}
+```
+
+
+**代码:邻接表版本**
 
 ```c
 /*-------------------------------------------------
