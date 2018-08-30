@@ -265,12 +265,6 @@ int main(){
     return 0;
 }
 ```
-=======
-
-## LCS转LIS
-
-todo!!
->>>>>>> Stashed changes
 
 ## 练习题目
 

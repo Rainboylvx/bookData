@@ -137,7 +137,57 @@ int main(){
 }
 ```
 
-## 题目1:luogu P1440 求m区间内的最小值
+##　题目1:  luogu P3865 ST表
+
+模板题目：直接做
+```c
+#include <cstdio>
+#include <cmath>
+
+#define N 100005
+
+int a[N];
+int f[N][32];
+
+int n,m;//n个数,m次查询
+
+
+int max(int a,int b){
+    if( a > b )
+        return a;
+    return b;
+}
+
+int query(int l,int r){
+    int x = int( log(r-l+1)/log(2));
+    return max(f[l][x],f[r-(1<<x)+1][x]);
+}
+
+void rmq(){ //预处理
+    int i,j;
+    for(j=1;(1<<j)<=n;j++)
+        for(i=1;i+(1<<j)-1 <=n;i++){
+            f[i][j] = max(f[i][j-1],f[i+(1<<(j-1))][j-1]);
+        }
+}
+
+int main(){
+    int i,j;
+    scanf("%d%d",&n,&m);
+    //读入
+    for (i=1;i<=n;i++)
+        scanf("%d",&f[i][0]);
+    rmq();
+    for (i=1;i<=m;i++){
+        int t1,t2;
+        scanf("%d%d",&t1,&t2);
+        printf("%d\n",query(t1,t2));
+    }
+    return 0;
+}
+```
+
+## 题目2:luogu P1440 求m区间内的最小值
 
 todo
 
