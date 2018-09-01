@@ -308,6 +308,8 @@
       * [noiOpenjudge题解列表](/book/附录/题解列表/noiOpenjudge题解列表)
       * [noip普及组历年题解](/book/附录/题解列表/noip普及组历年题解)
       * [noip提高组历年题解](/book/附录/题解列表/noip提高组历年题解)
+    * [相关视频](/book/附录/相关视频/index)
+      * [埃舍尔](/book/附录/相关视频/埃舍尔)
 * [GDB调试](/book/附录/gdb调试)
 * [引用](/book/引用/index)
 * [有用的资料集](/book/引用/collections)

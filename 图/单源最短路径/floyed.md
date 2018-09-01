@@ -87,12 +87,12 @@ void floyd(){
 如果我们要输出$$s \rightarrow t$$的最短路径,我们先设$$path(i,j)$$表示$$ i \rightarrow j$$的最短路上的$$i$$后面的那个点.
 
 根据:$$f(s,t) = min\\{f(s,t),f(s,k)+f(k,t)\\}$$  
-如果$$f(s,t)$$能被$$ f(s,k)+f(k,t)$$更新,那么$$path(s,t) = path(i,k)$$,我们设$$path(i,k) = x$$
+如果$$f(s,t)$$能被$$ f(s,k)+f(k,t)$$更新,那么显然:$$path(s,t) = path(s,k)$$
 
 
-根据**最优子结构的性质**:如果路径$$A$$是$$ s \rightarrow t $$ 的最短路径.那么路径$$A$$的一部分$$x \rightarrow t $$ 一定是$$s$$到$$x$$最短的,所以最短路径$$s \rightarrow t$$的后一个点的后一个点一定是$$path(s,k)$$
+根据**最优子结构的性质**:如果路径$$A$$是$$ s \rightarrow t $$ 的最短路径.我们设$$path(s,k) = x$$,那么路径$$A$$的一部分$$x \rightarrow t $$ 一定是$$x$$到$$t$$最短的,所以最短路径$$s \rightarrow t$$的后一个点的后一个点一定是$$path(x,t)$$,这样不停的迭代下去就可以找可以路径$$A$$上的所有点。
 
-边界:
+**边界:**
 
  - $$path(i,i) = -1$$,表示没有后趋.
  - $$path(i,j) = j$$,$$i$$与$$j$$相连
