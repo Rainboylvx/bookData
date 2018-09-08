@@ -138,14 +138,14 @@ void insert(int &u,int x){
     }
 
     if( x > tr[u].val){ // 比当前点大,进入右子树
-        insert(tr[u].l,x);
+        insert(tr[u].r,x);
         //回溯后,右孩子比自己小,左旋
-        if( tr[rs].fix < tr[u].fix) lturn(p);
+        if( tr[rs].fix < tr[u].fix) lturn(u);
     }
     else {  // 比当前点小于等于,进入左子树
         insert(tr[u].l,x);
         //回溯后,左孩子比自己大 ,右旋
-        if(tr[ls].fix > tr[u].fix) rturn(p);
+        if(tr[ls].fix > tr[u].fix) rturn(u);
     }
 }
 ```
