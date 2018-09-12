@@ -39,7 +39,7 @@ f[i][j][k] 前i行,有k个国王且第i的状态为state[j]的条件下的方案
 那么,状态转移方程为:
 
 ```math
-f[i][j][k] = \sigama f[i-1][j_1][k_1]+ \sum state[j] , k_1+num(state[j]) = k
+f[i][j][k] = \sum f[i-1][j_1][k_1]+ \sum state[j] , k_1+num(state[j]) = k
 ```
  - $$state(j_1) $$与$$state(j)$$不冲突
  - $$num(state[j])$$表示状态$$j$$中国王的数量.

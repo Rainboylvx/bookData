@@ -34,19 +34,202 @@
 (n >> 1) == (n/2)
 ```
 
-
-
 ### 左移特点
+
+```
+1 << 0 = 1
+1 << 1 = 10
+```
+
+二进制的最低位我们叫第$$0$$位,`1<<k`,就是把$$1$$放到第$$k$$位
+
+
+任何数左移一位相当于乘以2:
+
+```c
+(n << 1) == (n/2)
+```
 
 ### 按位与特点
 
+```
+1 & 0 =0
+0 & 1 =0
+```
+任何数与$$0$$按位与都是$$0$$
+
+```
+1 & 1 = 1
+0 & 1 = 0
+```
+
+任何数与$$1$$按位与都是$$1$$
+
+**所以你可以利用这个特点来对特定位置的数时行置$$0$$**
+```c
+#include <cstdio>
+#include <cstring>
+
+/* num:数   len:长度*/
+char s4_pbin[40];
+char * p_bin(int n,int len){
+    memset(s4_pbin,'0',sizeof(s4_pbin));
+    s4_pbin[len+1] = '\0';
+
+    while(n && len){
+        s4_pbin[len--] = (n & 1)+'0';
+        n >>=1;
+    }
+    return s4_pbin+1;
+}
+#define print_bin4(i)               printf("%s", p_bin(i,4))
+#define print_bin8(i)               printf("%s", p_bin(i,8))
+#define print_bin16(i)              printf("%s", p_bin(i,16))
+#define print_bin32(i)              printf("%s", p_bin(i,32))
+
+
+int main(){
+    int a = 0b1111;
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    // 相让a的第二位置0
+    a = a & (~0b100);
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    return 0;
+}
+```
+
 ### 按位或特点
+
+```
+0 | 1 = 1
+1 | 1 = 1
+```
+任何数与$$1$$按位或都是$$1$$
+
+```
+0 | 0 = 0
+1 | 0 = 1
+```
+任何数与$$0$$按位或都是原来的数
+
+利用这个特点对特定位置的数置$$1$$
+
+```c
+#include <cstdio>
+#include <cstring>
+
+/* num:数   len:长度*/
+char s4_pbin[40];
+char * p_bin(int n,int len){
+    memset(s4_pbin,'0',sizeof(s4_pbin));
+    s4_pbin[len+1] = '\0';
+
+    while(n && len){
+        s4_pbin[len--] = (n & 1)+'0';
+        n >>=1;
+    }
+    return s4_pbin+1;
+}
+#define print_bin4(i)               printf("%s", p_bin(i,4))
+#define print_bin8(i)               printf("%s", p_bin(i,8))
+#define print_bin16(i)              printf("%s", p_bin(i,16))
+#define print_bin32(i)              printf("%s", p_bin(i,32))
+
+
+int main(){
+    int a = 0b1000;
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    // 相让a的第二位置1
+    a |= 0b100;
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    return 0;
+}
+```
 
 ### 按位异或特点
 
+**异**或的口决:**异**时为真.
+
+```
+1 ^ 1 = 0
+0 ^ 1 = 1
+```
+任何数与$$1$$进行异或都是这个数取反
+
+```
+1 ^ 0 = 1
+0 ^ 0 = 0
+```
+任何数与$$0$$进行异或都是这个数
+
+利用这个性质可以快速对特定位进行取反
+
+```c
+#include <cstdio>
+#include <cstring>
+
+/* num:数   len:长度*/
+char s4_pbin[40];
+char * p_bin(int n,int len){
+    memset(s4_pbin,'0',sizeof(s4_pbin));
+    s4_pbin[len+1] = '\0';
+
+    while(n && len){
+        s4_pbin[len--] = (n & 1)+'0';
+        n >>=1;
+    }
+    return s4_pbin+1;
+}
+#define print_bin4(i)               printf("%s", p_bin(i,4))
+#define print_bin8(i)               printf("%s", p_bin(i,8))
+#define print_bin16(i)              printf("%s", p_bin(i,16))
+#define print_bin32(i)              printf("%s", p_bin(i,32))
+
+
+int main(){
+    int a = 0b1000;
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    // 相让a的第二位置取反
+    a ^= 0b100;
+    printf("a = %d\n",a);
+    print_bin32(a);
+    printf("\n");
+
+    return 0;
+}
+```
+
 ### 按位取反特点
 
-**进阶**
+没有
+
+### 如何得到连续的低位1
+
+```
+0b1111
+```
+
+你想得到连续**$$4$$**个1
+```c
+(1<<4)-1  == 0b1111
+```
+
+## 进阶
 
 二进制数A第i位置1
 
@@ -55,10 +238,16 @@ x & (1<<(i-1))
 ```
 
 二进制数A第i位置0
-`x & ~(1<<(i-1))`
+
+```
+x & ~(1<<(i-1))
+```
+
 二进制数A前i位取反
 
-`x ^ ((1<<i)-1)`
+```
+x ^ ((1<<i)-1)
+```
 
 二进制数A
 ## 二进制数A的某一个部分
@@ -74,7 +263,22 @@ x & (1<<(i-1))
 二进制数A中只保留最低位1后的大小(lowbit)
 `x & (-x)`
 
-二进制数A所有的子集S
+## 二进制数A所有的子集S
+
+```
+1011
+```
+
+```
+1011
+1010
+1001
+1000
+0011
+0010
+0001
+```
+
 
 ```c
 int s;
@@ -136,7 +340,11 @@ int main(){
     return 0;
 }
 ```
+## 把最低位1置0
 
+```
+n = n &(n-1);
+```
 ## 得到二进制中1的数量
 
 
