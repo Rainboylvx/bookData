@@ -127,8 +127,8 @@ void lturn(int &k){ //左旋
 
 
 ```c
-#define ls tr[p].l
-#define rs tr[p].r
+#define ls tr[u].l
+#define rs tr[u].r
 
 void insert(int &u,int x){
     if( u == 0){ //边界
@@ -138,14 +138,14 @@ void insert(int &u,int x){
     }
 
     if( x > tr[u].val){ // 比当前点大,进入右子树
-        insert(tr[u].l,x);
+        insert(tr[u].r,x);
         //回溯后,右孩子比自己小,左旋
-        if( tr[rs].fix < tr[u].fix) lturn(p);
+        if( tr[rs].fix < tr[u].fix) lturn(u);
     }
     else {  // 比当前点小于等于,进入左子树
         insert(tr[u].l,x);
         //回溯后,左孩子比自己大 ,右旋
-        if(tr[ls].fix > tr[u].fix) rturn(p);
+        if(tr[ls].fix > tr[u].fix) rturn(u);
     }
 }
 ```
@@ -163,21 +163,21 @@ void insert(int &u,int x){
 **代码**
 
 ```c
-#define ls tr[p].l
-#define rs tr[p].r
+#define ls tr[u].l
+#define rs tr[u].r
 
-void del(int &p,int x){
-    if( p ==0 ) return ; //边界
-    if( tr[p].val == x){ //边界2
+void del(int &u,int x){
+    if( u ==0 ) return ; //边界
+    if( tr[u].val == x){ //边界2
         if( ls ==0 || rs == 0)
-            p = ls +rs; //单节点或者空的话直接儿子移上来或者删去即可
+            u = ls +rs; //单节点或者空的话直接儿子移上来或者删去即可
         else if(tr[ls].rand < tr[rs].rand)
-            rturn(p),del(p,x);
+            rturn(u),del(u,x);
         else
-            ltrun(p),del(p,x);
+            ltrun(u),del(u,x);
     }
     
-    else if ( x > tr[p].val)
+    else if ( x > tr[u].val)
         del(rs,x); //进入右子树
     else
         del(ls,x); //进入左子树
