@@ -317,22 +317,169 @@ low[u] 可以通过孩子来更新,一个强连通分量内的能回到的最早
 
 我们只要证明一个点能回到更早的点就行了,这个点可以通过那个点继续回到更早的点,但是有一个点不能回到更早的点:强连通分量子树的根,我们主要是找这个点.
 
+## 练习题目1
+[luogu P2863  USACO06JAN 牛的舞会The Cow Prom](https://www.luogu.org/problemnew/show/P2863)
 
 ## 缩点
+
 
 因为**强连通分量**上点可以互相到达,所以可以把它们当成一个点,这种操作叫作**缩点**
 
 一个图进行缩点后,一定是个**DAG图**(有向无环图)
 
-[luogu P2863  USACO06JAN 牛的舞会The Cow Prom](https://www.luogu.org/problemnew/show/P2863)
+
+### 练习题目1
+
+[luogu2835 刻录光盘](https://www.luogu.org/problemnew/show/P2835)
+
+**解析**
+
+我们知道一个强连通分量内的点都可以互相访问,所以对于一个强连通分量只需要一个点
+
+![1](./光盘刻录.png)
+
+如上图所示,可以把一个强连通分量当成一个点,这种操作叫:**缩点**
+
+缩点之后,这个图就变成了DAG(有向无环图),那这个问题就变成了:**在DAG图上找有几个无前趋的点,也就是入度为$$0$$的点**
+
+**那么应该计算点的入度呢?**
+
+![2](./光盘刻录2.png)
+
+如下图所示,我们可以知道某个点是属于哪个强连通分量的,那么们只要**依次遍历每条边$$(u,v)$$,计算边上的两个点是不是属于同一个强连通分量,如果不是同一个,那么把$$v$$所在的分量的入度$$1$$**
+
+ps:如果严格的来做缩点,那么上图的强连通分量$$1$$到强连通分量$$2$$边应该只有一条,分量$$2$$的入度应该也就是$$1$$,但是我们只关心入度为$$2$$的点,所以多算入度也没有关系.
+
+
+
+**代码**
+
+```c
+/*  tarjan 缩点 变DAG 然后计算入度为0的点的个数
+ *
+ * */
+
+#include <cstdio>
+#include <cstring>
+
+#define maxn 205
+int n;
+int dfn[maxn],low[maxn],dnf_id=0,color[maxn],color_idx;
+int in[maxn]; //入度
+
+struct _node {
+    bool ins; // 在栈中
+    bool vis; //是否被访问过
+}node[maxn];
+
+//栈的操作
+int stack[maxn];
+int t_id=0;
+void push(int a){
+    stack[t_id++] = a;
+    node[a].ins = true;
+}
+int pop(){return stack[--t_id];}
+int size(){return t_id; }
+
+
+int first[maxn];
+int edge_cnt = 0;
+struct _e{
+    int u,v,w,next;
+}e[maxn*maxn];  //注意这里,最大的边数量
+
+void addEdge(int u,int v){
+    edge_cnt++;
+    e[edge_cnt].v= v;
+    e[edge_cnt].next = first[u];
+    first[u] = edge_cnt;
+}
+
+
+void init(){
+    memset(node,0,sizeof(node));
+    memset(first,-1,sizeof(first));
+    scanf("%d",&n);
+
+    int i;
+    int t1;
+    
+    for(i=1;i<=n;i++){
+        for(;1;){ 
+            scanf("%d",&t1);
+            if( t1 == 0) break;
+            addEdge(i,t1);
+        }
+    }
+}
+
+int rmin(int a,int b){
+    if(a < b ) return a;
+    return b;
+}
+void tarjan(int u){
+    dfn[u] = low[u] = ++dnf_id;
+    node[u].vis = true;
+    push(u);
+    int i;
+    for(i = first[u];i!=-1;i= e[i].next){
+        int v = e[i].v;
+        if( node[v].vis== false){ //没有被访问过
+            tarjan(v);
+            low[u] = rmin(low[u],low[v]);
+        }
+        else if ( node[v].ins == true){ //是回边 在栈中
+            low[u] = rmin(low[u],dfn[v]);
+        }
+    }
+    if( dfn[u] == low[u]){ //根
+        int t;
+        color_idx++ ;
+        while( u != t){
+            t = pop();
+            node[t].ins = false;
+            color[t] = color_idx;
+        }
+    }
+}
+
+
+
+int main(){
+    init();
+    int i,j;
+    for (i=1;i<=n;i++){
+        if(node[i].vis == 0)
+            tarjan(i);
+    }
+
+    // 开始计算入度
+    for(i=1;i<=n;i++)
+        for(j = first[i];j!=-1;j=e[j].next){
+            int v  = e[j].v;
+            if( color[v] != color[i]){ //不是同一个强连通分量
+                in[ color[v] ]++;
+            }
+        }
+    int ans = 0;
+    for(i=1;i<=color_idx;i++)
+        if( in[i] == 0)
+            ans++;
+
+    printf("%d\n",ans);
+    return 0;
+}
+```
+### 练习题目2
+
+[ P2341  HAOI2006 受欢迎的牛](https://www.luogu.org/problemnew/show/P2341)
 
 **分析**
 
 todo
 
 **代码**
-
-todo
 ## 练习题目
 
  - luogu P2661 信息传递
