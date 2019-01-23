@@ -1,4 +1,7 @@
 # 引导这里有几个SUMMARY
 - 
+  name: 语法篇
+  path: SUMMARY_语法篇.md
+- 
   name: 算法篇
-  path: SUMMARY.md
+  path: SUMMARY_算法篇.md
