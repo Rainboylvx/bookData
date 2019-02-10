@@ -9,5 +9,12 @@ cover:
 
 ## ISAP算法
 
-ISAP算法是$Improve sap$
+$ISAP$算法是$Improve sap$,明显是对$sap$算法的优化,提升.$ISAP$算法又名**重贴标签法**.
+
+
+## 算法过程
+
+## 算法演示
+
+
 
