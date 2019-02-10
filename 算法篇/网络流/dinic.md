@@ -1,36 +1,694 @@
+---
+title: 最大流算法:Dinic
+date: 2019-01-27 17:45
+update: 2019-01-27 17:45
+author: Rainboy
+cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzla9krgiug30qg0bk0wk.gif
+---
+
 ## 连续最短增广路算法-Dinic
-https://www.cnblogs.com/LUO77/p/6115057.html
-http://cnblogs.com/SYCstudio/p/7260613.html
-https://blog.csdn.net/u012914220/article/details/23865829
+
+$Dinic$算法是一种最短增广路算法,其它的还有$SAP$,$ISAP$等.
 
 
-为了解决我们上面遇到的低效方法，Dinic算法引入了一个叫做**分层图**的概念。具体就是对于每一个点，我们根据从源点开始的$$bfs$$序列，为每一个点分配一个深度，然后我们进行若干遍$$dfs$$寻找增广路，每一次由$$u$$推出$$v$$必须保证$$v$$的深度必须是$$u$$的深度$$+1$$。下面给出代码
+为了解决我们上面遇到的低效方法，Dinic算法引入了一个叫做**分层图**的概念。具体就是对于每一个点，我们根据从源点开始的$bfs$序列，为每一个点分配一个深度，然后我们进行若干遍$dfs$寻找增广路，每一次由$u$推出$v$必须保证$v$的深度必须是$u$的深度$+1$.
 
 
-
-
-层次图上的任意一条路径都是从s到层次1到层次2……直到t，可以发现，每一条这样的路径都是一条s-t最短路，这样求，不会出现走多余的边的情况。ps ???? 为什么不会走多余边?
+层次图上的任意一条路径都是从s到层次1到层次2……直到t，可以发现，每一条这样的路径都是一条s-t最短路，这样求，不会出现走多余的边的情况.
 
 
 ## 分层
+
 顶点的层次：在残留网络中，把从源点到顶点u的最短路径长度（该长度仅仅是值路径上边的数目，与容量无关），称为顶点u的层次，记为level(u)。源点Vs的层次为0。
 
-
 将残留网络中所有的顶点的层次标注出来的过程称为分层。
-
-
 
 根据层次网络定义，层次网络中任意的一条弧<u,v>，有满足level(u)+1 == level(v)，这条弧也叫允许弧。直观的说，层次网络是建立在残留网络基础之上的一张“最短路径图”。从源点开始，在层次网络中沿着边不管怎么走，到达一个终点之后，经过的路径一定是终点在残留网络中的最短路径。
 
 ## Dinic 算法过程
 
-（1）初始化容量网络和网络流。
+```viz-dot
+digraph G {
+    splines=ortho;
+    
+    node[shape=box];
+    x[shape=point];
+    a[label="初始容量网络",shape="Mdiamond"];
+    b[label="构造残余网络"];
+    c[label="BFS 构造层次网络"];
+    d[label="汇点在层次网络中",shape=diamond];
 
-（2）构造残留网络和层次网络，若汇点不再层次网络中，则算法结束。
+    e[label="DFS 进行增广"]
+    f[label="算法结束"]
 
-（3）在层次网络中用一次DFS过程进行增广，DFS执行完毕，该阶段的增广也执行完毕。
+    a->b->c->d->e;
+    e->f[style="invis"];
+    
+    {
+        rank=same;
+        x,d,y;
+        y[shape=none,label="再次"];
+    }
+    x:we->d[arrowhead=none,headlabel="否"];
 
-（4）转步骤（2）。
+    x:w->f:w[constraint=false];
+
+    e:e->y[constraint=false,arrowhead=none];
+    y->c:e[constraint=false];
+}
+```
+
+**为什么要多次建立层次网络?**
+
+
+因为可能会走**反向边**!
+
+
+```viz-dot
+digraph G {
+    rankdir= LR;
+    edge[minlen=2];
+    node[shape="circle"];
+    { rank=same; 1,3; }
+    { rank=same; 2,4; }
+    { rank=same; 5,6; } 
+
+    1[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>0</TD></TR></TABLE>>]
+
+    2[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>1</TD></TR></TABLE>>]
+    3[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>1</TD></TR></TABLE>>]
+
+    4[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>2</TD></TR></TABLE>>]
+    5[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>2</TD></TR></TABLE>>]
+    6[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>3</TD></TR></TABLE>>]
+
+    edge[label="2"]
+    1->2->4->6;
+    edge[label="1"]
+    1->3->4;
+    2->5->6;
+}
+```
+
+如下图，你会发现：在找到一条增广路径:$1\to2\to4\to6$后,如果还用原来的**层次网络**,就找不到下一条增广路,因为$dep[2] \neq dep[4]+1$
+
+```viz-dot
+digraph G {
+    rankdir= LR;
+    edge[minlen=2];
+    node[shape="circle"];
+    { rank=same; 1,3; }
+    { rank=same; 2,4; }
+
+    { rank=same; 5,6; } 
+
+
+    1[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>0</TD></TR></TABLE>>]
+
+    2[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>1</TD></TR></TABLE>>]
+    3[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>1</TD></TR></TABLE>>]
+
+    4[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>2</TD></TR></TABLE>>]
+    5[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>2</TD></TR></TABLE>>]
+    6[xlabel=< <TABLE BORDER="0" CELLBORDER="1"><TR><TD>3</TD></TR></TABLE>>]
+
+    edge[weight=3];
+    2->5[label="1"];
+    3->4[label="1"];
+
+    1->3[label="1"];
+    5->6[label="1"];
+
+
+    edge[weight=1];
+    1->2[label="0",style="dashed"];
+    2->1[label="2"];
+
+    2->4[label="0",style="dashed"];
+    4->2[label="2",constraint=false];
+
+    4->6[label="0",style="dashed"];
+    6->4[label="2"];
+}
+```
+
+## 存储残余网络的方法
+
+## 算法过程模拟
+
+**1.实流网络**
+
+每条边上的值代表最大流量,求**汇点** $T$ 能接收的最大流量是多少?
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="12"];
+    v1->v3[label="8"];
+    v3->T[label="18"];
+
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[label=5];
+
+    S->v2[label=10];
+    v2->v4[label=13];
+    v4->T[label=4];
+}
+```
+
+**2.根据实流网络初始化残余网络**
+
+其中虚线的边为反向边
+
+
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="12"];
+    v1->v3[label="8"];
+    v3->T[label="18"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=10];
+    v2->v4[label=13];
+    v4->T[label=4];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=0,labelangle=-10];
+    v3->v1[headlabel=0,labelangle=-10];
+    T->v3[headlabel=0,labelangle=-10];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=0,labelangle=-10];
+    v4->v2[headlabel=0,labelangle=-10];
+    T->v4[headlabel=0,labelangle=-10];
+}
+```
+
+
+**3.BFS分层**
+
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="12"];
+    v1->v3[label="8"];
+    v3->T[label="18"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=10];
+    v2->v4[label=13];
+    v4->T[label=4];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=0,labelangle=-10];
+    v3->v1[headlabel=0,labelangle=-10];
+    T->v3[headlabel=0,labelangle=-10];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=0,labelangle=-10];
+    v4->v2[headlabel=0,labelangle=-10];
+    T->v4[headlabel=0,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+**4.DFS找增广路**
+
+找到一条增广路,在这条增广路上的最小容量为$8$
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="12",color="limegreen",penwidth=3];
+    v1->v3[label="8",color="limegreen",penwidth=3];
+    v3->T[label="18",color="limegreen",penwidth=3];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=10];
+    v2->v4[label=13];
+    v4->T[label=4];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=0,labelangle=-10];
+    v3->v1[headlabel=0,labelangle=-10];
+    T->v3[headlabel=0,labelangle=-10];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=0,labelangle=-10];
+    v4->v2[headlabel=0,labelangle=-10];
+    T->v4[headlabel=0,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+回溯:**对应边增加流量,当前边减少流量**
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="4"];
+    v1->v3[label="0",color="grey80",penwidth=0.5];
+    v3->T[label="10"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=10];
+    v2->v4[label=13];
+    v4->T[label=4];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=8,labelangle=-10,color="orange",penwidth=2];
+    v3->v1[headlabel=8,labelangle=-10,color="orange",penwidth=2];
+    T->v3[headlabel=8,labelangle=-10,color="orange",penwidth=2];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=0,labelangle=-10];
+    v4->v2[headlabel=0,labelangle=-10];
+    T->v4[headlabel=0,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+ - $v1 \to v3$ 这条边的流量为$0$,也就是不通了
+ - 回溯到每个点的时候都会尝试继续往下走,但是要符合$dep[v] = dep[u]+1$,且流量 $\neq 0$ 这两个条件
+ - 回溯到点$S$的时候,这趟$DFS$还没有结束,因为还可以走$S \to v2 \to v4 \to T$ 这条路径
+
+**这趟发DFS结束后得到:**
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="4"];
+    v1->v3[label="0",color="grey80",penwidth=0.5];
+    v3->T[label="10"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=6];
+    v2->v4[label=9];
+    v4->T[label="0",color="grey80",penwidth=0.5];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=8,labelangle=-10,];
+    v3->v1[headlabel=8,labelangle=-10,];
+    T->v3[headlabel=8,labelangle=-10,];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=4,labelangle=-10];
+    v4->v2[headlabel=4,labelangle=-10];
+    T->v4[headlabel=4,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+**5.重新BFS进行分层**
+
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="4"];
+    v1->v3[label="0",color="grey80",penwidth=0.5];
+    v3->T[label="10"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=6];
+    v2->v4[label=9];
+    v4->T[label="0",color="grey80",penwidth=0.5];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=8,labelangle=-10,];
+    v3->v1[headlabel=8,labelangle=-10,];
+    T->v3[headlabel=8,labelangle=-10,];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=4,labelangle=-10];
+    v4->v2[headlabel=4,labelangle=-10];
+    T->v4[headlabel=4,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+进行DFS
+
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="4"];
+    v1->v3[label="0",color="grey80",penwidth=0.5];
+    v3->T[label="10",color="limegreen",penwidth=2];
+
+    v2->v1[label=2];
+
+    v4->v3[label=6,color="limegreen",penwidth=2];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=6,color="limegreen",penwidth=2];
+    v2->v4[label=9,color="limegreen",penwidth=2];
+    v4->T[label="0",color="grey80",penwidth=0.5];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=8,labelangle=-10,];
+    v3->v1[headlabel=8,labelangle=-10,];
+    T->v3[headlabel=8,labelangle=-10,];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=0,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=4,labelangle=-10];
+    v4->v2[headlabel=4,labelangle=-10];
+    T->v4[headlabel=4,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+回溯后得到
+
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="4"];
+    v1->v3[label="0",color="grey80",penwidth=0.5];
+    v3->T[label="4"];
+
+    v2->v1[label=2];
+
+    v4->v3[label=0,color="grey80",penwidth=0.5];
+    v3->v2[headlabel=5,labelangle=-5,labeldistance=8];
+
+    S->v2[label=0,color="grey80",penwidth=0.5];
+    v2->v4[label=3];
+    v4->T[label="0",color="grey80",penwidth=0.5];
+
+
+    edge[style=dashed,labeldistance=5]
+    v1->S[headlabel=8,labelangle=-10,];
+    v3->v1[headlabel=8,labelangle=-10,];
+    T->v3[headlabel=14,labelangle=-10,];
+
+    v1->v2[headlabel=0,labelangle=-10];
+
+    v3->v4[headlabel=6,labelangle=-10];
+    v2->v3[headlabel=0,labelangle=-5,labeldistance=8];
+
+    v2->S[headlabel=10,labelangle=-10];
+    v4->v2[headlabel=10,labelangle=-10];
+    T->v4[headlabel=4,labelangle=-10];
+    
+    
+    
+    S[xlabel=<<font color="blue">[0]</font>>];
+    v1[xlabel=<<font color="blue">[1]</font>>];
+    v2[xlabel=<<font color="blue">[1]</font>>];
+    
+    v3[xlabel=<<font color="blue">[2]</font>>];
+    v4[xlabel=<<font color="blue">[2]</font>>];
+
+    T[xlabel=<<font color="blue">[3]</font>>];
+
+}
+```
+
+**最终得到的最大网络流为:**
+```viz-neato
+digraph G {
+    node[shape=circle];
+    S[pos="-1,1!"];
+    v1[pos="1,2!"];
+    v2[pos="1,0!"];
+    v3[pos="3,2!"];
+    v4[pos="3,0!"];
+    T[pos="5,1!"];
+
+
+    edge[arrowhead=open]
+    S->v1[label="8"];
+    v1->v3[label="8"];
+    v3->T[label="14"];
+
+    v2->v1[label=0];
+
+    v4->v3[label=6];
+    v3->v2[headlabel=0,labelangle=-5,labeldistance=8];
+
+    S->v2[label=10];
+    v2->v4[label=10];
+    v4->T[label="4"];
+
+}
+```
+
+## 练习
+
+找一张纸,使用下面的图,用笔模拟一遍$Dinic$算法.
+
+```viz-neato
+digraph G {
+    node[shape=circle];
+    1[label=S];
+    7[label=T];
+
+    1[pos="0,1!"];
+    2[pos="1,2!"];
+    3[pos="3,2!"];
+    4[pos="1,0!"];
+    5[pos="3,0!"];
+    6[pos="2,1!"];
+    7[pos="4,1!"];
+
+    1->2[label="4"];
+    2->3[label="7"];
+    3->7[label="9"];
+    1->4[label="10"];
+    4->5[label="3"];
+    5->7[label="6"];
+    2->6[label="2"];
+    6->5[label="1"];
+    4->6[label="5"];
+    6->3[label="6"];
+    2->4[label="1"];
+    5->3[label="5"];
+
+}
+```
+
+## 分层的代码
+
+## 如何存储残余网络
+
+
+
+当一条边流量增加的时候(数字减少),它对应的边就应该减少流量(数字增加)
 
 ## Dinic算法复杂度分析
 
@@ -342,3 +1000,6 @@ int main(){
 ## 引用/资料
 
  - [Dinic算法详解及实现](https://www.cnblogs.com/LUO77/p/6115057.html)
+ - https://www.cnblogs.com/LUO77/p/6115057.html
+ - http://cnblogs.com/SYCstudio/p/7260613.html
+ - https://blog.csdn.net/u012914220/article/details/23865829

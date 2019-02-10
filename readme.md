@@ -9,8 +9,7 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 
 ## 简介
 
-**Rbook**是一本~~开源~~的算法书，是`Rainboy`写给自己学生看的书,使用`C++`语言描述,它由以前的两本书(
-《CppBook 语法书》,《NoipBook 算法书》)合并而来.目前由作者不的完善中!
+**Rbook**是一本~~开源~~的算法书，是`Rainboy`写给自己学生看的书,使用`C++`语言描述,它由以前的两本书(《CppBook 入门书》,《NoipBook 算法书》)合并而来.目前由作者不断的完善中!
 
 
 ![cover](/cover/cppbook.jpg)
