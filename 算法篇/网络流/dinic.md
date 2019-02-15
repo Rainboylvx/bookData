@@ -684,6 +684,48 @@ digraph G {
 }
 ```
 
+1.分层
+```viz-neato
+digraph G {
+    node[shape=circle];
+
+
+    1[pos="0,1!"];
+    2[pos="1,2!"];
+    3[pos="3,2!"];
+    4[pos="1,0!"];
+    5[pos="3,0!"];
+    6[pos="2,1!"];
+    7[pos="4,1!"];
+
+    {
+
+        node[shape="none",fontcolor="blue"];
+        x1[label="[0]",pos="-0.5,1!"];
+        x2[label="[1]",pos="1,2.5!"];
+        x3[label="[2]",pos="3,2.5!"];
+        x4[label="[1]",pos="1,-0.5!"];
+        x5[label="[2]",pos="3,-0.5!"];
+        x6[label="[2]",pos="2,0.5!"];
+        x7[label="[3]",pos="4.5,1!"];
+    }
+
+    1->2[label="4"];
+    2->3[label="7"];
+    3->7[label="9"];
+    1->4[label="10"];
+    4->5[label="3"];
+    5->7[label="6"];
+    2->6[label="2"];
+    6->5[label="1"];
+    4->6[label="5"];
+    6->3[label="6"];
+    2->4[label="1"];
+    5->3[label="5"];
+
+}
+```
+
 ## 分层的代码
 
 ## 如何存储残余网络
@@ -710,7 +752,13 @@ digraph G {
 
 综合以上两点，一次DFS的复杂度为O（n*m）。因此，Dinic算法的总复杂度即O（m*n*n）。
 
+
+## 朴素Dinic算法演示
+
+<x-gif src="Dinic1.gif"></x-gif>
+
 ## 朴素Dinic
+
 
 题目地址：[luogu P3376 【模板】网络最大流](https://www.luogu.org/problemnew/show/P3376)
 
@@ -833,9 +881,11 @@ int main(){
 
 每次增广一条路后可以看做“榨干”了这条路，既然榨干了就没有再增广的可能了。但如果每次都扫描这些“枯萎的”边是很浪费时间的。那我们就记录一下“榨取”到那条边了，然后下一次直接从这条边开始增广，就可以节省大量的时间。这就是 当前弧优化 。
 
-具体怎么实现呢，先把链式前向星的head数组复制一份，存进cur数组，然后在cur数组中每次记录“榨取”到哪条边了。
+具体怎么实现呢，先把链式前向星的$head$数组复制一份，存进$cur$数组，然后在$cur$数组中每次记录“榨取”到哪条边了。
 
-我们知道dinic算法中的dfs是为了在可行增广路中找到最小容量。而找增广路需要遍历每个点所连接的边，直至找到一条可到达终点的路。例如，我们在第一次dfs时找到了一条增广路：顶点1中的第3条边，顶点2中的第4条边，顶点3中的第4条边，顶点5中的第2条边。这四条边是我们在第一次dfs寻找到的可行路，我们可以看到，每次找增广路时都是从某个顶点所连接的第一条边开始，那也就是说从顶点1中的第1条边接着去找没找到，从而遍历到顶点1中的第3条边，接着去找发现顶点2中的前三条边也没找到。。。这样下去直到找到终点。那么，我们可以知道下次dfs时，顶点1的前两条边没用（下次bfs或者几次bfs后可能会有用），直接从顶点1的第三条边开始去找。
+我们知道$dinic$算法中的$dfs$是为了在可行增广路中找到最小容量。而找增广路需要遍历每个点所连接的边，直至找到一条可到达终点的路。例如，我们在第一次$dfs$时找到了一条增广路：
+
+顶点$1$中的第$3$条边，顶点$2$中的第$4$条边，顶点$3$中的第$4$条边，顶点5中的第2条边。这四条边是我们在第一次dfs寻找到的可行路，我们可以看到，每次找增广路时都是从某个顶点所连接的第一条边开始，那也就是说从顶点1中的第1条边接着去找没找到，从而遍历到顶点1中的第3条边，接着去找发现顶点2中的前三条边也没找到。。。这样下去直到找到终点。那么，我们可以知道下次dfs时，顶点1的前两条边没用（下次bfs或者几次bfs后可能会有用），直接从顶点1的第三条边开始去找。
 
 当我们将当前图的所有增广路都找到后，再次bfs分层，当前图的层次会发生变化，然后我们在从顶点1开始去找，所以我们每次bfs，都要清一下数组cur。
 
@@ -998,6 +1048,15 @@ int main(){
 }
 ```
 
+
+## 多路增广
+
+
+面对弧$<u,v>$,有以下几种可能性:
+
+ - $u$点无贡献
+ - $<u,v>$边为第一条边 + $v$之后的所有路被点**榨干**
+
 ## 练习题目1 : [USACO 4.2] 草地排水
 
 [题目地址](https://vjudge.net/problem/POJ-1273#author=CCOA)
@@ -1010,9 +1069,148 @@ int main(){
 
 POJ3281  拆点
 
+建图如下,注意:所有的边的容量为1
+```viz-dot
+digraph { 
+    rankdir = LR
+    node [shape=circle,fixedsize=true,height=1];
+    edge [samehead=n,sametail=n];
+    S,T;
+
+    ranksep=1.2;
+    nodesep=0.8;
+    n1,n2,n3,n4;
+    {
+        rank=same;
+        f1,f2,f3;
+    }
+
+    n1[label="牛1"];
+    n2[label="牛2"];
+    n3[label="牛3"];
+    n4[label="牛4"];
+    f1[label="食物1"];
+    f2[label="食物2"];
+    f3[label="食物3"];
+
+    d1[label="饮料1"];
+    d2[label="饮料2"];
+    d3[label="饮料3"];
+
+
+
+    S->{f1,f2,f3};
+
+    {f1,f2}->n1;
+    {f2,f3}->n2;
+    {f1,f3}->{n3,n4};
+    n1->{d1,d3};
+    n2->{d1,d2};
+    n3->{d1,d2};
+    n4->d3;
+
+    { d1,d2,d3 }->T;
+    {
+        rank=same;
+        d1,d2,d3;
+    }
+}
+```
+但这样产生了新的问题,如下图:
+
+```viz-dot
+digraph { 
+    rankdir = LR
+    node [shape=circle,fixedsize=true,height=1];
+    edge [samehead=n,sametail=n];
+    S,T;
+
+    ranksep=1.2;
+    nodesep=0.8;
+
+    n1[label="牛1"];
+    f1[label="食物1"];
+    f2[label="食物2"];
+
+    d1[label="饮料1"];
+    d2[label="饮料2"];
+
+    S->{f1,f2}->n1->{d1,d2}->T;
+}
+```
+这种情况下**牛1**可以吃多份食物与饮料.为了解决这个问题,我们使用下面的建图的方式,**牛1->牛1'**,这可以**保证流经每头牛身上的流量最多为1**
+
+```viz-dot
+digraph { 
+    rankdir = LR
+    node [shape=circle,fixedsize=true,height=1];
+    edge [samehead=n,sametail=n];
+    S,T;
+
+    ranksep=1.2;
+    nodesep=0.8;
+    n1,n2,n3,n4;
+    {
+        rank=same;
+        f1,f2,f3;
+    }
+
+    n1[label="牛1"];
+    n2[label="牛2"];
+    n3[label="牛3"];
+    n4[label="牛4"];
+
+    n11[label="牛1'"];
+    n22[label="牛2'"];
+    n33[label="牛3'"];
+    n44[label="牛4'"];
+
+    n1->n11;
+    n2->n22;
+    n3->n33;
+    n4->n44;
+
+    f1[label="食物1"];
+    f2[label="食物2"];
+    f3[label="食物3"];
+
+    d1[label="饮料1"];
+    d2[label="饮料2"];
+    d3[label="饮料3"];
+
+    S->{f1,f2,f3};
+
+
+    {f1,f2}->n1;
+    {f2,f3}->n2;
+    {f1,f3}->{n3,n4};
+    n11->{d1,d3};
+    n22->{d1,d2};
+    n33->{d1,d2};
+    n44->d3;
+
+    { d1,d2,d3 }->T;
+    {
+        rank=same;
+        d1,d2,d3;
+    }
+}
+```
+
+这种把一个点的牛变成两个点的牛,从而保证流经这个点的最大流量为$1$的操作,我们称为**拆点**
+
+那我们总共要建立$2+2 \times n+f+d$个点,其中,源点$S$编号为$0$,汇点$T$编号$1+2 \times n+f+d$
+
+
+```c
+```
+
+
+
+
+
 ## 引用/资料
 
  - [Dinic算法详解及实现](https://www.cnblogs.com/LUO77/p/6115057.html)
- - https://www.cnblogs.com/LUO77/p/6115057.html
- - http://cnblogs.com/SYCstudio/p/7260613.html
- - https://blog.csdn.net/u012914220/article/details/23865829
+ - [](http://cnblogs.com/SYCstudio/p/7260613.html) 
+ - [](https://blog.csdn.net/u012914220/article/details/23865829)

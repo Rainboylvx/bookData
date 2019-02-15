@@ -111,10 +111,11 @@ digraph G {
 
     t4[label="SAP"];
     "最短路径优先"->t4[headlabel="最短增广路算法",labeldistance=6,labelangle=60];
-    "最短路径优先"->"Dinic"[label="最短增广路算法"];
+    "最短路径优先"->"朴素Dinic"[label="最短增广路算法"];
     t4->"ISAP"[label="优化"];
     "ISAP"->"gap优化"[label="优化"];
-    "Dinic" ->"当前弧优化"[label="优化"];
+    "朴素Dinic" ->"多路增广Dinic"[label="优化"];
+    "多路增广Dinic" -> "当前弧优化"[label="优化"];
 }
 ```
 
