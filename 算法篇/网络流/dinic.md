@@ -1201,8 +1201,167 @@ digraph {
 
 那我们总共要建立$2+2 \times n+f+d$个点,其中,源点$S$编号为$0$,汇点$T$编号$1+2 \times n+f+d$
 
+下面为使用`多路增广+当前弧优化 Dinic`的代码,使用`朴素Dinic`和`多路增广Dinci`的[代码见这里](https://gitee.com/Rainboy/codes/ldcnq9iko6vgbue14zx2m19)
+
 
 ```c
+/* 
+ * poj 3281 / luogu P2891
+ * 解法3: 多路增广+当前弧优化 Dinic,可以通过 luogu
+ * */
+
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+
+#include <queue>
+#include <string>
+using namespace std;
+
+#define maxn 505
+
+
+/* ================= 向量星 =================*/
+int head[maxn];
+int edge_cnt = 0;
+struct _e{
+    int u,v,cap,next;
+}e[maxn*maxn];
+
+void inline xlx_init(){
+    memset(head,-1,sizeof(head));
+}
+
+void addEdge(int u,int v,int cap){
+    e[edge_cnt].u = u;
+    e[edge_cnt].v= v;
+    e[edge_cnt].cap=cap;
+    e[edge_cnt].next = head[u];
+    head[u] = edge_cnt;
+    edge_cnt++;
+}
+/* ================= 向量星 end =================*/
+
+int T,S;
+int n,f,d;
+
+void init(){
+    xlx_init();
+    scanf("%d%d%d",&n,&f,&d);
+    int i,j,k, tf,td;
+
+    T = f+d+2*n+1;
+    S = 0;
+
+    
+    for (i=1;i<=n;i++){
+        scanf("%d%d",&tf,&td);
+        
+        /* 编号
+         * S 0 T 1+2*n+f+d
+         * f 1->f
+         * d f+1->f+d
+         * n f+d+1->f+d+n
+         * n' f+d+1+n -> f+d+2*n
+         * */
+        for (j=1;j<=tf;j++){
+            scanf("%d",&k);
+            addEdge(k,f+d+i,1);
+            addEdge(f+d+i,k,0);
+        }
+
+        for (j=1;j<=td;j++){
+            scanf("%d",&k);
+            addEdge(f+d+n+i,f+k,1);
+            addEdge(f+k,f+d+n+i,0);
+        }
+    }
+
+    //S -> f
+    for(i = 1;i<=f;i++){
+        addEdge(0,i,1);
+        addEdge(i,0,0);
+    }
+
+    //n - >n'
+    for(i=1;i<=n;i++){
+        addEdge(f+d+i,f+d+n+i,1);
+        addEdge(f+d+i+n,f+d+i,0);
+    }
+
+    //d -> T
+    for(i=1;i<=d;i++){
+        addEdge(f+i,T,1);
+        addEdge(T,f+i,0);
+    }
+
+}
+
+
+int dep[maxn];
+int cur[maxn]; //当前弧优化
+
+bool bfs(){ //分层操作
+    memset(dep,-1,sizeof(dep));
+    queue<int> q;
+    dep[0] = 0;
+    q.push(0);
+
+    while( !q.empty()){
+        
+        int u = q.front(); q.pop();
+        int i;
+        for(i=head[u];i!=-1;i = e[i].next){
+            int v = e[i].v;
+            if(e[i].cap > 0 && dep[v] == -1){
+                dep[v] = dep[u] +1;
+                q.push(v);
+            }
+        }
+    }
+    return dep[T] != -1;
+}
+
+int dfs(int u,int low){     //多路增广
+    if( u == T) return low;
+    int i;
+    int ret = low;
+    for(i = cur[u];i != -1;i = e[i].next){
+        cur[u] = i;
+        int v = e[i].v;
+        if( dep[v] == dep[u]+1 && e[i].cap > 0){
+            int flow = dfs(v,std::min(ret,e[i].cap));
+            e[i].cap -= flow;
+            e[i^1].cap += flow;
+            ret -= flow;
+            if(!ret) break;
+        }
+    }
+    if( ret == low) dep[u] = -1;
+    return (low - ret);
+}
+
+
+int dinic(){
+    int tmp = 0;
+    while(bfs()){
+        /* 初始化当前弧度 */
+        int i;
+        for(i=0;i<=T;i++)
+            cur[i] = head[i];
+        int f;
+        f= dfs(S,0x7f7f7f7f);
+        tmp +=f;
+    }
+    return tmp;
+}
+
+int main(){
+    init();
+    int ans =dinic();
+    printf("%d\n",ans);
+    return 0;
+}
 ```
 
 
