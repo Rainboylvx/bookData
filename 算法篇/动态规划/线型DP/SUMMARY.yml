@@ -1,0 +1,12 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: LIS最长不下降子序列
+  path: lis
+- 
+  title: LCS最长公共子序列
+  path: lcs
+- 
+  title: 最大连续子序列和
+  path: 最大连续子序列和.md

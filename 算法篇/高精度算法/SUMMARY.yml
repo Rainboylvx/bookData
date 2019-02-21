@@ -1,0 +1,30 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: 高精加
+  path: 高精加.md
+- 
+  title: 高精减
+  path: 高精减.md
+- 
+  title: 高精乘
+  path: 高精乘.md
+- 
+  title: 高精除
+  path: 高精除.md
+- 
+  title: 高精类
+  path: 高精类.md
+- 
+  title: 高精幂
+  path: 高精幂.md
+- 
+  title: 高精分数
+  path: 高精分数.md
+- 
+  title: 高精阶乘
+  path: 高精阶乘.md
+- 
+  title: 组合数高精
+  path: 组合数高精.md

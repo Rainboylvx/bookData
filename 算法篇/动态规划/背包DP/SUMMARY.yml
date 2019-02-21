@@ -1,0 +1,30 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: 01背包
+  path: 01背包.md
+- 
+  title: 01背包第K优解
+  path: 01背包第K优解.md
+- 
+  title: 剩余容量最小
+  path: 剩余容量最小.md
+- 
+  title: 完全背包
+  path: 完全背包.md
+- 
+  title: 多重背包
+  path: 多重背包.md
+- 
+  title: 混合三种背包
+  path: 混合三种背包.md
+- 
+  title: 分组背包
+  path: 分组背包.md
+- 
+  title: 二维背包
+  path: 二维背包.md
+- 
+  title: 题目
+  path: 题目

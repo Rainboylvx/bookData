@@ -1,0 +1,20 @@
+-
+    path: 语法篇/
+    name: 语法篇
+    cover: /cover/cppbook.jpg
+- 
+    name: 算法篇
+    path: 算法篇/
+    cover: /cover/noipbook.jpg
+- 
+    name: 数学篇
+    path: 数学篇/
+    cover: null
+#- 
+    #title: 附录篇
+    #path: 附录篇.yml
+    #cover: 附录篇
+#- 
+    #title: 题解篇
+    #path: 题解篇.yml
+    #cover: null

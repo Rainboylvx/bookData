@@ -1,0 +1,30 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: 入门:数塔问题
+  path: DP入门.md
+- 
+  title: 线型DP
+  path: 线型DP
+- 
+  title: 区间DP
+  path: 区间DP
+- 
+  title: 背包DP
+  path: 背包DP
+- 
+  title: 斜率优化
+  path: 斜率优化
+#- 
+  #title: 数位DP
+  #path: 
+#- 
+  #title: 状压DP
+  #path: 
+#- 
+  #title: 插头DP
+  #path: 
+#- 
+  #title: 树型DP
+  #path: 
