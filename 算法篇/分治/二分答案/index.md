@@ -1,0 +1,172 @@
+---
+title: 二分答案:序
+date: 2019-02-22 08:07
+update: 2019-02-22 08:07
+author: Rainboy
+---
+
+## 问题
+
+在一个单调上升的序列中,如下图,找到一个符合要求的数字,让函数`isAnswer`为真,我们设$m=(l+r) >> 1$,那么分别求下面的问题:
+
+
+```viz-dot
+digraph G {
+    nodesep=0.01;
+    node[shape=plaintext];
+    L->1;
+    R->6;
+    node[shape=rect];
+    1[shape=rect];
+    6[shape=rect];
+    {
+        rank=same;
+        1,2,3,4,5,6;
+    }
+    edge[style=invis]
+    1->2->3->4->5->6;
+}
+```
+
+## 情况1: 答案尽可能的小
+
+ - 如果`isAnswer(i)`为真,那么`isAnswer(i+1)`也为真
+ - 如果`isAnswer(i)`不为真,那么`isAnswer(i-1)`也不为真
+
+那么:求出最小的满足`isAnswer`的`i`
+
+ - 如果`isAnswer(m)`为真:区间:$[l,m]$,是我们要查找的区间
+ - 如果`isAnswer(m)`不为真:区间:$[m+1,r]$,是我们要查找的区间
+ - 如果最后返回的位置为$INF$,那说明没有一个满足
+
+我们需要下面的区间内查找
+
+```viz-dot
+digraph G {
+    nodesep=0.01;
+    node[shape=plaintext];
+    L->1;
+    R->7;
+    node[shape=rect];
+    1[shape=rect];
+    6[shape=rect];
+    {
+        rank=same;
+        1,2,3,4,5,6,7;
+    }
+    edge[style=invis];
+    1->2->3->4->5->6->7;
+    
+    7[label="INF"]
+}
+```
+
+这种情况下,`isAnswer`返回是条件假
+
+### 伪代码
+
+```c
+bool isAnswer(int pos){
+    if( pos == postion(INF)) 
+        return true;
+    ...
+    return ans;
+}
+
+int bsearch(int l,int r){
+
+    while( l < r){
+        int m = (l +r ) >> 1;
+        if( isAnswer(m)) { //答案尽可能的小
+            r = m;
+        }
+        else 
+            l = m+1; //如果m不成立
+                     // 那么 l->m都成立
+                     // 所以把区间缩成[m+1,r]
+    }
+
+    return l;
+}
+
+
+bsearch(1,position(INF))
+```
+
+## 情况2: 答案尽可能的大
+
+ - 如果`isAnswer(i)`为真,那么`isAnswer(i-1)`也为真
+ - 如果`isAnswer(i)`不为真,那么`isAnswer(i+1)`也不为真
+
+那么:求出最大的满足`isAnswer`的`i`
+
+ - 如果`isAnswer(m)`为真:区间:$[m,r]$,是我们要查找的区间
+ - 如果`isAnswer(m)`不为真:区间:$[1,m-1]$,是我们要查找的区间
+ - 如果最后返回的位置为$-INF$,那说明没有一个满足
+
+我们需要下面的区间内查找
+
+```viz-dot
+digraph G {
+    nodesep=0.01;
+    node[shape=plaintext];
+    L->0;
+    R->6;
+    node[shape=rect];
+    1[shape=rect];
+    6[shape=rect];
+    {
+        rank=same;
+        0,1,2,3,4,5,6;
+    }
+    edge[style=invis]
+    0->1->2->3->4->5->6;
+    
+    0[label="-INF"]
+}
+```
+
+### 伪代码
+
+```c
+bool isAnswer(int pos){
+    if( pos == postion(-INF)) 
+        return true;
+    ...
+    return ans;
+}
+
+int bsearch(int l,int r){
+
+    while( l < r){
+        int m = (l +r ) >> 1;
+        if( isAnswer(m)) { //答案尽可能的大
+            l = m;
+        }
+        else 
+            r = m-1; // 如果m不成立
+                     // 那么 [m,r]都不成立
+                     // 那么 缩区间到[l,m-1]
+    }
+
+    return l;
+}
+
+
+bsearch(postion(-INF),6)
+```
+
+
+## 口决
+
+
+<easy-memory-board size="4">
+    <p slot="title">口决</p>
+    <li>保证所求的数</li>
+    <li>在区间[L,R]内</li>
+</easy-memory-board>
+
+
+## 参考/引用
+
+ - [二分答案模板及二分答案问题讲解](https://www.cnblogs.com/lcosmos/p/9438705.html)
