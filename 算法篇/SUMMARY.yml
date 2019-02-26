@@ -1,4 +1,4 @@
--   
+- 
   title: 基本算法
   path: 基本算法/
 - 
@@ -25,6 +25,9 @@
 - 
   title: 动态规划
   path: 动态规划
+- 
+  title: 图论算法
+  path: 图
 - 
   title: 网络流
   path: 网络流
