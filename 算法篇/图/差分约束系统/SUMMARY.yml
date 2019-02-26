@@ -1,0 +1,18 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: 入门
+  path: 入门.md
+- 
+  title: 种树
+  path: 种树.md
+- 
+  title: Intervals
+  path: Intervals.md
+- 
+  title: SCOI2011糖果
+  path: SCOI2011糖果.md
+- 
+  title: USACO排队布局
+  path: USACO排队布局.md
