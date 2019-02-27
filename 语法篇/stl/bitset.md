@@ -1,35 +1,31 @@
-http://zh.cppreference.com
 # bitset讲解
 
 ## bitset作用
 
 快速的对一个变量的二进制的位集进行操作,类似`vector`,`bitset`是一种类模板.
-biset类型对象的区别在其长度不在其类型.在定义bitset的时候要明确含有多少位,给出长度值
+bitset类型对象的区别在其长度不在其类型.在定义bitset的时候要明确含有多少位,给出长度值
 
 样例代码
 
 
-```c++
+```c
 #include <iostream>
-#include <string>
 #include <bitset>
 using namespace std;
 
 int main(){
-    string s1("010101");
-    cout << s1 << endl;//010101
-    
     bitset<10> b1(s1);
-    cout << b1 << endl;//0000010101
-
-    bitset<5> b2(s1);
-    cout << b2 << endl;//01010
+    cout << b1 << endl;
+    b1.set(2)
+    cout << b1 << endl;
     return 0;
 }
 ```
 
 
-## bitset的定义与初始化
+## bitset的相关操作
+
+### 定义与初始化
 
 | 操作                 | 含义                              |
 |----------------------|-----------------------------------|
@@ -39,7 +35,53 @@ int main(){
 | `bitset<n> b(s,pos,n)` | b是s中的从位置pos开始的n个位的副本 |
 | `bitset<n> b1(b)`     | 用b初始化b1                       |
 
-## 代码
+### bitset 对象上的操作
+
+| 操作         | 含义                             |
+|--------------|----------------------------------|
+| `b.any()`      | b中是否存在为1的位               |
+| `b.none()`     | b中是否不存为1的位               |
+| `b.count()`    | b中1的个数                       |
+| `b.size()`     | b的长度                          |
+| `b[pos]`       | b中第pos位                       |
+| `b.test(pos)`  | b中第pos位是否为1                |
+| `b.set()`      | b全置1                           |
+| `b.set(pos)`   | b中pos位置1                      |
+| `b.reset()`    | b全置0                           |
+| `b.reset(pos)` | b中pos位置0                      |
+| `b.flip()`     | b中所有位取反                    |
+| `b.flip(pos)`  | b中pos位取反                     |
+| `b.to_ulong()` | b中位转化成一个usigned long 类型 |
+| `os << b`      | 输出                             |
+
+### bitset 支持位操作符号
+
+```c
+    bitset<4> foo (string("1001"));
+    bitset<4> bar (string("0011"));
+
+    cout << (foo^=bar) << endl;       // 1010 (foo对bar按位异或后赋值给foo)
+    cout << (foo&=bar) << endl;       // 0010 (按位与后赋值给foo)
+    cout << (foo|=bar) << endl;       // 0011 (按位或后赋值给foo)
+
+    cout << (foo<<=2) << endl;        // 1100 (左移２位，低位补０，有自身赋值)
+    cout << (foo>>=1) << endl;        // 0110 (右移１位，高位补０，有自身赋值)
+
+    cout << (~bar) << endl;           // 1100 (按位取反)
+    cout << (bar<<1) << endl;         // 0110 (左移，不赋值)
+    cout << (bar>>1) << endl;         // 0001 (右移，不赋值)
+
+    cout << (foo==bar) << endl;       // false (0110==0011为false)
+    cout << (foo!=bar) << endl;       // true  (0110!=0011为true)
+
+    cout << (foo&bar) << endl;        // 0010 (按位与，不赋值)
+    cout << (foo|bar) << endl;        // 0111 (按位或，不赋值)
+    cout << (foo^bar) << endl;        // 0101 (按位异或，不赋值)
+```
+
+
+
+## 通过代码学习bitset
 
 ### unsigned 初始化bitset
 
@@ -130,28 +172,9 @@ int main(){
 }
 ```
 
-## bitset 对象上的操作
-
-| 操作         | 含义                             |
-|--------------|----------------------------------|
-| b.any()      | b中是否存在为1的位               |
-| b.none()     | b中是否不存为1的位               |
-| b.count()    | b中1的个数                       |
-| b.size()     | b的长度                          |
-| b[pos]       | b中第pos位                       |
-| b.test(pos)  | b中第pos位是否为1                |
-| b.set()      | b全置1                           |
-| b.set(pos)   | b中pos位置1                      |
-| b.reset()    | b全置0                           |
-| b.reset(pos) | b中pos位置0                      |
-| b.flip()     | b中所有位取反                    |
-| b.flip(pos)  | b中pos位取反                     |
-| b.to_ulong() | b中位转化成一个usigned long 类型 |
-| os << b      | 输出                             |
 
 
-
-代码
+### 使用函数
 
 ```c++
 #include <iostream>
@@ -226,3 +249,7 @@ int main(){
     return 0;
 }
 ```
+
+## 参考/引用
+
+ - [cppreference.com bitset](https://zh.cppreference.com/w/cpp/utility/bitset)
