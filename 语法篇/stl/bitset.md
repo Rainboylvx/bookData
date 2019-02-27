@@ -11,9 +11,11 @@ bitset类型对象的区别在其长度不在其类型.在定义bitset的时候�
 ```c
 #include <iostream>
 #include <bitset>
+#include <cstring>
 using namespace std;
 
 int main(){
+    string s1 = "0101";
     bitset<10> b1(s1);
     cout << b1 << endl;
     b1.set(2)
