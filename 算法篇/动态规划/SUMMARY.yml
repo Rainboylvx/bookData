@@ -19,9 +19,9 @@
 #- 
   #title: 数位DP
   #path: 
-#- 
-  #title: 状压DP
-  #path: 
+- 
+  title: 状压DP
+  path: 状态压缩
 #- 
   #title: 插头DP
   #path: 
