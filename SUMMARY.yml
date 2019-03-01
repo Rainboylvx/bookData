@@ -10,10 +10,10 @@
     name: 数学篇
     path: 数学篇/
     cover: null
-#- 
-    #title: 附录篇
-    #path: 附录篇.yml
-    #cover: 附录篇
+- 
+    name: 附录篇
+    path: 附录篇/
+    cover: null
 #- 
     #title: 题解篇
     #path: 题解篇.yml
