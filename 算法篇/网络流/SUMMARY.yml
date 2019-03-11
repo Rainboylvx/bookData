@@ -12,8 +12,16 @@
   path: dinic.md
 - 
   title: 费用流
-  path: 最小费用最大流.md
+  path: 费用流
 - 
   title: 网络流解二分图问题
   path: 二分图
-
+- 
+  title: 最大权闭合子图
+  path: 最大权闭合子图
+- 
+  title: 最小路径覆盖
+  path: 最小路径覆盖
+- 
+  title: 最小点覆盖/最大点权独立集/最大团
+  path: 最小点覆盖与最大点权独立集
