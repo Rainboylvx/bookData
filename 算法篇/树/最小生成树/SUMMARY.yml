@@ -1,0 +1,12 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: Prim算法
+  path: prim.md
+- 
+  title: Kruskal算法
+  path:  kruskal.md
+- 
+  title: 次小生成树
+  path: 次小生成树.md
