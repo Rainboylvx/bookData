@@ -4,6 +4,23 @@
 
 ![1](./自然界的BFS.jpg)
 
+## 知识网络
+
+```viz-dot
+digraph G {
+    node[shape=rect];
+    "队列"->"基础的BFS"->{"双向BFS","A*算法"}
+}
+```
+
+## 动画演示
+
+ - [动画演示1](http://yanhan.github.io/bfsvis/)
+ - [动画演示2](https://www.hackerearth.com/zh/practice/algorithms/graphs/breadth-first-search/visualize/)
+ - [动画演示3](https://www.cs.usfca.edu/~galles/visualization/BFS.html)
+
+
+bfs最大的特点,就是这些点按层级的顺序访问.因为这个特点,我们可以使用bfs来求一些有关,最短路径,最小步骤等相关问题.
 
 ## 练习题目列表
 
