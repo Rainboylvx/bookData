@@ -2,17 +2,11 @@
   title: 序
   path: index.md
 - 
-  title: 简单贪心
-  path: 方格取数等.md
+  title: 入门
+  path: 入门
 - 
   title: 区间问题
   path: 区间问题/index.md
-- 
-  title: 方圆游戏
-  path: 方圆游戏.md
-- 
-  title: 汽车加油
-  path: 汽车加油.md
 - 
   title: 删数字
   path: 删数字.md
