@@ -1,0 +1,18 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: 基础
+  path: 1.md
+- 
+  title: 树状数组求逆序对
+  path: 逆序对.md
+- 
+  title: "区间修改 单点查询"
+  path: 2.md
+- 
+  title: "区间增减 区间查询"
+  path: 3.md
+- 
+  title: 区间最值
+  path: 4.md
