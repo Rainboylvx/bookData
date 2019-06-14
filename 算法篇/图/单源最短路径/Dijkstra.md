@@ -227,69 +227,62 @@ int main(){
 为了减少代码量,这里我们使用**STL中的priority_queue**,优先队列.
 
 ```c
-/*-------------------------------------------------
-*  Author:Rainboy
-*  2018-08-14 15:47
-*-------------------------------------------------*/
-#include<iostream>
-#include<cstdio>
-#include<queue>
+//dijkstra优先队列 堆优化
+#include <bits/stdc++.h>
 using namespace std;
-int n,m,S,tot,Next[500010],head[20000],tree[500010],val[500010];
-bool visit[20000];
-long long dis[20000];
-struct cmp
-{
-    bool operator()(int a,int b)
-    {
-        return dis[a]>dis[b]; //小根堆
-    }
-};
-priority_queue<int,vector<int>,cmp> Q;
-void add(int x,int y,int z)
-{
-    tot++;
-    Next[tot]=head[x];
-    head[x]=tot;
-    tree[tot]=y;
-    val[tot]=z;
+#define inf 2147483647
+#define N 200001
+
+int n,m,s;
+int dis[N];
+bool vis[N];
+
+priority_queue <pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > >q;
+
+struct ee{int u,v,w,next;}e[500000+100];
+int ecnt=0,head[N];
+void ae(int x,int y,int w){
+    ecnt++;
+    e[ecnt].v=y;
+    e[ecnt].next=head[x];
+    head[x]=ecnt;
+    e[ecnt].w=w;
 }
-int main()
-{
-    scanf("%d%d%d",&n,&m,&S);
-    tot=0;
-    for (int i=1;i<=m;i++)
-    {
-        int x,y,z;
-        scanf("%d%d%d",&x,&y,&z);
-        if (x==y) continue;
-        add(x,y,z);
+
+void dijkstra(int s){
+    for(int i=1;i<=n;i++){
+        dis[i]=inf;
     }
-    for (int i=1;i<=n;i++) 
-    {
-        visit[i]=false;
-        dis[i]=2147483647;
-    }
-    Q.push(S);
-    dis[S]=0;
-    while (!Q.empty())
-    {
-        int u=Q.top();
-        Q.pop();
-        if (visit[u]) continue; // 取出的点已经标记过了,不进行运算
-        visit[u]=true;
-        for (int i=head[u];i;i=Next[i])
-        {
-            int v=tree[i];
-            if (!visit[v]&&dis[v]>dis[u]+(long long)val[i])
-            {   
-                dis[v]=dis[u]+val[i];
-                Q.push(v);
+    dis[s]=0;
+    q.push(make_pair(0,s));
+    while(!q.empty()){
+        int now=q.top().second;
+        q.pop();
+        if(vis[now])continue;
+        vis[now]=1;
+        for(int i=head[now];i;i=e[i].next){
+            if(dis[e[i].v]>dis[now]+e[i].w){
+                dis[e[i].v]=dis[now]+e[i].w;
+                q.push(make_pair(dis[e[i].v],e[i].v));
             }
         }
     }
-    for (int i=1;i<=n-1;i++) printf("%lld ",dis[i]);
-    printf("%lld\n",dis[n]);
+}
+
+int main(){
+    memset(vis,0,sizeof(vis));
+    scanf("%d%d%d",&n,&m,&s);
+    int t1,t2,t3;
+    for(int i=1;i<=m;i++){
+        scanf("%d%d%d",&t1,&t2,&t3);
+        ae(t1,t2,t3);
+    }
+
+    dijkstra(s);
+    for(int i=1;i<=n;i++){
+        printf("%d ",dis[i]);
+    }
+
     return 0;
 }
 ```
