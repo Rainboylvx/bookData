@@ -226,12 +226,15 @@ int main(){
 
 为了减少代码量,这里我们使用**STL中的priority_queue**,优先队列.
 
+题目: [luogu P3371 【模板】单源最短路径（弱化版）](https://www.luogu.org/problemnew/show/P3371)
+
 ```c
 //dijkstra优先队列 堆优化
 #include <bits/stdc++.h>
 using namespace std;
 #define inf 2147483647
 #define N 200001
+#define maxn 500005
 
 int n,m,s;
 int dis[N];
@@ -239,15 +242,29 @@ bool vis[N];
 
 priority_queue <pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > >q;
 
-struct ee{int u,v,w,next;}e[500000+100];
-int ecnt=0,head[N];
-void ae(int x,int y,int w){
-    ecnt++;
-    e[ecnt].v=y;
-    e[ecnt].next=head[x];
-    head[x]=ecnt;
-    e[ecnt].w=w;
+
+/* ================= 向量星 =================*/
+int head[maxn];
+int edge_cnt = 0;
+struct _e{
+    int u,v,w,next;
+}e[maxn<<1];
+
+void inline xlx_init(){
+    edge_cnt = 0;
+    memset(head,-1,sizeof(head));
 }
+
+void addEdge(int u,int v,int w){
+    edge_cnt++;
+    e[edge_cnt].u = u;
+    e[edge_cnt].v= v;
+    e[edge_cnt].w=w;
+    e[edge_cnt].next = head[u];
+    head[u] = edge_cnt;
+}
+/* ================= 向量星 end =================*/
+
 
 void dijkstra(int s){
     for(int i=1;i<=n;i++){
@@ -260,7 +277,7 @@ void dijkstra(int s){
         q.pop();
         if(vis[now])continue;
         vis[now]=1;
-        for(int i=head[now];i;i=e[i].next){
+        for(int i=head[now];i!=-1;i=e[i].next){
             if(dis[e[i].v]>dis[now]+e[i].w){
                 dis[e[i].v]=dis[now]+e[i].w;
                 q.push(make_pair(dis[e[i].v],e[i].v));
@@ -271,11 +288,12 @@ void dijkstra(int s){
 
 int main(){
     memset(vis,0,sizeof(vis));
+    xlx_init();
     scanf("%d%d%d",&n,&m,&s);
     int t1,t2,t3;
     for(int i=1;i<=m;i++){
         scanf("%d%d%d",&t1,&t2,&t3);
-        ae(t1,t2,t3);
+        addEdge(t1,t2,t3);
     }
 
     dijkstra(s);
