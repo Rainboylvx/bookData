@@ -60,10 +60,11 @@ void init(){
    lb = strlen(b+1);
 }
 
-
+// 自己匹配自己
 /* 得到next数组 */
 void deal_next(){
     int i,j=0;
+    // 从第二个位置开始算,因为next[1] = 0
     for (i=2;i<=lb;i++){
         while(j && b[i] != b[j+1])
             j = next[j];
@@ -73,10 +74,11 @@ void deal_next(){
 }
 
 void kmp(){
-    int i,j=0;
+    int i,j=0;  //j代表第二个字符串有开头的j个字符和第一个字符串相等
     for (i=1;i<=la;i++){
-        while(j && b[j+1] != a[i])
-            j= next[j];
+        
+        while(j && b[j+1] != a[i])  //
+            j= next[j];             // 代表第二个字符串向右推
 
         if( b[j+1] == a[i])
             j++;
