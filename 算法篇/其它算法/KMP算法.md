@@ -9,15 +9,32 @@ author: Rainboy
 
 kmp[i]的基本定义是：在第1-第i-1位中前缀与后缀相同的部分最长是多长。这样，即可以理解为，若第i位失配了，则至少要往前跳多少步，才可能重新匹配得上。这样便可以解释前面的例子了。
 
+## 算法演示
+
+ - http://whocouldthat.be/visualizing-string-matching/
+ - https://people.ok.ubc.ca/ylucet/DS/KnuthMorrisPratt.html
+ - http://whocouldthat.be/visualizing-string-matching/
+
+
+```viz-dot
+digraph title {
+    node[shape=rect];
+    "1.算法过程" -> "2.next数组的处理";
+}
+```
+
 ## 核心
+
 ![](./kmp1.png)
+
+![](./kmpexample.jpg)
 
 ## 第到next数组的值
 
 ## 匹配
 
 
-
+当到达某个不匹配的地方的时候,需要重新匹配!kmp的匹配就一种类似递归的思想.只要理解了这种思想,$KMP$算法就简单了.
 
 ## 题目
 
