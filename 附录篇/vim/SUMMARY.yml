@@ -1,0 +1,18 @@
+- 
+  title: 序
+  path: index.md
+- 
+  title: vim入门
+  path: vimBase.md
+- 
+  title: vim进阶
+  path: vimBetter.md
+- 
+  title: vim超能力
+  path: vimSupper.md
+- 
+  title: vimCheatSheet
+  path: vimCheatSheet.md
+- 
+  title: vim文章收录
+  path: vimStar.md
