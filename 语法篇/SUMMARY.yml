@@ -4,9 +4,9 @@
 - 
   title: linux的简单使用
   path: linux
-#- 
-  #title: 计算机原理与内存模型
-  #path: 
+- 
+  title: 计算机原理
+  path: 计算机原理
 
 - 
   title: 操作符
@@ -15,6 +15,9 @@
 - 
   title: 函数
   path: 函数
+- 
+  title: 递归
+  path: 递归/
 - 
   title: C++标准库函数:STL
   path: stl
