@@ -29,6 +29,19 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 
 ![logo](/images/RainboyLogo.jpg)
 
+## 说明/FAQ
+
+### 目录中emoji的含义
+
+参考:[git commit emoji 使用指南](https://github.com/liuchengxu/git-commit-emoji-cn)
+
+其它:
+
+| 表情 | 代码               | 含义 |
+|------|--------------------|------|
+| ✅     | :white_check_mark: | 完成 |
+
+
 ## 版权许可
 
-2016-2018 (c) Rainboy,转载需征求作者(Rainboy)同意.
+2016-2019 (c) Rainboy,转载需征求作者(Rainboy)同意.
