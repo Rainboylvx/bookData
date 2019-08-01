@@ -33,13 +33,14 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 
 ### 目录中emoji的含义
 
-参考:[git commit emoji 使用指南](https://github.com/liuchengxu/git-commit-emoji-cn)
+参考:[git commit emoji 使用指南](https://github.com/liuchengxu/git-commit-emoji-cn) [2](https://gitee.com/yeshang5/emoji-cheat-sheet)
 
 其它:
 
 | 表情 | 代码               | 含义 |
 |------|--------------------|------|
-| ✅     | :white_check_mark: | 完成 |
+| ✅   | :white_check_mark: | 完成 |
+| 🗑️   | :wastebasket:      | 废弃 |
 
 
 ## 版权许可
