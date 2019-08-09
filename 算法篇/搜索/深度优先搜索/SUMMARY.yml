@@ -2,14 +2,8 @@
   title: 序
   path: index.md
 - 
-  title: 迷宫1
-  path: 迷宫1.md
-- 
-  title: 迷宫2
-  path: 迷宫2.md
-- 
-  title: 迷宫3
-  path: 迷宫3.md
+  title: 迷宫类问题
+  path: 迷宫/
 - 
   title: 八皇后
   path: 八皇后.md

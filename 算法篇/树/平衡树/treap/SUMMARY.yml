@@ -1,3 +1,6 @@
 - 
   title: Treap入门
   path: Treap.md
+- 
+  title: 无旋Treap(FHQ_Treap)
+  path: 无旋Treap.md
