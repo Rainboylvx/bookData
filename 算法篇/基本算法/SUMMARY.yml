@@ -5,6 +5,9 @@
   name: 前缀和
   path: 前缀和.md
 -   
+  name: 差分数组
+  path: 差分数组.md
+-   
   name: GCD
   path: gcd.md
 #-   
