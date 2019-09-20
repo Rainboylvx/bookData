@@ -32,7 +32,7 @@ long long second_mst(){
                 }
             }
 
-            /* 把集和 f1 合并到f2 上,不在关心f1集合*/
+            /* 把集和 f1 合并到f2 上,不再关心f1集合*/
             G[f2].insert( G[f2].end(),G[f1].begin(),G[f1].end());
 
             k++;
