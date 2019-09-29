@@ -37,11 +37,12 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 
 其它:
 
-| 表情 | 代码               | 含义 |
-|------|--------------------|------|
-| ✅   | :white_check_mark: | 完成 |
-| 🗑️   | :wastebasket:      | 废弃 |
-| 🚧   | :construction:     | 施工 |
+| emoji              | 含义 |
+|--------------------|------|
+| :white_check_mark: | 完成 |
+| :wastebasket:      | 废弃 |
+| :construction:     | 施工 |
+| :one: -> :nine:    | 难度 |
 
 
 ## 版权许可
