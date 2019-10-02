@@ -1,0 +1,33 @@
+digraph g {
+    //rankdir=LR;
+    node[shape=point];
+    edge[arrowhead="vee"]
+    
+    a->b[label="g" minlen=2];
+    b->c[label="h" minlen=2];
+    {
+        rank="min";
+        b;
+    }
+    a->c[minlen=3,style="invis"];
+    {
+        rank="same";
+        a,c;
+    }
+    a[xlabel="a"];
+    b[xlabel="b"];
+    c[xlabel="c   "];
+    ranksep=0.1;
+    {a,c}->d[style="invis"];
+    {
+        rank="max";
+        d[shape="plaintext"]
+        d[label=< 
+            <TABLE border="0" cellborder="1">
+            <TR>
+                <TD>F=g+h</TD>
+            </TR>
+            </TABLE>
+            >];
+    }
+}

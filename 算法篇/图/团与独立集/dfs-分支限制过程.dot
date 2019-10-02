@@ -1,0 +1,95 @@
+graph G {
+    //fixedsize=true;
+    node[shape=record style=filled,fillcolor=gray];
+    0[label="{0|F:5|bstb:0}"  xlabel="虚拟0号结点"];
+    11[label="{1|F:5|bstb:1}"];
+    10[label="{1|F:4|bstb:4}",fillcolor=white];
+    21[label="{2|F:5|bstb:2}"];
+    20[label="{2|F:4|bstb:3}",fillcolor=white];
+
+    31[label="3",fillcolor="white" style="dotted"];
+    30[label="{3|F:4|bstb:2}",fillcolor=white];
+    311[label="{3|F:4|bstb:3}"];
+    310[label="3" style="dotted"];
+
+    41[label="{4|F:4|bstb:3}"];
+    40[label="{4|F:3|bstb:3}",fillcolor=white];
+    411[label="{4|F:4|bstb:3}"];
+    412[label="4" style=dotted];
+
+    40 --{512,513}[style=dotted];
+    
+    0--{11,10};
+    11--{21,20};
+
+    20--311;
+    20--310[style=dotted];
+    311--411;
+    311--412[style=dotted];
+    411--511;
+    411--514[style=dotted];
+
+    21--31[style=dotted];
+    21--30;
+    30--{41,40};
+    41--51[style=dotted];
+    41--50;
+
+    50[fillcolor=white,label="{5|F:3|bstb:3}"];
+    51[style=dotted,label=5]
+    511[label="{5|F:4|bstb:4}"]
+    512[style=dotted,label=5]
+    513[style=dotted,label=5]
+    514[style=dotted,label=5]
+
+    10--211;
+    10--212[style=dotted];
+    211[label="{2|F:4|bstb:4}"]
+    312[style=dotted label=3]
+    212[style=dotted label=2];
+    313[style=dotted label=3];
+
+    211--312;
+    211--313;
+
+
+    subgraph cluster_0{
+        label="结点";
+        color="invis";
+        edge [style="solid",color="black",arrowhead="forward"];
+        node [shape=plaintext,style=filled,fillcolor="white"];
+        00--1--2--3--4--5;
+        00[label="0"];
+    }
+
+    {
+        //rank="same"
+        //ranksep=0.1;
+        50--info_1[style="invis"];
+        info_1[shape=none fillcolor=white label=<
+            <table border="0" cellborder="1" cellspacing="5">
+                <tr> 
+                    <td bgcolor="gray"> </td> 
+                    <td align="LEFT" border="0">选择的点</td> 
+                </tr>
+                <tr> 
+                    <td>    </td> 
+                    <td align="LEFT" border="0">没有选择的点</td> 
+                </tr>
+                <tr> 
+                    <td style="dotted">    </td> 
+                    <td align="LEFT" border="0">不可能选的点</td> 
+                </tr>
+                <tr> 
+                    <td border="0">F</td> 
+                    <td align="LEFT" border="0">上界</td> 
+                </tr>
+                <tr> 
+                    <td border="0">bestb</td> 
+                    <td align="LEFT" border="0">dfs到这个点的时候面临的下界   </td> 
+                </tr>
+            </table>
+            >]
+    }
+
+}

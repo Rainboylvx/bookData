@@ -23,8 +23,8 @@
   title: 机器人搬重物
   path: 机器人搬重物.md
 - 
-  title: A*算法
-  path: Astar
-- 
   title: 双向广搜
   path: 双向广搜
+- 
+  title: 01BFS
+  path: 01BFS

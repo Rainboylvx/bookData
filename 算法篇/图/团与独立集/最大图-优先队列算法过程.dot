@@ -1,0 +1,64 @@
+graph g {
+    node[shape=record,fontsize=15];
+    0--{10,11};
+    0[label="{0|F:5|S:00000}|{idx:0|id:0|bstb:0}"]
+    10[label="{1|F:5|S:00001}|{idx:1|id:1|bstb:1}"]
+    11[label="{1|F:4|S:00000}|{idx:2|id:10|bstb:4}"]
+
+    10--{20,21};
+    20[label="{2|F:5|S:00011}|{idx:3|id:2|bstb:2}"]
+    21[label="{2|F:4|S:00001}|{idx:4|id:6|bstb:3}"]
+
+
+
+    20--30[style="dotted"];
+    20--31;
+    30[style="dotted",label=3]
+    31[label="{3|F:4|S:00011}|{idx:5|id:3|bstb:2}"]
+
+
+    31--{40,41};
+    40[label="{4|F:4|S:01011}|{idx:6|id:4|bstb:3}"]
+    41[label="{4|F:3|S:00011}|{idx:7|id:5|bstb:3}"]
+
+    40--50[style="dotted"];
+    40--511[style="dotted"];
+    50[style="dotted",label=5];
+    511[style="dotted",label=5];
+
+    21--{32,33};
+    32[label="{3|F:4|S:00101}|{idx:8|id:7|bstb:3}"]
+    33[label="{3|F:3|S:00011}|{idx:9|id:12|bstb:4}"]
+
+    32--{42,43};
+    42[label="{4|F:4|S:01101}|{idx:10|id:8|bstb:3}"]
+    43[label="{4|F:3|S:00011}|{idx:11|id:12|bstb:4}"]
+
+    43--{53,54}[style="dotted"];
+    53[style="dotted",label="5"];
+    54[style="dotted",label="5"];
+
+    42--51;
+    42--52[style="dotted"];
+    52[style="dotted",label=5]
+    51[label="{5|F:4|S:11101}|{idx:10|id:9|bstb:4}"]
+
+    11--22;
+    11--23[style="dotted"];
+    22[label="{2|F:4|S:00010}|{idx:11|id:11|bstb:4}"]
+    23[style="dotted",label="2"];
+
+    22--34[style="dotted"];
+    22--35[style="dotted"];
+    34[style="dotted",label="3"]
+    35[style="dotted",label="3"];
+
+    33--{45,46}[style=dotted];
+    45[style="dotted",label="4"]
+    46[style="dotted",label="4"];
+
+    41--{58,59}[style=dotted];
+    58[style=dotted,label=5];
+    59[style=dotted,label=5];
+
+}
