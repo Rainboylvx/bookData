@@ -1,0 +1,22 @@
+graph g {
+    label="图1"
+    a[shape=none label=<
+        <TABLE border="0" cellborder="1" cellspacing="0">
+        <tr>
+            <td>1</td> <td>  </td>  <td>  </td>  <td>  </td>
+        </tr>
+        <tr>
+            <td> </td> <td>  </td>  <td>  </td>  <td>  </td>
+        </tr>
+        <tr>
+            <td> </td> <td>  </td>  <td>  </td>  <td>3</td>
+        </tr>
+        <tr>
+            <td> </td> <td>  </td>  <td>  </td>  <td>  </td>
+        </tr>
+        <tr>
+            <td>2</td> <td>  </td>  <td>  </td>  <td>  </td>
+        </tr>
+        </TABLE>
+        >]
+}
