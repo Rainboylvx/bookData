@@ -1,20 +1,23 @@
 graph g {
+    //overlap=prism;
+    //overlap_scaling=0.01;
     node[shape=rect width=1 style=filled fillcolor="lightblue"];
+    ratio="compress"
 
-    1[pos="1,0!"];
-    2[pos="2,0!"];
-    3[pos="3,0!"];
-    4[pos="4,0!"];
-    5[pos="5,0!"];
-    6[pos="6,0!"];
-    7[pos="7,0!"];
-    8[pos="8,0!"];
+    1[pos="1,0!" label="1"];
+    2[pos="2,0!" label="2"];
+    3[pos="3,0!" label="3"];
+    4[pos="4,0!" label="100" fillcolor="orange"];
+    5[pos="5,0!" label="5"];
+    6[pos="6,0!" label="6"];
+    7[pos="7,0!" label="7"];
+    8[pos="8,0!" label="8"];
 
     node[shape=circle width=0.5 style=filled fillcolor="white"];
     c1[pos="1,0.55!" label="1"];
     c2[pos="2,1.55!" label="2"];
     c3[pos="3,0.55!" label="3"];
-    c4[pos="4,2.55!" label="4"];
+    c4[pos="4,2.55!" label="100" fillcolor="orange"];
     c5[pos="5,0.55!" label="5"];
     c6[pos="6,1.55!" label="6"];
     c7[pos="7,0.55!" label="7"];

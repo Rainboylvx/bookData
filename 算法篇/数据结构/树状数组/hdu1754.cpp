@@ -14,27 +14,26 @@ int n,m;
 
 inline int lowbit(int x){
     return x &(-x);
-}
-
+} 
 /* pos 位置,v 数值 */
-void update(int pos){
+void update(int pos,int v){
     int i,lb;
-    //更新c[pos]
-    c[pos] = a[pos];
+    a[pos] = v;
     lb = lowbit(pos);
     for(i=1;i<lb;i <<=1){ //利用孩子更新自己
-        c[pos] = max(c[pos],c[pos-i]);
+        if( v <= c[pos-i]) //v 并不是最大的点
+            return;
     }
-
-    //记录
-    int pre = c[pos];
-    pos+=lowbit(pos);
+    c[pos] = v;
+    pos+=lowbit(pos);//父亲的位置
 
     /* 更新父亲 */
     while(pos <= n){
-        c[pos] = max(pre,c[pos]);
-        pre = c[pos];
-        pos +=lowbit(pos);
+        if( c[pos] < v){ //更新的父亲
+            c[pos] = v;
+            pos +=lowbit(pos);
+        }           //没有更新父亲
+        else break;
     }
 }
 
@@ -83,8 +82,7 @@ int main(){
             scanf("%s",tmp);
             scanf("%d%d",&t1,&t2);
             if( tmp[0] == 'U'){
-                a[t1] = t2;
-                update(t1);
+                update(t1,t2);
             }
             else {
                 int ans = query(t1, t2);
