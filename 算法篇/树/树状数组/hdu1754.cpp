@@ -18,19 +18,18 @@ inline int lowbit(int x){
 /* pos 位置,v 数值 */
 void update(int pos,int v){
     int i,lb;
-    a[pos] = v;
+    c[pos] = a[pos] = v;
     lb = lowbit(pos);
     for(i=1;i<lb;i <<=1){ //利用孩子更新自己
-        if( v <= c[pos-i]) //v 并不是最大的点
-            return;
+        c[pos] = c[pos] > c[pos-i] ? c[pos] : c[pos-i];
     }
-    c[pos] = v;
+    int pre = c[pos];
     pos+=lowbit(pos);//父亲的位置
 
     /* 更新父亲 */
     while(pos <= n){
-        if( c[pos] < v){ //更新的父亲
-            c[pos] = v;
+        if( c[pos] < pre){ //更新的父亲
+            c[pos] = pre;
             pos +=lowbit(pos);
         }           //没有更新父亲
         else break;
