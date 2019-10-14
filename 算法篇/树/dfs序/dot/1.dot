@@ -1,0 +1,62 @@
+graph G {
+
+    subgraph cluster_2{
+        style=invis
+        label="";
+        node[shape=circle];
+        1--2;
+        1--3;
+        2--4;
+        2--5;
+        3--t1[style=invis];
+        t1[style=invis];
+        3--6;
+        5--7;
+        2,5,7,4[style=filled fillcolor="/reds9/5"]
+    }
+    subgraph cluster_1{
+        style=invis
+        t--a[style=invis minlen=2];
+        
+    colorscheme="blues9";
+    t[shape=plaintext label=< <TABLE BORDER="0" CELLBORDER="1" WIDTH="10" CELLSPACING="0" CELLPADDING="4">
+            <tr>
+                <td>1</td>
+                <td BGCOLOR="/reds9/5">2</td>
+                <td BGCOLOR="/reds9/5">4</td>
+                <td BGCOLOR="/reds9/5">5</td>
+                <td BGCOLOR="/reds9/5">7</td>
+                <td>3</td>
+                <td>6</td>
+            </tr>
+        </TABLE> >]
+        
+        a[shape=plaintext fixedsize=true label=<
+            <table border="0">
+                <tr>
+                    <td>Start[1]=1</td> <td>End[1]=7</td>
+                </tr>                            
+                <tr>                             
+                    <td ><FONT COLOR="/reds9/5">Start[2]=2</FONT></td> <td> <FONT COLOR="/reds9/5">End[2]=5</FONT></td>
+                </tr>                            
+                <tr>                             
+                    <td>Start[3]=6</td> <td>End[3]=7</td>
+                </tr>                            
+                <tr>                             
+                    <td>Start[4]=3</td> <td>End[4]=3</td>
+                </tr>                            
+                <tr>                             
+                    <td>Start[5]=4</td> <td>End[5]=5</td>
+                </tr>                            
+                <tr>                             
+                    <td>Start[6]=7</td> <td>End[6]=7</td>
+                </tr>                            
+                <tr>                             
+                    <td>Start[7]=5</td> <td>End[7]=5</td>
+                </tr>
+            </table>
+            >
+        ]
+    }
+
+}
