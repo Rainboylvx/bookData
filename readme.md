@@ -37,12 +37,23 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 
 其它:
 
-| emoji              | 含义 |
-|--------------------|------|
-| :white_check_mark: | 完成 |
-| :wastebasket:      | 废弃 |
-| :construction:     | 施工 |
-| :one: -> :nine:    | 难度 |
+| emoji              | 含义   |
+|--------------------|--------|
+| :white_check_mark: | 完成   |
+| :wastebasket:      | 废弃   |
+| :construction:     | 施工   |
+| :one: -> :nine:    | 难度   |
+| :lock:             | 有密码 |
+
+## 感谢
+
+感谢下面的同学为本书添砖加瓦
+
+| 姓名                  | 贡献          |
+|-----------------------|---------------|
+| 皮雳                  | 快读普通版    |
+| Riolu(2014)           | n*log(n)的LIS |
+| Shimakze(张俊然),彭政 | 权值线段树    |
 
 
 ## 版权许可
