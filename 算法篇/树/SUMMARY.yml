@@ -35,5 +35,8 @@
   title: ":lock: 权值线段树 「感谢」"
   path: 权值线段树/
 - 
+  title: ":construction: :lock: 主席树"
+  path: 主席树
+- 
   title: 平衡树
   path: 平衡树
