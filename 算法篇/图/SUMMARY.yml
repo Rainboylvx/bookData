@@ -17,6 +17,9 @@
   title: 强连通分量
   path: 强连通分量
 - 
+  title: ":lock: 双连通分量"
+  path: 双联通分量
+- 
   title: 二分图
   path: 二分图匹配
 - 
