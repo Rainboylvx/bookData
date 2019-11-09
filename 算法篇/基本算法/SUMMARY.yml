@@ -10,5 +10,8 @@
 -   
   name: GCD
   path: gcd.md
+-   
+  title: "序列中不超过K的对数"
+  path: "序列中不超过K的对数.md"
 #-   
   #name: 素数判断

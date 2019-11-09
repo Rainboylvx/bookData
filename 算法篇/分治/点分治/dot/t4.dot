@@ -1,0 +1,16 @@
+graph title {
+    label="图2";
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    edge[style="solid",color="black",arrowhead="forward" colorscheme=x11];
+    1--2[penwidth=2 color="chartreuse3:invis:chartreuse3"];
+    1--3;
+    2--4[penwidth=4, color=chartreuse3];
+    2--5[];
+    3--6;
+    3--7;
+    {
+        rank=same;
+        2--x--3[style=invis];
+    }
+    x[style=invis];
+}
