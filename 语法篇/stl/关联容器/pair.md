@@ -1,4 +1,14 @@
-# pair类型
+---
+title: pair
+date: 2019-11-20 22:36
+update: 2019-11-20 22:36
+author: Rainboy
+---
+
+
+@[toc]
+
+## pair类型
 
 在学习关联容器之前,我们先学习一个简单的标准库类型:pair类型
 

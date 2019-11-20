@@ -1,3 +1,11 @@
+---
+title: priority_queue
+date: 2019-11-20 22:36
+update: 2019-11-20 22:36
+author: Rainboy
+---
+
+
 https://blog.csdn.net/yuanjilai/article/details/8043157 很好
 
 在默认的情况下,priority_queue 使用的是`<(less仿函数)`,来比较,但是默认实现的是大根堆: 也就是

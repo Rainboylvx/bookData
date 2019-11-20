@@ -1,4 +1,11 @@
-# deque的使用讲解
+---
+title: deque
+date: 2019-11-20 22:37
+update: 2019-11-20 22:37
+author: Rainboy
+---
+
+## deque的使用讲解
 
 deque容器是STL中的一部分,和vector类似,支持随机访问和快速插入删除,它在容器中的某一个位置上的操作所花费的时间是线性的。 
 与vector不同,deque还支持从开始插入数据:push_front() 
