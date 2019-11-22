@@ -15,8 +15,7 @@ source:
 
 - 洛谷的第一个任务 
     - [P1000_超级玛丽游戏](/article/luogu-P1000)
-    - [P1001_A+B_Problem](/article/luogu-P1001)
-    - [P1421_小玉买文具](/article/luogu-P1421)
+    - [P1001_A+B_Problem](/article/luogu-P1001) [P1421_小玉买文具](/article/luogu-P1421)
     - [P1425_小鱼的游泳时间](/article/luogu-P1425)
 - 顺序与分支 
     - [P1422_小玉家的电费](/article/luogu-P1422)
@@ -49,4 +48,13 @@ source:
     - [P1149_火柴棒等式](/article/luogu-P1149)
     - [P1217_USACO1.5回文质数_Prime_Palindromes](/article/luogu-P1217)
 - BOSS战-入门综合练习1 
+    - [P1478 陶陶摘苹果（升级版）](/article/luogu-P1478)
+    - [P1618 三连击（升级版）](/article/luogu-P1618)
+    - [P1579 哥德巴赫猜想（升级版）](/article/luogu-P1579)
+    - [P2089 烤鸡](/article/luogu-P2089)
 - BOSS战-入门综合练习2
+    - [P1426 小鱼会有危险吗](/article/luogu-P1426)
+    - [P1464 Function](/article/luogu-P1464)
+    - [P1014 Cantor表](/article/luogu-P1014)
+    - [P1022 计算器的改良](/article/luogu-P1022)
+    - [P1307 数字反转](/article/luogu-P1307)
