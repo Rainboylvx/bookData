@@ -1,6 +1,6 @@
 ---
 _id: luogu-novice-village
-title: index
+title: "luogu新手村"
 date: 2019-11-22 10:36
 update: 2019-11-22 10:36
 author: Rainboy
