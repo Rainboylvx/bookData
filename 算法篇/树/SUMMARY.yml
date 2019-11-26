@@ -41,5 +41,14 @@
   title: ":construction: :lock: 主席树"
   path: 主席树
 - 
+  title: "「BST」二叉查找树"
+  path: 二叉查找树
+- 
   title: 平衡树
   path: 平衡树
+- 
+  title: "link cut tree(LCT)"
+  path: lct/
+- 
+  title: "树上启发合并"
+  path: dsu_on_tree

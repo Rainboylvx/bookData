@@ -1,0 +1,95 @@
+graph cf600e {
+    node[shape=plaintext fixedsize=true fillcolor=white colorscheme=accent8 ];
+
+1--2;
+1--3;
+1--4;
+1--14;
+1--15;
+2--5;
+2--6;
+2--7;
+3--8;
+3--9;
+3--10;
+4--11;
+4--12;
+4--13;
+1[ label=< <TABLE CELLBORDER="1" BORDER="3" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >1</td>
+            <td PORT="" BGCOLOR="1">1</td>
+        </tr> </TABLE> > ]
+2[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >2</td>
+            <td PORT="" BGCOLOR="2">2</td>
+        </tr> </TABLE> > ]
+3[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >3</td>
+            <td PORT="" BGCOLOR="4">3</td>
+        </tr> </TABLE> > ]
+4[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >4</td>
+            <td PORT="" BGCOLOR="1">1</td>
+            <td PORT="" BGCOLOR="9">h</td>
+        </tr> </TABLE> > ]
+5[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >5</td>
+            <td PORT="" BGCOLOR="2">2</td>
+        </tr> </TABLE> > ]
+6[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >6</td>
+            <td PORT="" BGCOLOR="4">3</td>
+        </tr> </TABLE> > ]
+7[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >7</td>
+            <td PORT="" BGCOLOR="4">3</td>
+            <td PORT="" BGCOLOR="9">h</td>
+        </tr> </TABLE> > ]
+8[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >8</td>
+            <td PORT="" BGCOLOR="1">1</td>
+        </tr> </TABLE> > ]
+9[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >9</td>
+            <td PORT="" BGCOLOR="1">1</td>
+        </tr> </TABLE> > ]
+10[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >10</td>
+            <td PORT="" BGCOLOR="4">3</td>
+            <td PORT="" BGCOLOR="9">h</td>
+        </tr> </TABLE> > ]
+11[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >11</td>
+            <td PORT="" BGCOLOR="2">2</td>
+        </tr> </TABLE> > ]
+12[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >12</td>
+            <td PORT="" BGCOLOR="2">2</td>
+        </tr> </TABLE> > ]
+13[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >13</td>
+            <td PORT="" BGCOLOR="1">1</td>
+            <td PORT="" BGCOLOR="9">h</td>
+        </tr> </TABLE> > ]
+14[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >14</td>
+            <td PORT="" BGCOLOR="2">2</td>
+        </tr> </TABLE> > ]
+15[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0"> <tr>
+            <td PORT="" >15</td>
+            <td PORT="" BGCOLOR="4">3</td>
+        </tr> </TABLE> > ]
+        7--cnt[style=invis];
+cnt[ label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="3"> 
+    <tr>
+        <td PORT="" >5</td>
+        <td PORT="" >5</td>
+        <td PORT="" >5</td>
+    </tr> 
+    <tr>
+        <td PORT="" BGCOLOR="1">1</td>
+        <td PORT="" BGCOLOR="2">2</td>
+        <td PORT="" BGCOLOR="4">3</td>
+    </tr> 
+    </TABLE> > ]
+}
