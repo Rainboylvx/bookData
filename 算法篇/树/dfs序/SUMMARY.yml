@@ -1,3 +1,6 @@
 - 
   title: "序:入门"
   path: index.md
+- 
+  title: "dfs序:经典问题"
+  path: dfs序经典问题.md

@@ -338,6 +338,10 @@ nxt
 int nxt = getnum( getrank(x+1));
 ```
 
+### Split 分割
+
+### Join 合并
+
 ## 样例题目
 
 - [luogu P3369 【模板】普通平衡树](https://www.luogu.org/problem/P3369)
