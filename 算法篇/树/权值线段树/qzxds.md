@@ -3,7 +3,7 @@ title: 权值线段树
 date: 2019-10-14 13:55
 update: 2019-10-14 13:55
 author: "Shimakze(张俊然),彭政"
-password: "zjrpg"
+password: "zjrpz"
 ---
 
 @[TOC]

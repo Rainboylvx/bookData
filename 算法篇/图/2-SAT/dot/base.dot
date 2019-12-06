@@ -1,0 +1,11 @@
+digraph g {
+	graph [bb="0,0,126,324"];
+	node [colorscheme=accent8, fillcolor=white, fixedsize=true, label="\N", shape=circle, style=filled ];
+	1	[height=0.5, pos="18,306", width=0.5];
+	3	[height=0.5, pos="18,204", width=0.5];
+	2	[height=0.5, pos="158,306", width=0.5];
+	4	[height=0.5, pos="158,204", width=0.5];
+	2->4[dir=none color = "red:invis:red" style=dotted]
+	4->1;
+	2->3;
+}

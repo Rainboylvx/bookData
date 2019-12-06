@@ -35,7 +35,7 @@
   title: 线段树
   path: 线段树
 - 
-  title: ":lock: 权值线段树 「感谢」"
+  title: ":lock: 「动态开点线段树」 与 「权值线段树」 「感谢」"
   path: 权值线段树/
 - 
   title: ":construction: :lock: 主席树"
@@ -52,3 +52,7 @@
 - 
   title: "树上启发合并"
   path: dsu_on_tree
+- 
+  title: "K-D Tree"
+  path: K-D-Tree/
+
