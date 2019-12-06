@@ -1,0 +1,8 @@
+graph g {
+    node[shape=rect fixedsize=true  fillcolor=white colorscheme=accent8 style=filled];
+    A,B,H,F,D,E,C,K,G;
+    nodesep=0;
+    A[fillcolor=1];
+    B,H,F,D[fillcolor=2];
+    E,C,K,G[fillcolor=7];
+}
