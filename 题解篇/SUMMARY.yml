@@ -5,14 +5,14 @@
   title: ":white_check_mark: luogu新手村"
   path: luogu新手村/index.md
 - 
+  title: luogu普及练习场
+  path: luogu普及练习场.md
+- 
   title: NOIP/CSP 历年提高组题目解析
   path: noip提高/index.md
 - 
   title: NOIP/CSP 历年普及组题目解析
   path: noip普及/index.md
-- 
-  title: luogu普及练习场
-  path: luogu普及练习场
 - 
   title: "紫书《算法竞赛入门经典》"
   path: 算法竞赛入门经典.md
