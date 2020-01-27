@@ -34,6 +34,7 @@ $$
 
 边界条件为$f[i,0]=a[i]$
 
+<!-- template start -->
 这样就可以在$O(nlogn)$的时间复杂度内预处理f数组:
 
 ```c
@@ -44,6 +45,7 @@ for(j=1;(1<<j)<=n;j++){ //1<<j 表示处理的范围
         f[i][j] = max (f[i][j-1],f[i+(1<<(j-1))][j-1]);
 }
 ```
+<!-- template end -->
 
 其中`i+(1<<j)-1`表示$i+2^j-1$表示所求的范围的最后一个值在原数组范围内
 
@@ -61,9 +63,9 @@ $[L,R]=[L,L+2^x-1] \cup [R-2^x+1,R]$，两个子区间元素个数都是$2^x$个
 
 ![2](./rmq2.png)
 
-
+<!-- template start -->
 $$
-RMQ(L,R)=max(f[L,x],f[R+1-2^x,x])
+RMQ(L,R)=max(f[L,x],f[R-2^x+1,x])
 $$
 
 ```c
@@ -74,13 +76,14 @@ int query(int l,int r){
     //第二种方法,这种写法比上面的写法慢
     // 例如，luogu3865 就过不了
     int k =0;
-    while( (1<<k) <=(r-l+1) ) k ++;
-    k--;
+    while( (1<<(k+1)) <=(r-l+1) ) k++; // 最后2^{k+1} > r-l+1
 
-    //return max(f[l][k],f[r-(1<<k)+1][r]);
+    //return max(f[l][k],f[r-(1<<k)+1][k]);
     return max(f[l][x],f[r-(1<<x)+1][x]);
 }
 ```
+<!-- template end -->
+
 ## 具体代码
 
 数据:

@@ -46,3 +46,4 @@ int lcm(int a,int b){
  - luogu P2651 添加括号III 入门难度
  - luogu P1372 又是毕业季I 洛谷原创 入门难度
  - luogu P4057 [Code+#1]晨跑
+ - [luogu P1290 欧几里德的游戏](<%- USER.pcs_site %>luogu-P1290)

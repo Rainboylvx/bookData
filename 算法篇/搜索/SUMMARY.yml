@@ -16,3 +16,6 @@
 - 
   title: A*算法
   path: A星
+- 
+  title: "IDA*"
+  path: 迭代加深/

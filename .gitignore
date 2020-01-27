@@ -2,3 +2,6 @@ update.sh
 *.vim
 bin/
 .ccls-cache/
+todolist.md
+tools/
+*.html

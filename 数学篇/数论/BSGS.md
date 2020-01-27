@@ -1,3 +1,12 @@
+---
+_id: "ea1f0cfb66"
+title: BSGS
+date: 2020-01-09 13:48
+update: 2020-01-09 13:48
+author: Rainboy
+cover: 
+---
+
 # BSGS baby steps giant steps
 
 

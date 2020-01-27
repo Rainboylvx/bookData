@@ -22,6 +22,7 @@ digraph G {
 
 bfs最大的特点,就是这些点按层级的顺序访问.因为这个特点,我们可以使用bfs来求一些有关,最短路径,最小步骤等相关问题.
 
+
 ## 练习题目列表
 
  - 穿越泥地 Mud Puddles[地址](https://vjudge.net/problem/POJ-3626)

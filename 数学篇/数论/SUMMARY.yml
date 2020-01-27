@@ -1,0 +1,24 @@
+- 
+  title: ":construction:「高中」初等数论初步"
+  path: 初等数论初步.md
+- 
+  title: 素数
+  path: 素数
+- 
+  title: 整除
+  path: 整除/
+- 
+  title: EXGCD与解不定方程
+  path: EXGCD与解不定方程.md
+- 
+  title: 中国剩余定理
+  path: 中国剩余定理.md
+- 
+  title: 欧拉函数
+  path: 欧拉函数/欧拉函数.md
+- 
+  title: 约数个数与和公式
+  path: 约数个数与和公式.md
+- 
+  title: 乘法逆元
+  path: 乘法逆元.md

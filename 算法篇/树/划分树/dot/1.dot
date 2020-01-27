@@ -1,0 +1,54 @@
+graph hfs {
+    node[shape=point fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    edge [minlen=3];
+    rankdir=LR;
+    {
+        b1--b2[style=invis];
+        b2--b3[label="rx 去右儿子的数量"];
+        b3--b4[minlen=1 style=invis];
+        b4--b5[style=invis];
+        b1[style=invis];
+        b4[style=invis];
+        b5[style=invis];
+    }
+    {
+        c1--c2[style=invis];
+        c2--c3[label="ry 去右儿子的数量"];
+        c3--c4[minlen=1 stale=invis];
+        c4--c5;
+        c3[height=0 width=0]
+        c4[height=0 width=0]
+        c1[style=invis];
+    }
+
+    x1--L;
+    L--l_1;
+    l_1--l[minlen=1];
+    l--r;
+    r--R;
+    R--x2;
+    x1,x2[style=invis];
+    L[xlabel="L"];
+    l_1[xlabel="l-1"];
+    l[xlabel="l"];
+    r[xlabel="r"];
+    R[xlabel="R"];
+    {
+        y1--y2[style=invis];
+        y2--y3[label="x 去左儿子的数量"];
+        y3--y4[minlen=1 style=invis];
+        y4--y5[style=invis];
+        y1[style=invis];
+        y4[style=invis];
+        y5[style=invis];
+    }
+    {
+        a1--a2[style=invis];
+        a2--a3[label="y 去左儿子的数量"];
+        a3--a4[minlen=1 stale=invis];
+        a4--a5;
+        a3[height=0 width=0]
+        a4[height=0 width=0]
+        a1[style=invis];
+    }
+}

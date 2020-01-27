@@ -1,0 +1,38 @@
+digraph g {
+    rankdir=TB;
+    node[shape=plaintext  fillcolor=white colorscheme=accent8 ];
+    ranksep=0.1;
+    a->b->c->d[style=invis];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="">rec[8]</td>
+                <td PORT="" bgcolor="1">1</td>
+            </tr>
+        </TABLE> >
+    ]
+    b[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="">rec[1]</td>
+                <td PORT="" bgcolor="1">3</td>
+            </tr>
+        </TABLE> >
+    ]
+    c[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="">rec[3]</td>
+                <td PORT="" bgcolor="1">7</td>
+            </tr>
+        </TABLE> >
+    ]
+    d[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="">rec[7]</td>
+                <td PORT="" >-1</td>
+            </tr>
+        </TABLE> >
+    ]
+}

@@ -1,0 +1,8 @@
+digraph g {
+    label="图1"
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    1->{2,3,4,5};
+    3->{6,7};
+    4->8->9;
+    5->10->11->12;
+}

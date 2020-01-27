@@ -1,0 +1,42 @@
+digraph egp {
+    node[shape=circle height=0.8 fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    "19/45";
+    "19/45"
+        ->1[label="1/2"];
+    "19/45"
+        ->2[label="1/3"];
+    "19/45"
+        ->3[label="1/4"];
+    "19/45"
+        ->4[label="1/5"];
+    "19/45"
+        ->5[label="1/6"];
+    "19/45"
+        ->x1[];
+    x1[shape=plaintext style=none label="...."]
+    "19/45"
+        ->x2[label="1/100"];
+    x2[label="          NO! 1/100*3 <= 19/45" shape=plaintext style=none];
+    1[label=NO];
+    2[label="4/45"];
+    3[label="31/180"];
+    4[label="2/9"];
+    5[label="23/90"];
+    2
+     ->8[label="1/12"];
+    2
+     ->9[label="1/13"];
+    2
+     ->10[label="1/14"];
+    2
+     ->11[label="1/15"];
+    2
+     ->12[label="1/16"];
+    8[label="1/180"]
+    9[label="7/585"]
+    10[label="11/630"]
+    11[label="1/45"]
+    12[label="19/720"]
+    8->"1/180"[label="去第三层"];
+    "1/180"[shape=plaintext style=none]
+}

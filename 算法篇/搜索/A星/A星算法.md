@@ -38,7 +38,6 @@ digraph g {
 
 ## 抽象的过程
 
-<!-- template start -->
 ::: blackboard
 - 把起点添加 $open\_list$
 - 当$open\_list$不空
@@ -57,6 +56,13 @@ digraph g {
             - $father[v] = u$
 - $open\_list$已经空,没有找到目标格,路径不存在。
 :::
+
+**核心代码**
+
+<!-- template start -->
+```c
+todo 
+```
 <!-- template end -->
 
 ## 总结

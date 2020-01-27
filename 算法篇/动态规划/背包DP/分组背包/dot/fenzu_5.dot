@@ -1,0 +1,37 @@
+
+digraph g {
+    node[shape=plaintext fixedsize=true  colorscheme=accent8 ];
+    t1;
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="10">
+            <tr>
+                <td PORT="f0" >0</td>
+                <td PORT="f1" >0</td>
+                <td PORT="f2" BGCOLOR="1">1</td>
+                <td PORT="f3" >3</td>
+            </tr>
+        </TABLE> >
+    ];
+    t2;
+    b[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="2" cellborder="0">
+            <tr>
+                <td PORT="">组:</td>
+                <td PORT="">1</td>
+            </tr>
+            <tr>
+                <td PORT="">物品:</td>
+                <td PORT="">1</td>
+            </tr>
+            <tr>
+                <td PORT="">容量:</td>
+                <td PORT="">2</td>
+            </tr>
+        </TABLE> >
+    ]
+    a:f0:s->b[style=invis];
+    b->t3[style=invis];
+    a:f2:n->a:f1:n;
+
+    t1,t2,t3[style=invis]
+}

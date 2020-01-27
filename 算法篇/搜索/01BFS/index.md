@@ -55,13 +55,13 @@ graph g {
 ## 算法过程
 
 ::: blackboard
-
+<!-- template start -->
 使用双端队列$deque$
 
  - 从$0$边拓展到的点放入队首
  - 从$1$边拓展到的点放入队尾
  - 每次从队首取点,直到队列为空
-
+<!-- template end -->
 :::
 
 
@@ -82,6 +82,12 @@ graph g {
 我们可以把这种思想带入到$01BFS$上.
 
 ## 代码模板
+
+<!-- template start -->
+```c
+<%- include("01bfs_template.cpp") %>
+```
+<!-- template end -->
 
 ## 样例题目
 
