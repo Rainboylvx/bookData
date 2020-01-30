@@ -166,3 +166,9 @@ j
 - 前面的格子是前i组物品得到的价值
 <!-- template end -->
 :::
+
+## 练习题目
+
+- 通天之分组背包 [题解](<%- USER.pcs_site %>luogu-P1757)
+- hdu 1712  ACboy needs your help 
+- hdu 3033 I love sneakers! 变形的分组背包（好题）
