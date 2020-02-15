@@ -1,11 +1,13 @@
 -
     path: 语法篇
     name: 语法篇
-    cover: /cover/cppbook.jpg
+    #cover: /cover/cppbook.jpg
+    cover: https://i.loli.net/2020/02/15/5BklbroGXx9Ua37.jpg
 - 
     name: 算法篇
     path: 算法篇/
-    cover: /cover/noipbook.jpg
+    #cover: /cover/noipbook.jpg
+    cover: https://i.loli.net/2020/02/15/2jdGiyQUwsEhK5e.jpg
 - 
     name: 数学篇
     path: 数学篇/
