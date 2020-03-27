@@ -1,4 +1,13 @@
 - 
+  title: "双连通分量/入门"
+  path: index.md
+- 
+  title: "点双连通分量"
+  path: 点双连通分量.md
+- 
+  title: "边双连通分量"
+  path: 边双连通分量.md
+- 
   title: ":lock: 双连通分量"
   path: 双连通分量.md
 

@@ -11,5 +11,8 @@
   title: SPFA算法
   path: SPFA.md
 - 
+  title: SPFA_dfs
+  path: spfa_dfs.md
+- 
   title: 次最短路径
   path: 次最短路径.md
