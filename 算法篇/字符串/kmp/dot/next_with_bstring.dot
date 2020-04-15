@@ -1,0 +1,27 @@
+graph g{
+    label="B字符串与对应的next数组"
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="4">
+            <tr>
+
+<td border="0">B</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>b</td>
+<td>d</td>
+            </tr>
+            <tr>
+<td border="0">next[]</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+            </tr>
+        </TABLE> >
+    ]
+}

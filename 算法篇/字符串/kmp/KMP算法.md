@@ -29,8 +29,54 @@ digraph title {
 我们这里约定:
 
  - 字符串从下标1开始
- - j表示b字符串的前j个字符和a字符串匹配
+ - j表示B字符串的前j个字符和A字符串匹配
  - next[j]表示b字符串第j个位置的前next[j]个字符和从头开始的next[j]个字符相同,不能全部相同(next[j] != j)
+
+::: center
+```viz-dot
+graph g{
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    a[
+        label=< <TABLE CELLBORDER="0" BORDER="0" CELLSPACING="3" CELLPADDING="0">
+            <tr>
+                <td PORT="">A:</td>
+                <td PORT="">abcabcabd</td>
+            </tr>
+            <tr>
+                <td PORT="">B:</td>
+                <td PORT="">abcabd</td>
+            </tr>
+        </TABLE> >
+    ]
+}
+```
+:::
+
+::: center
+```viz-dot
+<%- include("dot/next_with_bstring.dot") %>
+```
+:::
+
+我们先不要在意next数组是如何得到的,如何利用B的next数组和字符串A匹配
+
+
+<<<< viz-gallery(title="title",engine="dot",height="400")
+
+<% 
+var log =[]
+var engine = "dot"
+for(let i=1;i<=16;i++){
+    var page = `dot/kmp_${i}.dot`
+%>
+
+``` <%= engine || ""%> <%= log[i-1] || "" %>
+<%- include(page) %>
+```
+<%}%>
+
+<<<<
+
 
 ## next数组的值
 
@@ -45,7 +91,25 @@ digraph title {
  - 如果$b[j+1]=b[i]$,$j++$
  - 是next[i] = j
 
-原理:todo
+原理:**自我匹配**
+
+
+<<<< viz-gallery(title="求next数组",engine="dot",height="400")
+
+<% 
+var log =[]
+var engine = "dot"
+for(let i=1;i<=4;i++){
+    var page = `dot/next_${i}.dot`
+%>
+
+``` <%= engine || ""%> <%= log[i-1] || "" %>
+<%- include(page) %>
+```
+<%}%>
+
+<<<<
+
 
 ## 匹配
 

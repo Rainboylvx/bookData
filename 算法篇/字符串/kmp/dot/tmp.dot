@@ -1,0 +1,49 @@
+digraph g {
+    label="a[j+1] == a[i]"
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    //ranksep=0.3
+    arrow[shape=plaintext weight=0 label="i"];
+    next[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="2">
+            <tr>
+                <td PORT="0" border="0">next</td>
+                <td PORT="1">0</td>
+                <td PORT="2">0</td>
+                <td PORT="3">1</td>
+                <td PORT="4">2</td>
+                <td PORT="5">2</td>
+            </tr>
+            <tr>
+                <td PORT="0" border="0">  </td>
+                <td PORT="1">a</td>
+                <td PORT="2">b</td>
+                <td PORT="3">a</td>
+                <td PORT="4">b</td>
+                <td PORT="5">a</td>
+            </tr>
+        </TABLE> >
+    ];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="2">
+            <tr>
+                <td PORT="0">  </td>
+                <td PORT="1" bgcolor="1">a</td>
+                <td PORT="2" bgcolor="1">b</td>
+                <td PORT="3" bgcolor="2">a</td>
+                <td PORT="4">b</td>
+                <td PORT="5">a</td>
+            </tr>
+            <tr>
+                <td PORT="0" border="0">  </td>
+                <td PORT="1" border="0">  </td>
+                <td PORT="2">  </td>
+                <td PORT="3" bgcolor="1">a</td>
+                <td PORT="4" bgcolor="1">b</td>
+                <td PORT="4" bgcolor="2">a</td>
+            </tr>
+        </TABLE> >
+    ]
+    //next:1->a:1[style=invis];
+    arrow->a:5;
+    j->a:2;
+}

@@ -1,0 +1,28 @@
+graph g{
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+            <tr>
+                <td border="0">A:</td>
+                <td >a</td>;
+<td >b</td>;
+<td >a</td>;
+<td >b</td>;
+<td >a</td>;
+<td >b</td>;
+<td >a</td>;
+<td >a</td>;
+<td border="2">c</td>;
+            </tr>
+            <tr>
+                <td border="0">B:</td>
+                <td border="0"></td>;<td border="0"></td>;<td border="0"></td>;<td border="0"></td>;<td border="0"></td>;<td border="0"></td>;<td border="0"></td>;<td border="0"></td>;
+<td>a</td>;
+<td>b</td>;
+<td>a</td>;
+<td>b</td>;
+<td>a</td>;
+            </tr>
+        </TABLE> >
+    ]
+}

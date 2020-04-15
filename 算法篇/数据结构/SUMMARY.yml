@@ -4,3 +4,9 @@
 - 
    title: 队列
    path: 队列.md
+-
+  title: "RMQ/ST/区间最值"
+  path: RMQ
+- 
+  title: 树状数组
+  path: 树状数组

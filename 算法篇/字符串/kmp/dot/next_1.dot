@@ -1,0 +1,37 @@
+digraph g {
+    label="next[1]=0,a[j+1] != a[i],next[2]=j"
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    //ranksep=0.3
+    arrow[shape=plaintext weight=0 label="i"];
+    next[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="2">
+            <tr>
+                <td PORT="0" border="0">next</td>
+                <td PORT="1">0</td>
+                <td PORT="2">0</td>
+                <td PORT="3">  </td>
+                <td PORT="4">  </td>
+                <td PORT="5">  </td>
+            </tr>
+        </TABLE> >
+    ];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="2">
+            <tr>
+                <td PORT="0">  </td>
+                <td PORT="1">a</td>
+                <td PORT="2">b</td>
+                <td PORT="3">a</td>
+                <td PORT="4">b</td>
+                <td PORT="5">a</td>
+            </tr>
+            <tr>
+                <td PORT="0" border="0">  </td>
+                <td PORT="1">  </td>
+            </tr>
+        </TABLE> >
+    ]
+    //next:1->a:1[style=invis];
+    arrow->a:2;
+    j->a:0;
+}
