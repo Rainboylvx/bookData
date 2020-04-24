@@ -1,0 +1,4 @@
+digraph title {
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    a->b;
+}
