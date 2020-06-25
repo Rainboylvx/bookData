@@ -17,14 +17,11 @@
   title: 强连通分量
   path: 强连通分量
 - 
-  title: ":lock: 双连通分量"
-  path: 双联通分量
+  title: 无向图连通性
+  path: 无向图连通性
 - 
   title: 二分图
   path: 二分图匹配
-- 
-  title: 图的割
-  path: 割
 - 
   title: 拓扑排序
   path: 拓扑排序

@@ -1,3 +1,11 @@
+---
+_id: "bd4ef9a14e"
+title: Bellman-ford
+date: 2020-05-15 09:50
+update: 2020-05-15 09:50
+author: Rainboy
+---
+
 # bellman_ford 算法
 
 ## Bellman-ford 算法原理
@@ -86,9 +94,27 @@ for(k=1;k<=n-1;k++) //最多n-1次
 
 ## 一句话算法
 
+<!-- template start -->
 **有n个点,每一个用一个点用更新周围的点,最多更新n-1次,就得到了每个点的dis值**
 
-----------------------------
+```c
+void bellman_ford(){
+    int i,j;
+    for(i=1;i<=n-1;i++)//进行n-1轮操作
+        for(j=1;j<=m;j++){
+            int &ss = u[j],&tt=v[j],&ww = w[j];//引用
+            
+            if(dis[ss] > dis[tt] + ww)
+                dis[ss] = dis[tt] +ww;
+
+            /* 如果是无向图 要反过求一次 */
+            if(dis[tt] > dis[ss] + ww)
+                dis[tt] = dis[ss] +ww;
+        }
+    //代码完成
+}
+```
+<!-- template end -->
 
 ## Bellman-ford 代码
 

@@ -22,12 +22,12 @@
 - 
   title: 状压DP
   path: 状态压缩
-#- 
-  #title: 插头DP
-  #path: 
 - 
   title: 树型DP
   path: 树型DP
 - 
   title: 计数DP
   path: 计数DP
+- 
+  title: 插头DP
+  path: 插头DP

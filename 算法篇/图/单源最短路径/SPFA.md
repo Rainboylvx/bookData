@@ -1,3 +1,10 @@
+---
+_id: "12998cf32a"
+title: SPFA
+date: 2020-05-15 09:51
+update: 2020-05-15 09:51
+author: Rainboy
+---
 
 
 ## SPFA 算法原理
@@ -6,7 +13,6 @@
 
 
 链接: http://pan.baidu.com/s/1nvnQiVZ 密码: 2pc1
-
 
 
 SPFA算法原理：
@@ -23,9 +29,42 @@ SPFA算法原理：
 
 ## 一句话算法
 
+<!-- template start -->
  - SPFA是对bellman-ford算法的队列优化
  - 一个点被更新了,它还有可能更新周围的点,入队
+<!-- template end -->
 
+<!-- template start -->
+```c
+void spfa(){
+    push(s);
+    dis[s] = 0;
+    inQueue[s] = 1;
+    pre[s] = -1;
+
+
+    int i;
+    while( empty() == false){
+        int t = pop();  //取队首
+        inQueue[t] = 0; // 不在队中
+
+        for(i = first[t];i !=-1;i = edge[i].next){
+            int tv = edge[i].v;
+            int tw = edge[i].w;
+            if( dis[tv] > dis[t] + tw){ //更新
+                dis[tv] = dis[t] + tw;
+    
+                /* 不在队列中,就加入队列 */
+                if( inQueue[tv] == 0){
+                    push(tv);
+                    inQueue[tv] = 1;
+                }
+            }
+        }
+    }
+}
+```
+<!-- template end -->
 
 
 ## 代码
@@ -184,3 +223,14 @@ int main(){
 
  - [luogu P3385 【模板】负环](https://www.luogu.org/problemnew/show/P3385)
  - POJ3259
+
+## 优化
+
+
+SPFA 算法有两个优化算法 SLF 和 LLL：
+- SLF：Small Label First 策略，设要加入的节点是j，队首元素为i，若$dist(j) < dist(i)$，则将 j 插入队首，否则插入队尾。
+- LLL：Large Label Last 策略，设队首元素为i，每次弹出时进行判断，队列中所有 dist 值的平均值为 x，若$dist(i)>x$ 则将i 插入到队尾，查找下一元素，直到找到某一i 使得$dist(i)<=x$则将 i 出对进行松弛操作。
+
+## 参考/引用
+
+- [SPFA的两种优化SLF和LLL_No Program No Life-CSDN博客](https://blog.csdn.net/oranges_c/article/details/64124235)

@@ -48,7 +48,7 @@ next数组也就是失配指针，需要我们预处理出来。next [u] 表示�
 是转移结点 x，现在我们要求出 $next [x]$，若 $T'[j+1]=T [i＋1]$，也就是下一位仍然匹配，那么设 v
 的相同字符转移边指向的结点为 y，令 next [x] 等于 y，否则 $T'[j+1]$ 与 $T [i＋1]$++失配++，我们令 $v=next
 [v]$，即跳到字符串 v 的后缀 next [v] 处，按照以上的过程继续判断是否匹配。若跳到空结点，那么无
-法匹配，$next [x]＝0$
+法匹配，$next [x]＝1$
 
 下面，我们用实例描述建立 next 数组（即下述的前缀指针）的过程:
 
@@ -80,11 +80,27 @@ next数组也就是失配指针，需要我们预处理出来。next [u] 表示�
 
 ### **优化：**
 
+```viz-dot
+digraph g{
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    0->1[label="A"];
+    1->2[label="B"];
+    0->3[label="B"];
+    3->4[label="A"];
+    1->3[constraint=false minlen=2 style=invis];
+    2->4[constraint=false minlen=2 color=red];
+}
+```
+
 注意下面的模板代码的bfs_next()函数中,当不存在u的转移边i时，令ch[u][i]等于
 ch[next[u]][i],这并不符合trie树的构造，但在代码中确实正确的，为什么呢？
 
 ::: center
 ![](./images/优化.svg)
+:::
+
+::: center
+图1
 :::
 
 ## 匹配
@@ -100,68 +116,48 @@ ch[next[u]][i],这并不符合trie树的构造，但在代码中确实正确的�
 
 通俗话的讲：沿着当前点的 next 指针一路走，一路匹配，即可。
 
+
+当Trie上形成自动机之后，匹配到达某个点的时候，如果沿着这个点的的next指针一路走到点1，相当于遍历所有的相同结尾的在模式串上的字符串。
+如上图1，点3的next[3] = 5, next[5] = 1,相当于遍历来这些字符串
+
+```viz-dot
+digraph g{
+    node[shape=plaintext]
+    a[
+        label=< <TABLE CELLBORDER="0" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+            <tr>
+                <td PORT="">G</td>
+                <td PORT="">C</td>
+            </tr>
+            <tr>
+                <td PORT="" BORDER="0"> </td>
+                <td PORT="">C</td>
+            </tr>
+        </TABLE> >
+    ]
+}
+```
+
 ## 模板
 
 <!-- template start -->
 ```c
-namespace AC {
-
-    //trie树,每个单词出现的次数,失配指针
-    int trie[maxn][26],cntword[maxn],next[maxn],tot=1;
-    int bo[maxn]; // 是否是单词
-
-    void ac_init(){ 
-        tot=1;  //结点从1开始编号
-        memset(bo,0,sizeof(bo));
-        memset(trie,0,sizeof(trie));
-        memset(next,0,sizeof(next));
-    }
-
-    void build_trie(char *s){  // 建立trie树
-        int len = strlen(s), u = 1;
-        for(int i=0; i<len; ++i){
-            int c = s[i] -'a';
-            if( !trie[u][c]) trie[u][c] = ++tot;
-            u = trie[u][c];
-        }
-       bo[u]++;
-    }
-    void  bfs_next(){
-        for(int i =0;i<=25;++i) trie[0][i] = 1;
-        queue<int> q; q.push(1); //队列
-        next[1] = 0;             //根的失配指针
-        while( !q.empty()){
-            int u = q.front(); q.pop();
-            for(int i = 0;i <= 25; ++i){
-                if( !trie[u][i]) trie[u][i] = trie[next[u]][i]; // 优化
-                else {
-                    q.push(trie[u][i]);
-                    int v = next[u]; 
-                    next[ trie[u][i] ] = trie[v][i];
-                }
-            }
-        }
-    }
-
-    void find( char *s){
-        int u = 1, len=strlen(s);
-        for(int i = 0; i <=len ;++i){
-            int c = s[i] - 'a';
-            int k = trie[u][c];
-            while( k > 1){
-                ans += bo[k];
-                bo[k] = 0;
-                k = next[k];
-            }
-            u = trie[u][c];
-        }
-    }
-}
+<%- include("t.cpp") %>
 ```
 <!-- template end -->
 
-## 演示
+## 为什么叫自动机
 
+如下图是一个只由AB两个字符组成的字符串中的模式串形成的Trie树，我们把这个Trie树叫作：AC自动机
+
+::: lb
+![](./images/自动机1.svg)
+![](./images/自动机2.svg)
+:::
+
+自动机:当算法到达某个状态(图上的点)时，只要按照下一个要匹配的点来决定走那条边即可到达下一个状态。
+
+如果要匹配的主串是：**ABBABBAA**，你能模拟一下匹配的过程吗？
 
 ## 参考
 

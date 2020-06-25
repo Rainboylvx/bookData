@@ -1,0 +1,25 @@
+graph g{
+    node[shape=plaintext fixedsize=true  fillcolor=white colorscheme=accent8 ];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="10">
+            <tr>
+                <td PORT="">出栈</td>
+                <td PORT="">1</td>
+                <td PORT="" BGCOLOR="6">2</td>
+                <td PORT="" BGCOLOR="6">3</td>
+                <td PORT="">4</td>
+                <td PORT="">5</td>
+                <td PORT="">5</td>
+            </tr>
+            <tr CELLBORDER="0">
+                <td PORT="" CELLBORDER="0">距离</td>
+                <td PORT="" CELLBORDER="0">0</td>
+                <td PORT="" CELLBORDER="0">1</td>
+                <td PORT="" CELLBORDER="0">2</td>
+                <td PORT="" CELLBORDER="0">3</td>
+                <td PORT="" CELLBORDER="0">4</td>
+                <td PORT="" CELLBORDER="0">5</td>
+            </tr>
+        </TABLE> >
+    ]
+}

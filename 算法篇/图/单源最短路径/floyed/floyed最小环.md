@@ -1,3 +1,11 @@
+---
+_id: "758a2c0b38"
+title: floyed最小环
+date: 2020-05-15 09:45
+update: 2020-05-15 09:45
+author: Rainboy
+---
+
 # floyed求最小环
 
 **什么叫环:**从一个点出发,每条边只经过一遍,然后又回到这个点,所经过的路经就叫**环**.
@@ -34,18 +42,20 @@ ps:这个公式暗示了环至少要有三个点,三条边,想一想为什么.
  - 所有的A中最小的那个就是**最小环的值**
 
 
+<!-- template start -->
 ```c
-for(k=1；k<=n；k++) {
-    for(i=1；i<k；i++)
-        for(j=i+1；j<k；j++) // 为什么是i+1,不用枚举f[i][j]后又枚举f[j][i],对称性
+for(k=1;k<=n;k++) {
+    for(i=1;i<k;i++) // 此时[i,j]之间的最短路还不经过k
+        for(j=i+1;j<k;j++) // 为什么是i+1,不用枚举f[i][j]后又枚举f[j][i],对称性
             if(f[i][j]+m[i][k]+m[k][j]<ans)
-                ans=f[i][j]+m[i][k]+m[k][j]；
-    for(i=1；i<=n；i++)
-        for(j=1；j<=n；j++)
+                ans=f[i][j]+m[i][k]+m[k][j];
+    for(i=1;i<=n;i++)
+        for(j=1;j<=n;j++)
             if(f[i][k]+f[k][j]<f[i][j])
-                f[i][j]=f[i][k]+f[k][j]；
+                f[i][j]=f[i][k]+f[k][j];
 }
 ```
+<!-- template end -->
 
 **如果输出最小环上的点?**
 

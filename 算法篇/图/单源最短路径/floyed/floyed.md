@@ -1,15 +1,21 @@
-## floyed 算法原理
+---
+_id: "cc4670bf5c"
+title: floyed
+date: 2020-05-15 09:40
+update: 2020-05-15 09:40
+author: Rainboy
+---
 
+## floyed 算法原理
 
 资料
 
 链接: http://pan.baidu.com/s/1jHIOxee 密码: 724i
 
-<br>
-<center style="font-size:2em">
+::: info
 **floyed是用来求图上任意两点的最短路径的算法**
-</center>
-<br>
+:::
+
 
 floyd算法是一个经典的动态规划算法。用通俗的语言来描述的话，首先我们的目标是寻找从点$i$到点$j$的最短路径。从动态规划的角度看问题，我们需要为这个目标重新做一个诠释（这个诠释正是动态规划最富创造力的精华所在），floyd算法加入了这个概念
 
@@ -52,21 +58,20 @@ $$
 
 todo
 
-
-<br>
-一句话算法:
-<center style="font-size:2em">
+::: blackboard
+<!-- template start -->
+一句话算法:  
 floyd算法的原理: i,j 经过中间点k的最短路径,不停的枚举k
-</center>
-<br>
+<!-- template end -->
+:::
 
 **核心代码:**
 
+<!-- template start -->
 ```c
 void floyd(){
     int k,i,j;
-    for(k=1;k<=n;k++){ //k在最外层
-
+    for(k=1;k<=n;k++){ //k在最外层,枚举中间点
         for (i=1;i<=n;i++)
             for(j=1;j<=n;j++)
                 if(f[i][k]+f[k][j]<f[i][j]){ //松弛法,如果能更小,那就更小
@@ -75,6 +80,7 @@ void floyd(){
     }
 }
 ```
+<!-- template end -->
 
 
 

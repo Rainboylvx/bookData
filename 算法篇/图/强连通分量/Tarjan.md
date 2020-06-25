@@ -86,35 +86,13 @@ low[i] = min {
 
 ![2](/images/Tarjan过程.png)
 
+## 代码模板:
 
-伪代码:
-
-```c
-tarjan(u)
-{
-    DFN[u]=Low[u]=++dfn                      // 为节点u设定次序编号和Low初值
-    Stack.push(u)                              // 将节点u压入栈中
-    for each (u, v) in E                       // 枚举每一条点u开头的边
-        if (v is not visted)               // 如果节点v未被访问过
-            tarjan(v)                  // 继续向下找
-            Low[u] = min(Low[u], Low[v])
-        else if (v in S)                   // 如果节点v还在栈内
-            Low[u] = min(Low[u], DFN[v]) //Low[u] = min(Low[u], low[v]) 理论上这样写也可以
-    if (DFN[u] == Low[u])                      // 如果节点u是强连通分量的根
-        while(u != v)
-            v = S.pop                  // 将v退栈，为该强连通分量中一个顶点
-            print v
-}
-```
-
-## 一句话算法:
-
+<!-- template start -->
  - 当(u,v)是树枝边时$low[u] = min(low[u],low[v])$
  - 当(u,v)是回边,且另一个点没有被输出(在stack内)时,$low[u] = min(low[u],dfn[v])$
  - 当dfs退出点u,判断u是不是强连通分量的根,$dfn[u] == low[u]$
 
-
-## 具体代码
 
 **算法实现过程:**
 
@@ -125,6 +103,42 @@ tarjan(u)
   - 如果被访问过,但没有被输出,就维护low[x]
  - 如果`dfn[x] == low[x]`,输出
 
+模板:
+
+```c
+int color[maxn],color_cnt = 0;    // 每个点的颜色,也就是属于的连通分量的编号
+bool instack[maxn];
+stack<int> sta;     // 栈
+void tarjan(int u) {
+    dfn[u]=low[u]=++dfn;       // 为节点u设定次序编号和low初值
+    sta.push(u);               // 将节点u压入栈中
+    in
+    for(int i = head[u]; ~i ; i = e[i].enxt){ 
+        int v = e[i].v;
+        if( !dfn[v]) {         // 如果节点v未被访问过
+            tarjan(v);         // 继续向下找
+            low[u] = min(low[u],low[v]);
+        }
+        else if( instack[v]){  // 反祖边,节点v还在栈内
+            low[u] = min(low[u],dfn[v]); //low[u] = min(low[u], low[v]) 理论上这样写也可以
+        }
+
+    }
+    if( dfn[u] == low[u]){    // 如果节点u是强连通分量的根
+        color_cnt++;
+        int t = -1;
+        do {
+             t = sta.top(); sta.pop();
+             instack[t] = 0;  // 将v退栈，为该强连通分量中一个顶点
+             color[t] = color_cnt;
+        } while( u != v);
+    }
+}
+```
+<!-- template end -->
+
+
+## 模板题目
 
 数据:
 

@@ -1,3 +1,10 @@
+---
+_id: "17d1c1837f"
+title: Dijkstra
+date: 2020-05-15 09:48
+update: 2020-05-15 09:48
+author: Rainboy
+---
 
 
 ## Dijkstra算法原理
@@ -27,7 +34,7 @@ Dijstra算法:**贪心**
 
 ## 代码
 
-![二个图](/book/images/二个图.png)
+![二个图](/images/二个图.png)
 
 
 输入数据
@@ -220,7 +227,31 @@ int main(){
 ```
 
 
+
 ## Dijkstra + 堆优化( 没有写完)
+
+<!-- template start -->
+```c
+priority_queue <pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > >q;
+void dijkstra(int s){
+    for(int i=1;i<=n;i++){ dis[i]=inf; }
+    dis[s]=0;
+    q.push(make_pair(0,s));
+    while(!q.empty()){
+        int now=q.top().second;
+        q.pop();
+        if(vis[now])continue;
+        vis[now]=1;
+        for(int i=head[now];i!=-1;i=e[i].next){
+            if(dis[e[i].v]>dis[now]+e[i].w){
+                dis[e[i].v]=dis[now]+e[i].w;
+                q.push(make_pair(dis[e[i].v],e[i].v));
+            }
+        }
+    }
+}
+```
+<!-- template end -->
 
 但我们发现每次找一个最近点有点耗时，因为要支持减值和求最小的操作，就用小根堆.
 

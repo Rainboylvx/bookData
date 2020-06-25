@@ -1,3 +1,12 @@
+---
+_id: "411f4de57f"
+title: spfa_dfs
+date: 2020-05-15 09:52
+update: 2020-05-15 09:52
+author: Rainboy
+cover: 
+---
+
 ## 说明
 
 有关dfs版spfa基本都是出自: WC2009 姜碧野的《SPFA 算法的优化与应用》
@@ -38,26 +47,42 @@ digraph g{
 
 初始化时: , dis[s] =0,其他点dis[u]=-inf
 
+<!-- template start -->
 所以利用这个性质+dfs,如果存在正环,则一个点可以被访问多次,也就是说,当点u还在栈中时候,还能再次入栈.
 
 伪代码 :
 
 
 ```c
-bool spfa(int u) {
-	in_stack[u] = 1;
-	each edge has u:
-	    v = edge.v;
-	    if( dis[v] < dis[u] + edge.w){
-	        dis[v] = dis[u] + edge.w;
-	        if( in_stack[v] || spfa(v)){
-	            in_stack[v] = 0;
-	            return 1;
-	        }
-	    }
-	in_stack[v] = 0;
-	return 0;
+/*  求负环为什么dis清0？为什dis,ins只要清一次？
+ * */
+namespace spfa_dfs{
+    using namespace xlx1;
+    bool ins[maxn]; //在栈内
+    int dis[maxn]; // double ,long long 根据题意更改
+    bool dfs(int u){ //找负环
+        ins[u] = 1;
+        for( int i = head[u]; ~i; i = e[i].next){
+             int v = e[i].v,w=e[i].w;
+             if( dis[v] > dis[u]+w){
+                 dis[v] = dis[u]+w;
+                 if( ins[v] || dfs(v) ) return true;
+             }
+        }
+        ins[u] = 0;
+        return 0;
+    }
+    bool wk(){
+        memset(dis,0,sizeof(dis));
+        memset(ins,0,sizeof(ins)); // bool的全局变量可能不全是0
+        for(int i=1;i<=n;++i){
+            if( dfs(i) ) return 1;
+        }
+        return 0;
+    }
+}
 ```
+<!-- template end -->
 
 注意:限制条件,这个方法只能判断从起点出发能到到达的正环,也就是图是连通的.
 

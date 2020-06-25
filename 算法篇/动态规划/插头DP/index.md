@@ -1,4 +1,15 @@
-[入门题目 luogu P5056 【模板】插头dp](https://www.luogu.org/problemnew/show/P5056)
+---
+_id: "1b5a45deee"
+title: "插头DP"
+date: 2020-05-16 09:38
+update: 2020-05-16 09:38
+author: Rainboy
+---
+
+ [入门题目 luogu P5056 【模板】插头dp](https://www.luogu.org/problemnew/show/P5056)
+## 题目
+
+ - [uva-11270 Tiling Dominoes](<%- USER.pcs_site %>uva-11270)
 
 
 ## 参考/引用
