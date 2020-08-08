@@ -5,7 +5,7 @@
  - Vim 官网 http://www.vim.org/
  - Vim简明教程 http://blog.csdn.net/niushuai666/article/details/7275406
  - Vim大冒险游戏 http://vim-adventures.com/
-    - Vim大冒险游戏**攻略** http://blog.jobbole.com/18337/
+    - [Vim大冒险游戏**攻略**](https://blog.csdn.net/weixin_45107866/article/details/93711288)
  - vim游戏 https://github.com/jmoon018/PacVim
 
 ## 简单介绍
