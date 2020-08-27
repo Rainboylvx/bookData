@@ -3,19 +3,19 @@
   path: index.md
 - 
   title: 冒泡排序
-  path: 冒泡排序
+  path: 冒泡排序/冒泡排序.md
 - 
   title: 快速排序
-  path: 快速排序
+  path: 快速排序/快速排序.md
 - 
   title: 归并排序
-  path: 归并排序
+  path: 归并排序/归并排序.md
+- 
+  title: 桶排序
+  path: 桶排序.md
 - 
   title: C++排序函数
   path: C++排序函数.md
 - 
-  title: 其它排序
-  path: 其它排序
-- 
   title: 练习题目
-  path: 练习题目
+  path: 练习题目.md
