@@ -39,6 +39,17 @@ digraph g {
 ## 抽象的过程
 
 ::: blackboard
+- 把起点加入**优先队列q**中
+- 如果优先队列不空
+  - 取出最优的点u，如果u是终点，结束运行
+  - 不是终点，用u更新周围的点
+  - 把u设为vis
+- 如果优先队列空
+:::
+
+性质：队列中的最优点是实际中的最优。
+
+::: fold
 - 把起点添加 $open\_list$
 - 当$open\_list$不空
     - 找到open\_list中$F$值最小的点$u$
@@ -61,7 +72,32 @@ digraph g {
 
 <!-- template start -->
 ```c
-todo 
+struct node{
+    int u,g,h;
+    friend bool operator<(const node &a,const node &b){
+        return a.g+a.h > b.g+b.h; //小的优先级高
+    }
+};
+
+bool astart(){
+    node start;
+    priority_queue<node> q;
+    q.push(start)
+
+    while( !q.emptyl()){
+        node head =q.top();q.pop();
+        if( head.u is 终点) return head.u;
+        if( head.u is vis) continue;
+        vis[head.u ]= 1;
+        
+        for( each v in <head.u,v>){
+            if( v is vis) continue;
+            node t = {v,head.g + w,get_h(v)};
+            q.push(t);
+        }
+    }
+    return -1; //没有找到
+}
 ```
 <!-- template end -->
 

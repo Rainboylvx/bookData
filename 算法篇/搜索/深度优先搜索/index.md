@@ -62,63 +62,49 @@ digraph g {
 
 ## 核心思想
 
-
-<easy-memory-board size="2">
-    <p slot="title">口决</p>
-    <li>一直往"深"走</li>
-    <li>撞了南墙就回头</li>
-</easy-memory-board>
+::: blackboard
+一直往"深"走,撞了南墙就回头
+:::
 
 ## DFS框架
 
 
-// 状态小的时候,
-可以用参数来表示状态
+- 状态小的时候：可以用参数来表示状态
 <!-- template start -->
 ```c
 void dfs( state arguments){
-
     if(到达边界条件)
         结束函数
-    
-    for(i=0;i<=max;i++){
-        
+    for(i=0;i<=max;i++){　//枚举下一层的状态
         state_next = opt
-        //
-
         dfs(state_next)
-                        
     }
 }
 ```
-<!-- template end -->
 
-// 状态大的时候,
-用全局变量来表示状态,每次操作都修改这个全局变量,但是在回溯的时候又把这个全局变量重置回来.
+- 状态大的时候：用全局变量来表示状态,每次操作都修改这个全局变量,但是在回溯的时候又把这个全局变量重置回来.
 
 ```c
- state arguments
+global state; //全局状态
 void dfs(){
     
     if(到达边界条件)
         结束函数
 
     for(i=0;i<=max;i++){
-        
         state_next = opt
-        //
-        dfs()
-        unset state_next
-                        
+        dfs(state_next)
+        unset state_next // 撤消状态的修改
     }
 }
 ```
+<!-- template end -->
 
 
 ## 练习题目
 
-
 ###   迷宫类问题 
+
 题目所在的OJ: 1.信息学奥赛一本通 2.SlimeOJ
 
   - 1252 走迷宫

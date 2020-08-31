@@ -2,6 +2,9 @@
   title: 序
   path: index.md
 - 
+  title: 排列组合与子集生成
+  path: 排列组合与子集生成.md
+- 
   title: 迷宫类问题
   path: 迷宫/
 - 
@@ -14,11 +17,11 @@
   title: 棋盘
   path: 棋盘.md
 - 
-  title: 扫雷
-  path: 扫雷.md
-- 
   title: 剪枝
   path: 剪枝
 - 
-  title: 迭代加深
+  title: A*算法
+  path: A星
+- 
+  title: IDA*
   path: 迭代加深

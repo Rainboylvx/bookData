@@ -1,0 +1,15 @@
+digraph g {
+    node[shape=plaintext fillcolor=white colorscheme=accent8 ];
+    rankdir=LR;
+    "树与图\n的遍历"->b[arrowhead=none label="类比为图\n的搜索树"];
+    b[shape=point height=0];
+    b->{c,d};
+    c[label="深搜\n(DFS)"]
+    c->"迭代加深\n(IDDFS)"[label="目标状态浅"];
+    "迭代加深\n(IDDFS)"->"迭代加深A*"[label="估价函数"];
+    c->"剪枝"->{"优化搜索顺序","排除等效冗余","可行性剪枝","最优性剪枝","记忆化"};
+    d[label="广搜\n(BFS)"];
+    d->"01BFS"
+    d->"队列优先BFS\n(Dijkstra)"
+    "队列优先BFS\n(Dijkstra)"->"A*"[label="估价函数"]
+}

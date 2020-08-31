@@ -162,67 +162,25 @@ int a = ((x % m ) + m ) % m;
 <!-- template start -->
 二元一次方程:$a \cdot x + b \cdot y = c$有整数解的充分必要条件是$gcd(a,b) \mid c$,根据exgcd先求出方程$a \cdot x + b \cdot y = gcd(a,b)$的一组解$\left \{x_0,y_0\right \}$,进而得到原方程的一组解$\left \{k \cdot x_0,k \cdot y_0\right \},k = c \div gcd(a,b)$,令$m = b \div gcd(a,b)$
 
- - 通解:$k \cdot x_0 + m \cdot t, t \in Z$
- - 最小正整数解:$(k \cdot x_0 \% m +m) \% m$
+ - 当前层的解与下一层解的关系：$x = y_0,y = x_0-\lfloor  \frac{a}{b} \rfloor \cdot y_0$
+ - 通解:$k \cdot (x_0 + m \cdot t), t \in Z$
+ - 最小正整数解:$k \cdot(( x_0 \% m +m) \% m)$
+
 <!-- template end -->
 
 
-
-## 练习1:noip 2012 同余方程
-
-题目地址:[luogu P1082 同余方程](https://www.luogu.org/problemnew/show/P1082)
-
-**解析:**
-
-$a \cdot x \equiv 1 (\bmod b)$推导出$a \cdot x \% b = 1$,这就是**乘法逆元**,进而推导出:$a \cdot x - b \cdot y = 1$,
-也就是$a \cdot x + b \cdot y  =1$,让我们求出最小正整数解.
-
-**代码**
-
-```c
-#include <cstdio>
-#include <cstring>
-#include <cmath>
-
-int exgcd(int a,int b,int &x,int &y){//ax+by=gcd(a,b)
-    if(b==0){x=1,y=0;return a;}
-    int gcd=exgcd(b,a%b,x,y);
-    int _x=x;
-    x=y;
-    y=_x-(a/b)*y;
-/*
-    int gcd=exgcd(b,a%b,y,x);
-    y-=(a/b)*x;
-*/
-    return gcd;
-}
-
-int main(){
-    int n,m;
-    scanf("%d%d",&n,&m);
-    int x,y;
-    int t = exgcd(n,m,x,y);
-
-    int m1 = m / t; //根据题意,m1 一定是正数
-    if( x >= 0)
-        printf("%d\n",x % m1);
-    else
-        printf("%d\n",(x % m1) + m1);
-    return 0;
-}
-```
-
 ## 练习题目
 
+
+
+- [luogu P1082 同余方程](<%- USER.pcs_site %>luogu-P1082)
+- [luogu P1516  青蛙的约会](<%- USER.pcs_site %>luogu-P1516)
 
 | PID              | 题目名称        |
 |------------------|-----------------|
 | luogu P1292 倒酒 | 倒酒            |
 | cogs 2057        | [ZLXOI2015]殉国 |
 | cogs 2547        | 军队            |
-
-- [luogu P1082 同余方程](<%- USER.pcs_site %>luogu-P1082)
-- [luogu P1516  青蛙的约会](<%- USER.pcs_site %>luogu-P1516)
 
 经典的裸题SDOI2011 计算器,综合了快速幂取余,exgcd,bsgs
 
