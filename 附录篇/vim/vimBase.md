@@ -1,3 +1,11 @@
+---
+_id: "vimBase"
+title: vimBase
+date: 2020-09-27 12:21
+update: 2020-09-27 12:21
+author: Rainboy
+---
+
 # vim简单介绍与入门
 
 ## 资源

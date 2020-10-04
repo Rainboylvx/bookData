@@ -1,3 +1,11 @@
+---
+_id: "vimBetter"
+title: vimBetter
+date: 2020-09-27 12:21
+update: 2020-09-27 12:21
+author: Rainboy
+---
+
 # vim进阶
 
 学会了基本的命令后,我们来学习更复杂一点vim命令,我们按分类来学习
@@ -6,29 +14,34 @@
 
 ## 移动
 
-| 操作  | 模式   | 含义                   |
-|-------|--------|------------------------|
-| hjkl  | normal | 移动,左下上右          |
-| 0     | normal | 到行首                 |
-| ^     | normal | 到行首(非空白)         |
-| $     | normal | 到行尾                 |
-| g_    | normal | 到行尾(非空白)         |
-| :n/nG | normal | 到第n行行首            |
-| n+    | normal | 下移n行                |
-| n-    | normal | 上移n行                |
-| gg    | normal | 第一行                 |
-| G     | normal | 最后一行               |
-| w/W   | normal | 下一个单词的开头       |
-| b/B   | normal | 上一个单词的开头       |
-| e/E   | normal | 下一个单词的结尾       |
-| )     | normal | 到句首                 |
-| (     | normal | 到句尾                 |
-| }     | normal | 到段首                 |
-| {     | normal | 到段首                 |
-| %     | normal | 到另一个匹配的括号处   |
-| fx/Fx | normal | 当前向前/向后查找字符x |
-| `.    | normal | 跳到最后一次修改的地方 |
-| '.    | normal | 跳到最后一次修改行     |
+| 操作    | 模式   | 含义                   |
+|---------|--------|------------------------|
+| `hjkl`  | normal | 移动,左下上右          |
+| `0`     | normal | 到行首                 |
+| `^`     | normal | 到行首(非空白)         |
+| `$`     | normal | 到行尾                 |
+| `g_`    | normal | 到行尾(非空白)         |
+| `:n/nG` | normal | 到第n行行首            |
+| `n+`    | normal | 下移n行                |
+| `n-`    | normal | 上移n行                |
+| `gg`    | normal | 第一行                 |
+| `G`     | normal | 最后一行               |
+| `w/W`   | normal | 下一个单词的开头       |
+| `b/B`   | normal | 上一个单词的开头       |
+| `e/E`   | normal | 下一个单词的结尾       |
+| `)`     | normal | 到句首                 |
+| `(`     | normal | 到句尾                 |
+| `}`     | normal | 到段首                 |
+| `{`     | normal | 到段首                 |
+| `%`     | normal | 到另一个匹配的括号处   |
+| `fx/Fx` | normal | 当前向前/向后查找字符x |
+| `\.`    | normal | 跳到最后一次修改的地方 |
+| `'.`    | normal | 跳到最后一次修改行     |
+| `H`     | normal | 到屏幕顶部             |
+| `M`     | normal | 到屏幕中部             |
+| `L`     | normal | 到屏幕底部             |
+| `nH`    | normal | 到屏幕顶部下的n行      |
+| `nL`    | normal | 到屏幕底部上的n行      |
 
 ## 视频:移动
 
@@ -132,12 +145,12 @@ y[数字][范围]
 ```
 d[范围]
 ```
- - :s/old/new - 用new替换当前行第一个old。
- - :s/old/new/g - 用new替换当前行所有的old。
- - :n1,n2s/old/new/g - 用new替换文件n1行到n2行所有的old。
- - :%s/old/new/g - 用new替换文件中所有的old。
- - :%s/^/xxx/g - 在每一行的行首插入xxx，^表示行首。
- - :%s/$/xxx/g - 在每一行的行尾插入xxx，$表示行尾。
+ - `:s/old/new` - 用new替换当前行第一个old。
+ - `:s/old/new/g` - 用new替换当前行所有的old。
+ - `:n1,n2s/old/new/g` - 用new替换文件n1行到n2行所有的old。
+ - `:%s/old/new/g` - 用new替换文件中所有的old。
+ - `:%s/^/xxx/g` - 在每一行的行首插入xxx，^表示行首。
+ - `:%s/$/xxx/g` - 在每一行的行尾插入xxx，$表示行尾。
  - 所有替换命令末尾加上c，每个替换都将需要用户确认。 如：%s/old/new/gc，加上i则忽略大小写(ignore)。
 
 ```
@@ -167,9 +180,6 @@ m,n: 从m行到n行。
 
 | 操作  | 模式   | 含义            |
 |-------|--------|-----------------|
-| H     | normal | 到屏幕顶部      |
-| M     | normal | 到屏幕中部      |
-| L     | normal | 到屏幕底部      |
 | c-u   | normal | 上翻半屏        |
 | c-d   | normal | 下翻半屏        |
 | c-b   | normal | 上翻一屏        |

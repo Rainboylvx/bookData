@@ -10,3 +10,6 @@
 - 
   title: "ac自动机"
   path: acAuto/index.md
+- 
+  title: "马拉车 Manacher"
+  path: manacher.md
