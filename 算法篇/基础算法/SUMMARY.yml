@@ -2,17 +2,14 @@
   name: 算法复杂度分析
   path: 算法复杂度分析.md
 - 
-  name: 递归
-  path: 递归/
-- 
   name: GCD
   path: gcd.md
 - 
   name: 二分查找与二分答案
-  name: 二分查找与二分答案/
+  path: 二分查找与二分答案/
 - 
   name: 前缀和与差分
-  name: 前缀和与差分.md
+  path: 前缀和与差分.md
 - 
   name: 离散化
   path: 离散化.md
