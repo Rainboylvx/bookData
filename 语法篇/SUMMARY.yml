@@ -11,7 +11,12 @@
 - 
   title: 操作符
   path: 操作符
-
+- 
+  title: 简单指针
+  path: 简单指针/index.md
+- 
+  title: "引用/别名"
+  path: 引用/index.md
 - 
   title: 函数
   path: 函数
