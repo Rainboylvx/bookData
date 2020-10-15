@@ -16,9 +16,9 @@
 - 
   title: 斜率优化
   path: 斜率优化
-#- 
-  #title: 数位DP
-  #path: 
+- 
+  title: 数位DP
+  path: 数位DP
 - 
   title: 状压DP
   path: 状态压缩

@@ -9,6 +9,7 @@ author: Rainboy
 
 ## 最大公约数:gcd
 
+<!-- template start -->
 求解问题：两个整数a,b的最大公约数。
 
 Code：
@@ -19,6 +20,7 @@ int gcd(int a,int b){
     return gcd(b,a%b);
 }
 ```
+<!-- template end -->
 
 
 ## 证明
@@ -34,19 +36,20 @@ http://blog.csdn.net/kanosword/article/details/52955557
 
 ## 最小公倍数lcm
 
-根据小学的公式:
 
-```math
-lcm(a,b) = a \times b \div gcd(a,b)
-```
 
-code
+<!-- template start -->
+
+根据小学的公式，得到lcm:
+
+$$lcm(a,b) = a \times b \div gcd(a,b)$$
 
 ```c
 int lcm(int a,int b){
     return a*(b /gcd(a,b));
 }
 ```
+<!-- template end -->
 
 ## 练习题目
 

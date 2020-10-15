@@ -227,7 +227,7 @@ return p[a][0]; //返回父亲
 6 12
 12 13
 ```
-
+<!-- template start -->
 ```c
 #include <cstdio>
 #include <cstring>
@@ -346,3 +346,4 @@ int main(){
     }
 }
 ```
+<!-- template end -->

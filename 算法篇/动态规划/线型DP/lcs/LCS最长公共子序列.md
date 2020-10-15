@@ -93,7 +93,7 @@ $$
 ## 得出DP方程
 
 因为只可能有以上的可能,所以得出DP方程:
-
+<!-- template start -->
 $$
 f[i,j] = max
 \left\{\begin{matrix}
@@ -111,13 +111,14 @@ f[0][j] = 0 \\
 f[i][0] = 0
 \end{matrix}.
 $$
+<!-- template end -->
 
 ### 手动推导过程
 
 待加入
 
 ## 代码
-
+<!-- template start -->
 ```c
 #include <cstdio>
 #include <cstring>
@@ -159,6 +160,7 @@ int main(){
     return 0;
 }
 ```
+<!-- template end -->
 ## 过程
 
 
@@ -184,6 +186,7 @@ int main(){
 
 ## LCS转LIS
 
+<!-- template start -->
 使用,求下面的两个序列的LCS
 ```
 2 1 3
@@ -192,7 +195,8 @@ int main(){
 
 因为第二个序列是有序且上升的,第一个序列和第二个序列的LCS序列必然也是上升的,也就是求第一个序列的LIS.
 
-所以:**LCS 转 LIS ：将序列 A 和 B 当中的相同字母配对都找出来，呈现成索引值数对，再以特殊规则排序，最后找 LIS ，就是 A 和 B 的 LCS **
+所以:**LCS 转 LIS ：将序列 A 和 B 当中的相同字母配对都找出来，呈现成索引值数对，再以特殊规则排序，最后找 LIS ，就是 A 和 B 的 LCS**
+<!-- template end -->
 
 
 练习题目：[P1439 【模板】最长公共子序列](https://www.luogu.org/problemnew/show/P1439)
