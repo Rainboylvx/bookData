@@ -1,0 +1,9 @@
+digraph 1 {
+    node[shape=record]
+    c -> d;
+    a -> b;
+    a[label="{1|dep=0|sum=2}"]
+    b[label="{2|dep=1}"]
+    c[label="{3|dep=0|sum=2}"]
+    d[label="{4|dep=1}"]
+}

@@ -1,0 +1,12 @@
+graph g{
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    u[fillcolor="3"];
+    u--v;
+    v[label=left_tree shape=triangle width=3 height=3];
+    n1[label=right_tree shape=triangle width=3 height=3];
+    u--n1;
+    l_fa --u[style=dotted];
+    r_fa --u[style=dotted];
+    r_fa,l_fa[style=dotted];
+
+}

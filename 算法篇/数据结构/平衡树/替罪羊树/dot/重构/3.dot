@@ -1,0 +1,17 @@
+graph tzy {
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    root[fillcolor="4"];
+    root--61;
+    root--x0[];
+    x0[shape=triangle, label="右子树" height=2 width=2];
+    61[colorscheme=x11 fillcolor=gray];
+    node[colorscheme=x11 fillcolor=gray];
+    61--{50,68};
+    50--{10,54};
+    10--8;
+    68--{65,70};
+    10--{x1,x2}[style="invis"];
+    70--x3[style="invis"];
+    70--75;
+    x1,x2,x3[style="invis"]
+}

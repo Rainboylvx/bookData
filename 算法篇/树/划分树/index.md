@@ -112,7 +112,7 @@ int query(int L,int R,int l,int r,int dep,int k){
 
 
 ## 完整代码
-
+<!-- template start -->
 ```c
 #include <cstdio>
 #include <algorithm>
@@ -187,6 +187,7 @@ int main(){
 }
 
 ```
+<!-- template end -->
 
 ## 参考/引用
 

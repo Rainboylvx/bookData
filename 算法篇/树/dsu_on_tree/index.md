@@ -7,12 +7,12 @@ https://www.luogu.com.cn/problem/U41492
 - https://www.luogu.org/problem/U95602
 - https://www.luogu.org/problem/CF600E
 - https://www.luogu.org/problem/CF570D
--https://www.luogu.org/problem/CF246E
-https://www.luogu.org/problem/CF208E
-https://www.luogu.org/problem/P4149
-https://www.luogu.org/problem/P1600
-https://www.luogu.org/problem/P4556
-https://www.luogu.org/problem/U95602
+- https://www.luogu.org/problem/CF246E
+- https://www.luogu.org/problem/CF208E
+- https://www.luogu.org/problem/P4149
+- https://www.luogu.org/problem/P1600
+- https://www.luogu.org/problem/P4556
+- https://www.luogu.org/problem/U95602
 
 ## 参考
 

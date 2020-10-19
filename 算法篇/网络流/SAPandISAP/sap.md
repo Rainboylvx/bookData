@@ -85,7 +85,7 @@ digraph G {
 ```
 
 ### 代码
-
+<!-- template start -->
 ```c
 #include <cstdio>
 #include <cstring>
@@ -210,6 +210,7 @@ int main(){
     return 0;
 }
 ```
+<!-- template end -->
 
 ## 总结
 

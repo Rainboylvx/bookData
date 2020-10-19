@@ -4,6 +4,12 @@
 - 
    title: 队列
    path: 队列.md
+- 
+   title: hash表
+   path: hash表/hashMap.md
+- 
+   title: "*堆heap"
+   path: 堆heap.md
 -
   title: "RMQ/ST/区间最值"
   path: RMQ
@@ -19,3 +25,18 @@
 - 
   title: 线段树
   path: 线段树
+- 
+  title: ":lock: 「动态开点线段树」 与 「权值线段树」 「感谢」"
+  path: 权值线段树/
+- 
+  title: ":construction: :lock: 主席树"
+  path: 主席树
+- 
+  title: "「BST」二叉查找树"
+  path: 二叉查找树
+- 
+  title: 平衡树
+  path: 平衡树
+- 
+  title: "link cut tree(LCT)"
+  path: lct/

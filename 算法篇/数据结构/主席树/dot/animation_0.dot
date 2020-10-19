@@ -1,0 +1,14 @@
+graph cheer {
+    node[shape=plaintext];
+    a[
+label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="6">
+    <tr> 
+        <td PORT="">2</td> 
+        <td PORT="">4</td> 
+        <td PORT="">2</td> 
+        <td PORT="">1</td> 
+        <td PORT="">3</td> 
+    </tr>
+    </TABLE>
+> ]
+}

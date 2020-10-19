@@ -1,0 +1,8 @@
+graph bst {
+    node[shape=circle];
+    50--{20,60};
+    20--{15,30};
+    60--n1[style=invis];
+    60--70;
+    n1[style=invis]
+}

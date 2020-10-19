@@ -5,12 +5,6 @@
   title: 二叉树
   path: 二叉树
 - 
-  title: 并查集
-  path: 并查集/
-- 
-  title: 字典树
-  path: 字典树
-- 
   title: LCA最近公共祖先
   path: LCA最近公共祖先
 - 
@@ -29,24 +23,11 @@
   title: 树链剖分
   path: 树链剖分
 - 
-  title: ":lock: 「动态开点线段树」 与 「权值线段树」 「感谢」"
-  path: 权值线段树/
-- 
-  title: ":construction: :lock: 主席树"
-  path: 主席树
-- 
-  title: "「BST」二叉查找树"
-  path: 二叉查找树
-- 
-  title: 平衡树
-  path: 平衡树
-- 
-  title: "link cut tree(LCT)"
-  path: lct/
-- 
   title: "树上启发合并"
   path: dsu_on_tree
 - 
   title: "K-D Tree"
   path: K-D-Tree/
-
+- 
+  title: "划分树"
+  path: 划分树/

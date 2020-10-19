@@ -1,0 +1,9 @@
+digraph g {
+    label="情况4: x,y,z为一条链 x,y都为右孩子 \n旋转2次:zag(y) zag(x)"
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+    z->tt[style=invis];
+    z->y;
+    y->t[style=invis];
+    y->x;
+    t,tt[style=invis];
+}

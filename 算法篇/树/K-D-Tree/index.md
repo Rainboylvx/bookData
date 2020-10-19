@@ -16,11 +16,13 @@ author: Rainboy
 
 ## 练习1: luogu p1429 P1429 平面最近点对（加强版）
 
+<!-- template start -->
 [P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)
 
 ```c
 <%- include("code/p1429.cpp") %>
 ```
+<!-- template end -->
 
 ## 练习题目
 

@@ -1203,7 +1203,7 @@ digraph {
 
 下面为使用`多路增广+当前弧优化 Dinic`的代码,使用`朴素Dinic`和`多路增广Dinci`的[代码见这里](https://gitee.com/Rainboy/codes/ldcnq9iko6vgbue14zx2m19)
 
-
+<!-- template start -->
 ```c
 /* 
  * poj 3281 / luogu P2891
@@ -1363,6 +1363,7 @@ int main(){
     return 0;
 }
 ```
+<!-- template end -->
 
 
 
