@@ -44,6 +44,7 @@ cover: https://ww1.sinaimg.cn/large/007i4MEmgy1fzeo0c4td5g30lc07443n.jpg
 | :construction:     | 施工   |
 | :one: -> :nine:    | 难度   |
 | :lock:             | 有密码 |
+| :tv:               | 视频教程|
 
 ## 感谢
 

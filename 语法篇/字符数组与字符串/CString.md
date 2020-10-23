@@ -4,6 +4,8 @@ title: "c风格字符串"
 date: 2020-10-05 22:19
 update: 2020-10-05 22:19
 author: Rainboy
+video: https://www.bilibili.com/video/BV1bD4y197ty/
+titleEmojiTag: ":tv:"
 ---
 
 @[toc]
