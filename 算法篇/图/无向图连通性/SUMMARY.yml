@@ -5,8 +5,14 @@
   title: 图的割边
   path: 图的割边.md
 - 
-  title: 双联通分量
-  path: 双联通分量
+  title: 点双连通分量
+  path: 双连通分量/点双连通分量.md
 - 
-  title: 四合一模板
+  title: 边双连通分量
+  path: 双连通分量/边双连通分量.md
+- 
+  title: "双连通分量 作者：彭政"
+  path: 双连通分量/双连通分量.md
+- 
+  title: ":wastebasket: 四合一模板"
   path: 四合一模板.md

@@ -4,7 +4,7 @@ title: "Splay入门"
 date: 2019-11-11 16:38
 update: 2019-11-11 16:38
 author: Rainboy
-password: spl42
+#password: spl42
 ---
 
 @[toc]
@@ -57,9 +57,9 @@ void newnode(int &now,int fa,int val)
 
 ## 基础操作
 
- - $ident(x,f)$:判断节点$x$是父亲节点的左儿子还是右儿子
- - $connect(int x, int fa, int ch)$:x节点将成为fa节点的ch孩子
- - $push_up(x)$用孩子的size更新自己的size
+ - `ident(x,f)`:判断节点`x`是父亲节点的左儿子还是右儿子
+ - `connect(int x, int fa, int ch)`:x节点将成为fa节点的ch孩子
+ - `push_up(x)`用孩子的size更新自己的size
 
 ```c
 bool ident(int x,f){ return spl[f].ch[1] == x; }
@@ -88,6 +88,14 @@ inline void push_up(int x)
 ```viz-dot
 <%- include("dot/base_rotate_zig_zag.dot") %>
 ```
+
+::: lb
+![0](./images/splay-rotate-0.svg =600x600)
+![1](./images/splay-rotate-1.svg =600x600)
+![2](./images/splay-rotate-2.svg =600x600)
+![3](./images/splay-rotate-3.svg =600x600)
+![4](./images/splay-rotate-4.svg =600x600)
+:::
 
 ### 2.链型
 
@@ -372,3 +380,6 @@ int nxt = getnum( getrank(x+1));
  - [splay详解（一） by 自为风月马前卒](https://www.cnblogs.com/zwfymqz/p/7896036.html)
  - [More Senior Data Structure · 特别浅地浅谈Splay by _pks 'w'](https://pks-loving.blog.luogu.org/more-senior-data-structure-te-bie-qian-di-qian-tan-splay)
  - [伸展树的基本操作与应用 IOI2004 国家集训队论文 杨思雨](https://wenku.baidu.com/view/7f0ff024ccbff121dd3683ac.html)
+- [Splay 树的实现及其应用 | 潮与雪 - Rapiz](https://rapiz.me/2016/Splay/#%E5%88%A0%E9%99%A4-Delete)
+- [Splay 终极模板！（BZOJ 1588） - SpaceQ's Blog](http://spaceq.is-programmer.com/posts/39746.html?utm_source=tuicool&utm_medium=referral)
+- [题解 P3369 【【模板】普通平衡树（Treap/SBT）】 - rentenglong 的博客 - 洛谷博客](https://www.luogu.com.cn/blog/user19027/solution-p3369)
