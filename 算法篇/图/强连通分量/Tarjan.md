@@ -106,13 +106,12 @@ low[i] = min {
 模板:
 
 ```c
-int color[maxn],color_cnt = 0;    // 每个点的颜色,也就是属于的连通分量的编号
+int color[maxn],color_cnt = 0,DFN=0;    // 每个点的颜色,也就是属于的连通分量的编号
 bool instack[maxn];
 stack<int> sta;     // 栈
 void tarjan(int u) {
-    dfn[u]=low[u]=++dfn;       // 为节点u设定次序编号和low初值
+    dfn[u]=low[u]=++DFN;       // 为节点u设定次序编号和low初值
     sta.push(u);               // 将节点u压入栈中
-    in
     for(int i = head[u]; ~i ; i = e[i].enxt){ 
         int v = e[i].v;
         if( !dfn[v]) {         // 如果节点v未被访问过
@@ -131,7 +130,7 @@ void tarjan(int u) {
              t = sta.top(); sta.pop();
              instack[t] = 0;  // 将v退栈，为该强连通分量中一个顶点
              color[t] = color_cnt;
-        } while( u != v);
+        } while( t != u);
     }
 }
 ```
