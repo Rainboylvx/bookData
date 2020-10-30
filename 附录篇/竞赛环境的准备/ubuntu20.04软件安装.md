@@ -70,7 +70,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 失败尝试下面的方法
 ```
-sh -c "$(curl -fsSL https://g.ioiox.com/https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/tools/install.sh)"
 ```
 如果还是安装失败，打开 https://ohmyz.sh/ 按上面的安装方法安装
 
