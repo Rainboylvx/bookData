@@ -120,6 +120,22 @@ sudo apt install ./google-chrome-stable_current_amd64.deb
 
 自行搜索
 
+## qq
+
+
+```
+git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
+cd deepin-wine-for-ubuntu
+chmod +x install_2.8.22.sh
+./install_2.8.22.sh
+wget https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_9.1.8deepin0_i386.deb
+sudo dpkg -i deepin.com.qq.im_9.1.8deepin0_i386.deb
+# 默认安装完成后，打开QQ和微信时无法最小化，需结合Topicons plus使用。
+sudo apt-get install gnome-shell-extension-top-icons-plus
+```
+
+[deepin wine for ubuntu](https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu)
+
 ## 参考/引用
 
  - [写给工程师的 ubuntu20.04 最佳配置指南](https://sspai.com/post/60411)
