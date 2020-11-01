@@ -72,7 +72,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```
 sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/tools/install.sh)"
 ```
-如果还是安装失败，打开 https://ohmyz.sh/ 按上面的安装方法安装
+如果还是安装失败，打开 [oh-my-zsh国内镜像安装和更新方法](https://www.jianshu.com/p/6b47198fd430)
 
 安装相应的插件
 
@@ -86,10 +86,18 @@ git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTO
 git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
+如果下载失败,使用下面的安装方法
+
+```bash
+git clone --depth 1 https://g.ioiox.com/https://github.com/skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
+git clone --depth 1 https://g.ioiox.com/https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth 1 https://g.ioiox.com/https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
 在`.zshrc`中修改
 
 ```bash
-plugins(git z.lua zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git z.lua zsh-syntax-highlighting zsh-autosuggestions)
 ```
 
 ## 6 输入法设定

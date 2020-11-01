@@ -12,6 +12,8 @@ titleEmojiTag: ":tv:"
 
 打开 https://github.com/rainboylvx/RainboyVim 按说明安装
 
+如果上面的地址打不开，请打开这个国内的镜像： https://gitee.com/Rainboy/RainboyVim
+
 ## why and how
 
 天下武功，唯快不破！(≖◡≖)✧
@@ -147,10 +149,12 @@ vim有以上的几种模式,每种模式的作用如下:
 | [[ge]]      | go end,后退到单词的末尾[count]                     |
 | [[gE]]      | go END,后退到WORD [count]的末尾                    |
 | [[H]]       | Home,到当前屏幕的最上边的一行                      |
-| [[M]]       | Middle,到当前屏幕的最上边的一行                    |
-| [[L]]       | Last,到当前屏幕的最上边的一行                      |
-| [['.]]      | 到上一次改变的地方                                 |
+| [[M]]       | Middle,到当前屏幕的中间边的一行                    |
+| [[L]]       | Last,到当前屏幕的最下边的一行                      |
 | [[%]]       | 到当前光标匹配的地方                               |
+| [['.]]      | 到上一次改变的地方                                 |
+| [[g;]]      | 跳转到changelist中[count]个较旧的位置              |
+| [[g,]]      | 跳转到changelist中[count]个较新的位置              |
 
 这些命令移到单词或单词上。
 单词由字母，数字和下划线组成，或由其他非空白字符组成，并用空格（空格，制表符， ）。可以使用" iskeyword"选项更改。
