@@ -65,36 +65,23 @@ sudo chsh -s /bin/zsh
 安装oh-my-zsh
 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL 'https://gitee.com/Rainboy/codes/p8trde79flmaj6kyuobqh63/raw?blob_name=ohmyzsh' | sed 's/\r//')"
 ```
-
-失败尝试下面的方法
-```
-sh -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/tools/install.sh)"
-```
-如果还是安装失败，打开 [oh-my-zsh国内镜像安装和更新方法](https://www.jianshu.com/p/6b47198fd430)
-
 安装相应的插件
 
 - z.lua 目录快速跳转
 - zsh-autosuggestions : 命令行命令键入时的历史命令建议
 - zsh-syntax-highlighting: 命令行语法高亮插件
 
-```bash
-git clone --depth 1 https://github.com/skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
-git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-如果下载失败,使用下面的安装方法
+注意安装时，如果可能要`yes`，看提示
 
 ```bash
-git clone --depth 1 https://g.ioiox.com/https://github.com/skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
-git clone --depth 1 https://g.ioiox.com/https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone --depth 1 https://g.ioiox.com/https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone --depth 1 git@git.zhlh6.cn:skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
+git clone --depth 1 git@git.zhlh6.cn:zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth 1 git@git.zhlh6.cn:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-在`.zshrc`中修改
+在`.zshrc`中修改，大概71行
 
 ```bash
 plugins=(git z.lua zsh-syntax-highlighting zsh-autosuggestions)
