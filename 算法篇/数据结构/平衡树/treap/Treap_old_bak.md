@@ -4,6 +4,7 @@ title: Treap
 date: 2020-10-19 20:01
 update: 2020-10-19 20:01
 author: Rainboy
+cover: 
 ---
 
 @[toc]
@@ -308,14 +309,238 @@ void del(int &p,int x)
 }
 ```
 
-## 常用操作
+**5.查询数x的排名**
+查询数$x$的排名可以利用在二叉搜索树上的相同方法实现。
+具体思路为递归找到当前节点，并记录小于这个节点的节点的数量（左子树）,具体看图
 
- - Rank
- - at
- - 前趋
- - 后继
+![1](./treap-排名.png)
 
-与上一节的的 [替罪羊树](@@@../替罪羊树/index.md@@@) 的相关操作一样
+```c
+/* 找到排名 ,所有比x点小的点有多少个*/
+int find_pm(int p,int x){
+    if(p==0) return 0;
+    if(tr[p].val == x) return tr[ls].size+1;
+    if(x > tr[p].val ) //x比当前点大,进入右子树
+        return tr[ls].size+tr[p].cnt+find_pm(rs,x);
+    else        //x比当前点要小于
+        return find_pm(ls,x);
+}
+```
+
+**6.查询x的前驱与后继**
+
+查询数的前驱与后继同样可以递归实现。
+
+![7](./treap-前后趋.png)
+
+查询是就是**走路**的过程,只不过左偏/右偏不一样.
+
+**前趋:**
+ - 从点$a$往右走,证明$tr[a].val < x$,点$a$的值需要
+ - 从点$a$往左走,证明$tr[a].val >= x$,点$a$值不需要
+
+**后继:**
+ - 从点$a$往右走,证明$tr[a].val < x$,点$a$的值不需要
+ - 从点$a$往左走,证明$tr[a].val >= x$,点$a$值需要
+
+```c
+/* 找到前趋 */
+int find_qq(int p,int x){
+    if(p == 0 ) return -INF;
+    if( tr[p].val <x )
+        return rmax(tr[p].val,find_qq(rs,x));
+    else
+        return find_qq(ls,x);
+}
+/* 找到后继 */
+int find_hj(int p,int x){
+    if(p == 0 ) return INF;
+    if( tr[p].val <= x)
+        return find_hj(rs,x);
+    else
+        return rmin(tr[p].val,find_hj(ls,x));
+}
+```
+
+
+**7.查询排名为x的数**
+
+查询排名为x的数可以利用在二叉搜索树上的相同方法实现。 
+具体思路为根据当前x来判断该数在左子树还是右子树 。 
+
+```c
+/* 查询排名为x的数 */
+int find_sz(int p,int x){
+    if(p ==0 ) return 0;
+    if( x <=tr[ls].size) // 左子树的数量 ,在左子树上面
+        return find_sz(ls,x);
+
+    // 不然在根 或 右子树上
+    x -= tr[ls].size;
+    if(x<=tr[p].cnt ) return tr[p].val; //在根上
+    x -= tr[p].cnt;
+    return find_sz(rs,x); //在右子树上
+}
+```
+
+**综合起来的代码:**
+```c
+/* Author:Rainboy 2018-09-08 00:32 */
+#include <cstdio>
+#include <cstring>
+
+#define N 100005
+#define ls tr[p].l      //左孩子
+#define rs tr[p].r      //右孩子
+const int INF = 0x7fffff7f;
+
+int n;
+
+struct node{
+    int l,r,val; //左右孩子,点的值
+    int size,rand,cnt;//子树的大小,随机值,该结点出现的次数
+} tr[N];
+int sz = 0; //编号用
+
+int rmax(int a,int b){
+    if(a > b ) return a;
+    return b;
+}
+int rmin(int a,int b){
+    if(a < b ) return a;
+    return b;
+}
+
+
+
+inline int rand ( )  {
+    static int seed = 733;
+    return seed = ( int ) seed * 482711LL % 2147483647; 
+}
+
+/* 更新当前点的size */
+inline void update(int p){
+    tr[p].size = tr[ls].size + tr[rs].size +tr[p].cnt;
+}
+
+void lturn(int &p){
+    int t = tr[p].r;
+    tr[p].r = tr[t].l;
+    tr[t].l= p;
+    tr[t].size = tr[p].size; update(p); p =t; //改变根结点
+}
+
+void rturn(int &p){
+    int t = tr[p].l;
+    tr[p].l = tr[t].r;
+    tr[t].r = p;
+    tr[t].size = tr[p].size;
+    update(p);p =t;
+}
+
+/* 插入 */
+void insert(int &p,int x){
+    if( p == 0){ //边界 来到一个空点
+        p = ++sz;
+        tr[p].size = tr[p].cnt= 1;
+        tr[p].val =x;tr[p].rand = rand();
+        return;
+    }
+
+    tr[p].size++; //路过,所以要++
+    if(tr[p].val == x) tr[p].cnt++; //来到一个相同点
+    else if( x > tr[p].val){ //比当前点大,进入右子树
+        insert(rs,x);
+        /* 回溯 */
+        if(tr[rs].rand < tr[p].rand) lturn(p);
+    }
+    else { //进入左子树
+        insert(ls,x);
+        //回溯
+        if( tr[ls].rand < tr[p].rand) rturn(p);
+    }
+}
+
+/* 删除 */
+void del(int &p,int x)
+{
+    if (p==0) return;
+    if (tr[p].val==x)
+    {
+        if (tr[p].cnt>1) tr[p].cnt--,tr[p].size--;//如果有多个直接减一即可。
+        else
+        {
+            if (ls==0||rs==0) p=ls+rs;//单节点或者空的话直接儿子移上来或者删去即可。
+            else if (tr[ls].rand<tr[rs].rand) rturn(p),del(p,x);
+            else lturn(p),del(p,x); 
+        }
+    }
+    else if (x>tr[p].val) tr[p].size--,del(rs,x);
+    else tr[p].size--,del(ls,x);
+}
+
+/* 找到排名 ,所有比x点小的点有多少个*/
+int find_pm(int p,int x){
+    if(p==0) return 0;
+    if(tr[p].val == x) return tr[ls].size+1;
+    if(x > tr[p].val ) //x比当前点大,进入右子树
+        return tr[ls].size+tr[p].cnt+find_pm(rs,x);
+    else        //x比当前点要小于
+        return find_pm(ls,x);
+}
+
+/* 查询排名为x的数 */
+int find_sz(int p,int x){
+    if(p ==0 ) return 0;
+    if( x <=tr[ls].size) 
+        return find_sz(ls,x);
+
+    x -= tr[ls].size;
+    if(x<=tr[p].cnt ) return tr[p].val;
+    x -= tr[p].cnt;
+    return find_sz(rs,x);
+}
+
+/* 找到前趋 */
+int find_qq(int p,int x){
+    if(p == 0 ) return -INF;
+    if( tr[p].val <x )
+        return rmax(tr[p].val,find_qq(rs,x));
+    else
+        return find_qq(ls,x);
+}
+/* 找到后继 */
+int find_hj(int p,int x){
+    if(p == 0 ) return INF;
+    if( tr[p].val <= x)
+        return find_hj(rs,x);
+    else
+        return rmin(tr[p].val,find_hj(ls,x));
+}
+
+
+int main(){
+    scanf("%d",&n);
+
+    int i,flag,x,rt=0;
+    for (i=1;i<=n;i++){
+        scanf("%d%d",&flag,&x);
+        if( flag == 1)
+            insert(rt,x);
+        else if( flag == 2)
+            del(rt,x);
+        else if( flag == 3)
+            printf("%d\n",find_pm(rt,x));
+        else if( flag == 4)
+            printf("%d\n",find_sz(rt,x));
+        else if( flag == 5)
+            printf("%d\n",find_qq(rt,x));
+        else if( flag == 6)
+            printf("%d\n",find_hj(rt,x));
+    }
+    return 0;
+}
+```
 
 ## 模板
 
@@ -339,8 +564,6 @@ void del(int &p,int x)
 
  - luogu P1864 [NOI2009]二叉查找树
  - luogu P2286 [HNOI2004]宠物收养场
-
-<wc-pcs-list-by-tags base="<%- USER.pcs%>" tags="平衡树" preifx=""></wc-pcs-list-by-tags>
 
 
 ## 引用资料

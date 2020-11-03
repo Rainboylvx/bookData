@@ -24,7 +24,7 @@ void in(int &a){
 }
 /* ========== 快读 END ========== */
 
-/*======== splay Begin ========*/
+/* ======== splay Begin ========*/
 struct Node
 {
     int fa,ch[2],val,cnt,size;  //ch[0]是左儿子，ch[1]是右儿子

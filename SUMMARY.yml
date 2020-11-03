@@ -2,12 +2,14 @@
     path: 语法篇
     name: 语法篇
     #cover: /cover/cppbook.jpg
-    cover: https://i.loli.net/2020/02/15/5BklbroGXx9Ua37.jpg
+    #cover: https://i.loli.net/2020/02/15/5BklbroGXx9Ua37.jpg
+    cover: https://pic.downk.cc/item/5f9f73de1cd1bbb86b505050.jpg
 - 
     name: 算法篇
     path: 算法篇/
     #cover: /cover/noipbook.jpg
-    cover: https://i.loli.net/2020/02/15/2jdGiyQUwsEhK5e.jpg
+    #cover: https://cdnjs-hk.loli.net//2020/02/15/2jdGiyQUwsEhK5e.jpg
+    cover: https://pic.downk.cc/item/5f9f73e31cd1bbb86b5051b3.jpg
 - 
     name: 数学篇
     path: 数学篇/
@@ -15,10 +17,6 @@
 - 
     name: 附录篇
     path: 附录篇/
-    cover: null
-- 
-    name: 题解篇
-    path: 题解篇/
     cover: null
 - 
     name: Python篇

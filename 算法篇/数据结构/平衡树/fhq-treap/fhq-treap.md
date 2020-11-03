@@ -250,20 +250,27 @@ inline void nxt(int val)
     root=merge(x,y);
 }
 ```
+## 模板
 
+<!-- template start -->
+```c
+<%- include("code/template.cpp") %>
+```
+<!-- template end -->
 
 ## 模板题目
 
 **地址**[P3369 【模板】普通平衡树](https://www.luogu.org/problem/P3369)
 
-**代码**
-<!-- template start -->
-todo
-<!-- template end -->
+::: fold
+```c
+<%- include("code/luogu3369.cpp") %>
+```
+:::
 
+## 练习题目
 
-
-
+<wc-pcs-list-by-tags base="<%- USER.pcs%>" tags="平衡树" preifx=""></wc-pcs-list-by-tags>
 
 ## 参考
 
