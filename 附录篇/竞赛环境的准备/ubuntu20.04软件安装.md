@@ -4,6 +4,8 @@ title: 软件安装
 date: 2020-10-27 09:38
 update: 2020-10-27 09:38
 author: Rainboy
+video: https://www.bilibili.com/video/BV1KT4y1F7Y3
+titleEmojiTag: ":tv:"
 ---
 
 ## 1. 设置网络与屏幕缩放

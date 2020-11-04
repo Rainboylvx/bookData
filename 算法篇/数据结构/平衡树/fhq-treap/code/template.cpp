@@ -1,24 +1,24 @@
 struct Random {
     random_device rd;
-    mt19937 engine{rd()};
+    mt19937 rnd{rd()};
     uniform_int_distribution<> dis;
     Random(){}
     Random(int l,int r){ dis = uniform_int_distribution<> (l,r); }
-    int operator()(){ return dis(engine); }
+    int operator()(){ return dis(rnd); }
 };
 
 
 struct Fhq {
-    typedef struct {int val,fix,sz,c[2];} node;
+    typedef struct {int va,fix,sz,c[2];} node;
     node tr[maxn];
     Random rnd;
-    int root,x,y,z,idx=0,top=0,s[maxn];
+    int root,x,y,z,idx=0;
     inline int &lc(int p){ return tr[p].c[0];}
     inline int &rc(int p){ return tr[p].c[1];}
     inline int &c(int p,int i){ return tr[p].c[i];}
     inline int &fix(int p){return tr[p].fix;}
     inline int &sz(int p){return tr[p].sz;}
-    inline int &va(int p){return tr[p].val;}
+    inline int &va(int p){return tr[p].va;}
 
     inline int New(int v){
         tr[++idx] = {v,rnd(),1,{0,0}};
@@ -33,8 +33,8 @@ struct Fhq {
     void split(int p,int v,int &x,int &y){
         if( !p ) { x = y = 0; return; }
         //这个点应该在左边
-        if(va(p) <= v)  split(rc(x=p),v,rc(p),y);
-        else            split(lc(y=p),v,x,lc(p));
+        if(va(p) <= v)  x=p,split(rc(p),v,rc(p),y);
+        else            y=p,split(lc(p),v,x,lc(p));
         pushup(p);
     }
 
@@ -42,8 +42,8 @@ struct Fhq {
     int merge(int x,int y){
         if( !x || !y) return x+y;
         int u;
-        if( fix(x) > fix(y) ) rc(u = x) = merge(rc(x), y);
-        else lc(u = y) = merge(x,lc(y));
+        if( fix(x) > fix(y) ) u=x,rc(x) = merge(rc(x), y);
+        else                  u=y,lc(y) = merge(x,lc(y));
         pushup(u);
         return u;
     }

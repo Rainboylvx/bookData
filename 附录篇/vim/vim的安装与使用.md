@@ -4,7 +4,7 @@ title: vim的使用
 date: 2020-10-27 15:23
 update: 2020-10-27 15:23
 author: Rainboy
-video:
+video: https://www.bilibili.com/video/BV1Gy4y1r7s5
 titleEmojiTag: ":tv:"
 ---
 
@@ -179,6 +179,8 @@ WORD由一系列非空白字符组成，并用空格分隔。空行也被认为�
 | [[~{动作}]]   | switch case of {motion} text.                                                 |
 | [[{Visual}~]] | Switch case of highlighted text                                               |
 s-j 
+c-a
+c-x
 
 ## 替换
 |-----------------------------------------------------------------------|----------------------------------------------------------------------|

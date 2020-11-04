@@ -275,3 +275,4 @@ inline void nxt(int val)
 ## 参考
 
 - [【算法讲堂】【电子科技大学】【ACM】无旋Treap及树套树入门](https://www.bilibili.com/video/av46204315)
+- [洛谷日报第43期 不用旋转的treap？——fhq treap](https://www.luogu.com.cn/blog/Chanis/fhq-treap)

@@ -4,6 +4,8 @@ title: ubuntu20.04系统安装
 date: 2020-10-27 09:38
 update: 2020-10-27 09:38
 author: Rainboy
+video: https://www.bilibili.com/video/BV1sV411y7NK
+titleEmojiTag: ":tv:"
 ---
 
 ## 1.下载
