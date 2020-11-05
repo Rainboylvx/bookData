@@ -1,9 +1,11 @@
 ---
 _id: "dfd75bfcfb"
-title: C++排序函数
+title: C++排序函数Sort
 date: 2020-11-03 22:17
 update: 2020-11-03 22:17
 author: Rainboy
+video: "https://www.bilibili.com/video/BV1JA411j7ex/"
+titleEmojiTag: ":tv:"
 ---
 
 @[toc]
@@ -13,9 +15,10 @@ author: Rainboy
 
 ## 基础使用
 
-下面的我们来使用C++本身给我们提供的排序函数.
+下面的我们来使用C++本身给我们提供的排序函数`sort`,它的复杂度为：平均 $O(N \cdot log(N))$。
 
-```
+使用方法如下：
+```c
 sort(a+m,a+n);      //[a+m,a+n) 范围内的元素进行排序
 sort(a+m,a+n,cmp);  //cmp 是函数 或仿函数
 ```
