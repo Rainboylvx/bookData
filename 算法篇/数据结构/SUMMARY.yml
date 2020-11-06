@@ -7,6 +7,9 @@
 - 
    title: hash表
    path: hash表/hashMap.md
+-
+  title: "并查集"
+  path: 并查集/
 - 
    title: "*堆heap"
    path: 堆heap.md
