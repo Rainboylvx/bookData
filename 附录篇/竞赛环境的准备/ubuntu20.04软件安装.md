@@ -78,9 +78,18 @@ sh -c "$(curl -fsSL 'https://gitee.com/Rainboy/codes/p8trde79flmaj6kyuobqh63/raw
 注意安装时，如果可能要`yes`，看提示
 
 ```bash
-git clone --depth 1 git@git.zhlh6.cn:skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
-git clone --depth 1 git@git.zhlh6.cn:zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone --depth 1 git@git.zhlh6.cn:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone --depth 1 https://github.com/skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
+git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+如果安装失败，那么可能你与`github`不能连接，就使用下面的方法安装
+
+```bash
+GH_PROXY="https://g.ioiox.com/https://github.com/"
+git clone --depth 1 ${GH_PROXY}skywind3000/z.lua ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/z.lua
+git clone --depth 1 ${GH_PROXY}zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth 1 ${GH_PROXY}zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 在`.zshrc`中修改，大概71行
