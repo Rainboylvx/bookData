@@ -8,6 +8,8 @@ video: https://www.bilibili.com/video/BV1Gy4y1r7s5
 titleEmojiTag: ":tv:"
 ---
 
+@[toc]
+
 ## 安装
 
 打开 https://github.com/rainboylvx/RainboyVim 按说明安装
@@ -161,70 +163,75 @@ vim有以上的几种模式,每种模式的作用如下:
 
 WORD由一系列非空白字符组成，并用空格分隔。空行也被认为是单词和单词。
 
+## 选择，复制与粘贴
+
+Visual(选择模式)
+
+|----------------|--------------|
+| [[v]]          | 进行选择模式 |
+| [[V]]          | 行选         |
+| [[ctrl]]+[[v]] | 列选         |
+
+在Visual模式下可以用任意的移动命令来扩大选择范围。例如
+
+ - 在第一行[[Vgg]]，全选
+ - [[ve]]
+ - [[v3e]]
+ - 列选下，多行同时编辑
+    - 同时在行首，行尾，字符前后，添加内容
+
+抽出与拿出（复制与粘贴）
 
 
-## 删除文字
+|----------------|-----------------|
+| [[y {motion}]] | yank,抽出，复制 |
+| [[yy]]         | 复制[count]行   |
+| [[p]]          | put，拿出，粘贴 |
+| [[P]]          | 粘贴到光标前    |
+
+- [[yl]] 复制一个字符
+- [[ye]][[yw]]复制一个单词
+- [[y$]][[y^]]复制到结尾/开头
+- [[3yy]]复制三行
+- [[yyp]] 复制一行，并粘贴出来
+- 先选后复制,复制一列
+
+## 删除/剪切文字
+
 |----------------|-----------------------------------|
 | [[x]]          | 删除光标下方和之后的[count]个字符 |
 | [[X]]          | 删除光标前的[count]个字符         |
 | [[d {motion}]] | 删除{motion}移动的文本            |
 | [[dd]]         | 删除[count]行                     |
-| [[d]]          | 删除光标下方的字符，直到行尾      |
+| [[d$]]          | 删除光标下方的字符，直到行尾      |
 | [[dw]]  [[de]] | 删除一个单词                      |
 
-## 更改（或替换）文本
-|---------------|-------------------------------------------------------------------------------|
-| [[r {char}]]      | 用{char}替换光标下的字符。                                                    |
-| [[~]]         | 切换光标下方字符的大小写并将光标向右移动。如果给出[count]，则输入那么多字符。 |
-| [[~{动作}]]   | switch case of {motion} text.                                                 |
-| [[{Visual}~]] | Switch case of highlighted text                                               |
-s-j 
-c-a
-c-x
-
-## 替换
-|-----------------------------------------------------------------------|----------------------------------------------------------------------|
-| :[range]s[ubstitute]/{pattern}/{string}/[c][e][g][p][r][i][I] [count] | For each line in [range] replace a match of {pattern} with {string}. |
-全文替换 %s
-行内替换 .s
-
-## Undo/Redo/Repeat
-
-|
-| u       | Undo [count] changes.                                                |
-| :u[ndo] | Undo one change.                                                     |
-| CTRL-R  | Redo [count] changes which were undone.                              |
-| :red[o] | Redo one change which was undone.                                    |
-| U       | Undo all latest changes on one line. {Vi: while not moved off of it} |
-| .       | Repeat last change, with count replaced with [count].                |
-
-## Visual(选择模式)
-v
-V
-ctrl-v
+- [[dl]] 删除一个字符
+- [[de]][[dw]]删除一个单词
+- [[d$]][[d^]]删除到结尾/开头
+- [[3dd]]删除三行
+- [[ddp]]交换两行
+- 先选后删除,删除一列
 
 
-## Screen movement commands
 
-|-----------------------|-----------------------------------------|
-| [[zz]]                | 光标下的行拖到屏幕中间                  |
-| [[zt]]                | top,光标下的行拖到屏幕顶部              |
-| [[zb]]                | bottom,光标下的行拖到屏幕底部           |
-| [[ctrl-e]]            | 下移一(n)行。 助记: 额外 (Extra) 的行。 |
-| [[ctrl-y]]            | 上移一(n)行                             |
-| [[ctrl-f]] [[s-down]] | 上翻一(n)页 助记: Forwards。            |
-| [[ctrl-b]] [[s-up]]   | 下翻一(n)页 助记: Backwards。           |
-| [[ctrl-d]]            | 下翻半页(n行) 助记: Downwards。         |
-| [[ctrl-u]]            | 上翻半页(n行) 助记: Upwards。           |
+## 更改文本
 
-## 格式化
-
-|---------------|----------------------|
-| [[>]]         | 右对齐（可能是四格） |
-| [[<]]         | 左对齐（可能是四格） |
-| [[==]]        | 自动对齐             |
-| [[{visual}=]] | 大范围自动对齐       |
-
+|----------------------|-------------------------------------------------------------------------------|
+| [[r {char}]]         | 用{char}替换光标下的字符。                                                    |
+| [[~]]                | 切换光标下方字符的大小写并将光标向右移动。如果给出[count]，则输入那么多字符。 |
+| [[g~{motion}]]       | switch case of {motion} text.                                                 |
+| [[g~~]]              | 这一行的大小转换                                                              |
+| [[{Visual}~]]        | Switch case of highlighted text                                               |
+| [[{Visual}gu]]       | 转小写                                                                        |
+| [[{Visual}gU]]       | 转大写                                                                        |
+| [[J]]                | 合并下一行                                                                    |
+| [[ctrl]]+[[a]]       | 跳到这一行的下一个数字上，并加[count](默认1)                                  |
+| {Visual}[[g]][[ctrl]]+[[a]]       | 超过一行，加额外[count]                                  |
+| [[ctrl]]+[[x]]       | 跳到这一行的下一个数字上，并减[count](默认1)                                  |
+| {Visual}[[g]][[ctrl]]+[[x]]       | 超过一行，减额外[count]                                  |
+| :%s/pattern/replace/ | 全文替换                                                                      |
+| :.s/pattern/replace/ | 行内替换                                                                      |
 
 ## 搜索
 
@@ -234,10 +241,44 @@ ctrl-v
 | [[N]] | **上**一个搜索 |
 
 
+## Undo/Redo/Repeat
+
+|
+| u      | 撤销 [count] 改变.        |
+| CTRL-R | 重做 [count] 次撤销的改变 |
+| .      | 重复[count]改变           |
+
+
+
+## 卷屏
+
+|-----------------------|-----------------------------------------|
+| [[zz]]                | 光标下的行拖到屏幕中间                  |
+| [[zt]]                | top,光标下的行拖到屏幕顶部              |
+| [[zb]]                | bottom,光标下的行拖到屏幕底部           |
+| [[ctrl-e]]            | 文本上移一(n)行。 助记: 额外 (Extra) 的行。 |
+| [[ctrl-y]]            | 文本下移一(n)行                             |
+| [[ctrl-f]] [[s-down]] | 上翻一(n)页 助记: Forwards。            |
+| [[ctrl-b]] [[s-up]]   | 下翻一(n)页 助记: Backwards。           |
+| [[ctrl-d]]            | 下翻半页(n行) 助记: Downwards。         |
+| [[ctrl-u]]            | 上翻半页(n行) 助记: Upwards。           |
+
+## 格式化
+
+|---------------|----------------------|
+| [[>>]]         | 右对齐（可能是四格） |
+| [[<<]]         | 左对齐（可能是四格） |
+| [[==]]        | 自动对齐当前行       |
+| [[{visual}=]] | 大范围自动对齐       |
+
+
+
+
 ## 挂起
 
-|------------|------|
-| [[ctrl-z]] | 挂起 |
+|------------|---------|
+| [[ctrl-z]] | 挂起    |
+| [[fg]]     | 回到vim |
 
 ## 实例
 ```
@@ -257,6 +298,6 @@ vimtutor
 
 ## 说明
 
-翻译自[Vim Commands Cheat Sheet](http://www.fprintf.net/vimCheatSheet.html),有删减
+参考自[Vim Commands Cheat Sheet](http://www.fprintf.net/vimCheatSheet.html),有删减
 
 
