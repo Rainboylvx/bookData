@@ -1,0 +1,24 @@
+graph bar {
+    a[shape=plain];
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="" bgcolor="lightblue">x</td>
+                <td PORT="" bgcolor="lightblue">  </td>
+                <td PORT="" bgcolor="lightblue">  </td>
+                <td PORT="" bgcolor="lightblue">  </td>
+                <td PORT="" bgcolor="lightblue">  </td>
+                <td PORT="" bgcolor="lightblue">  </td>
+                <td PORT="" bgcolor="lightblue">Y</td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+                <td PORT="" bgcolor="red">  </td>
+            </tr>
+        </TABLE> >
+    ]
+}

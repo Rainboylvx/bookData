@@ -1,9 +1,20 @@
-## tarjan算法
+---
+_id: "316d79335f"
+title: "lca-tarjan 离线法"
+date: 2020-11-24 20:01
+update: 2020-11-24 20:01
+author: Rainboy
+video: "https://www.bilibili.com/video/BV1854y167eP/"
+titleEmojiTag: ":tv:"
+---
 
-解决LCA问题的Tarjan算法利用并查集在一次DFS（深度优先遍历）中完成所有询问。它是时间复杂度为O(Na(N)+Q)的离线算法
 
+
+@[toc]
 
 ## tarjan入门
+
+解决LCA问题的Tarjan算法利用并查集在一次DFS（深度优先遍历）中完成所有询问。它是时间复杂度为$O(n + (2\times Q))$的离线算法
 
 如下面的两个图,蓝色区域是DFS过程中已经访问过的点,红色是正在访问过的点,问此时`lca(7,4)`和`lca(7,12)`是谁?仔细想一想为什么是这样,有什么样的规律?
 
@@ -13,89 +24,16 @@
 **一个点什么时候被访问过呢?**  当dfs回溯退出这个点的时候
 
 
-**重要点:正在访问的点u和已经访问过点v的lca(u,v)就是v所在的已经访问过的点组成的子树的父亲(就是根)**
+::: blackboard
+
+**结论**：正在访问的点$u$和已经访问过点$v$的$lca(u,v)$就是$v$所在的已经访问过的点组成的子树的父亲(就是子树的根)。
+:::
 
 
 ## 如何在DFS的过程中知道已经访问过的点形成的子树的父亲?
 
-当一个点u退出(回溯退出时),它就已经访问了,它和它所有的子树都应该访问完了,那它们的根应该是u的父亲,为了可以快速已经访问过的点的形成的子树的根,我们用**并查集**
+当一个点u退出(回溯退出时),它就已经访问了,它和它所有的子树都应该访问完了,那它们的根应该是u的父亲,为了可以快速已经访问过的点的形成的子树的根,我们用**并查集**，具体看下面的代码。
 
-数据:
-
-```
-13
-1 2
-1 8
-1 9
-2 3
-2 4
-9 10
-9 11
-3 5
-3 6
-10 12
-5 7
-5 13
-```
-
-代码
-<!-- template start -->
-```c
-#include <cstdio>
-#include <cstring>
-
-int n;
-
-struct Edge {
-    int u,v;
-    int next;
-}E[100];
-int size =0;
-int head[100];
-
-int fa[100] = {0};
-
-void addedge(int x,int y){
-    size++;
-    E[size].u = x;
-    E[size].v = y;
-    E[size].next = head[x];
-    head[x] = size;
-}
-
-void dfs(int x){
-    int i;
-    fa[x] = x;
-    for(i = head[x];i!= -1;i=E[i].next){
-        int y = E[i].v;
-        dfs(y);
-        //点y 和它的子树都应该访问过了
-        //这里点y退出访问
-        //设 fa[y] = x;
-        fa[y] = x;
-    }
-    printf("%d ",x);
-}
-
-int main(){
-    memset(head,-1,sizeof(head));
-    scanf("%d",&n);
-    int i,j;
-    for(i=1;i<n;i++){
-        int x,y;
-        scanf("%d%d",&x,&y);
-        addedge(x,y);
-        fa[y] = x;
-    }
-
-    int root = 1;
-    while( fa[root] != 0)
-        root = fa[root];
-    dfs(root);
-    
-    return 0;
-}
-```
 ## tarjan算法正确性证明
 
 ![1](./lca11.png)
@@ -119,9 +57,9 @@ int main(){
  - 你在回溯的过程可以把所有的点$w$值所在的并查集的根应该是$p$
  - 那么$lca(u,v) = find(v)$
 
-<center>
-# 在dfs的过程中,即将回溯退出某个点x的时候,如果存在一个点u,且u是已经访问过的点,那么lca(x,u)就是 u所在的已经访问过的点的集合 形成的子树的父亲
-</center>
+::: blackboard
+在dfs的过程中,即将回溯退出某个点x的时候,如果存在一个点u,且u是已经访问过的点,那么lca(x,u)就是 u所在的已经访问过的点的集合 形成的子树的父亲
+:::
 
 
 为什么是 **即将回溯退出某个点x的时候** 这个时刻呢?
@@ -130,10 +68,45 @@ int main(){
 如何得知 **u所在的已经访问过的点的集合 形成的子树的父亲**
  > 点y退出返回到上一层点x的时候,f[y] = x
 
+## 代码模板
+
+<!-- template start -->
+```c
+struct tarjan {
+    bool vis[maxn];
+    int  ans[maxn];
+
+    void dfs(int u,int f){
+        for(int i=e.h[u];~i;i=e[i].next){
+            int &v = e[i].v, &w = e[i].w;
+            if( v == f) continue;
+            dfs(v,u);
+            uset.un(v,u);
+        }
+        vis[u] = 1; //即将退出时设已访问，注意这求lca(6,6)的这种情况
+        for(int i=query.h[u];~i;i=query[i].next){
+            int &v = query[i].v, &w = query[i].w;
+            if(vis[v]) 
+                ans[w] = uset.find(v);
+        }
+    }
+
+    inline void operator()(){
+        dfs(1,0); //dfs(root,root);
+    }
+} tar;
+```
+<!-- template end -->
+
 ## 具体代码
 
 ![tarjan](./tarjan_data.png)
-数据
+
+数据如下
+
+  - 第一行两个数n,m,表示树有n个点,m个查询
+  - 接下来的n-1行表示树的边
+  - 接下来的m行表示查询两个点的lca
 ```
 13 5
 1 2
@@ -156,108 +129,6 @@ int main(){
 ```
 
 ```c
-#include <cstdio>
-#include <cstring>
-
-
-#define N 100
-
-int n,m,root;//n个点,m个询问
-
-bool vis[N] = {0};
-struct Edge {
-    int u,v,w;
-    int next;
-}E[100];
-int size = 0;
-int head[N];
-
-
-void addEdge(int x,int y,int z){
-    size++;
-    E[size].u =x;
-    E[size].v =y;
-    E[size].w =z;
-    E[size].next = head[x];
-    head[x] = size;
-}
-
-struct query {
-    int u,v;
-    int next;
-    int num; // 第几个询问
-}q[2*N];
-int qhead[N];
-int qsize=0;;
-int ans[2*N];
-
-void addQuery(int x,int y,int num){
-    qsize++;
-    q[qsize].u =x;
-    q[qsize].v =y;
-    q[qsize].num = num;
-    q[qsize].next = qhead[x];
-    qhead[x]  =qsize;
-}
-
-//并查集数据
-int fa[N] = {0};
-
-int find(int x){
-    if( fa[x] == x) return x;
-    fa[x]  = find(fa[x]);
-    return fa[x];
-}
-
-void tarjan(int x){
-    int i,y;
-    fa[x]  =x; // 正在访问的点 设为自己根
-
-    for(i=head[x];i!=-1;i=E[i].next){
-        y = E[i].v;
-        tarjan(y);
-        fa[y] = x; //子树的点集,变成x的集合
-    }
-    //x是正在访问的点
-    //如果另外一个点u已经访问过
-    //那lca(x,u) == fa[u]
-
-    vis[x]=1;//标记 放这里的原因就是 求lca(6,6)这种点
-    for(i=qhead[x];i!=-1;i=q[i].next){
-        y = q[i].v;
-        if( vis[y])
-            ans[q[i].num] =find(y);
-    }
-}
-
-int main(){
-    memset(head,-1,sizeof(head));
-    memset(qhead,-1,sizeof(qhead));
-    scanf("%d%d",&n,&m);
-    int i,j;
-    for(i=1;i<n;i++){ //n-1条边
-        int x,y;
-        scanf("%d%d",&x,&y);
-        addEdge(x,y,1);//默认边权为1
-        fa[y] = x;
-    }
-
-    root =1;
-    while( fa[root] != 0)
-        root = fa[root];//停下来的时候root 就是根的编号
-
-    for(i=1;i<=m;i++){
-        int x,y;
-        scanf("%d%d",&x,&y);
-        addQuery(x,y,i);
-        addQuery(y,x,i);
-    }
-    tarjan(root);
-    for(i=1;i<=m;i++){
-        printf("%d\n",ans[i]);
-    }
-    return 0;
-}
+<%- include("code/lca_tarjan.cpp") %>
 ```
-<!-- template end -->
 

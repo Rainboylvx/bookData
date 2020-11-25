@@ -1,0 +1,28 @@
+graph bar3 {
+    nodesep=0;
+    a[shape=plain];
+    b[shape=point height=0]
+    a[
+        label=< <TABLE CELLBORDER="1" BORDER="0" CELLSPACING="0" CELLPADDING="5">
+            <tr>
+                <td PORT="1" bgcolor="lightblue"> X</td>
+                <td PORT="2" bgcolor="lightblue">  </td>
+                <td PORT="3" bgcolor="lightblue">  </td>
+                <td PORT="4" bgcolor="lightblue">  </td>
+                <td PORT="5" bgcolor="lightblue"> 5</td>
+                <td PORT="6" bgcolor="lightblue">  </td>
+                <td PORT="7" bgcolor="lightblue"> Y</td>
+                <td PORT="8" bgcolor="red"> 8</td>
+                <td PORT="9" bgcolor="red">  </td>
+                <td PORT="10" bgcolor="red">  </td>
+                <td PORT="11" bgcolor="red">  </td>
+                <td PORT="12" bgcolor="red">  </td>
+                <td PORT="13" bgcolor="red">  </td>
+                <td PORT="14" bgcolor="red">  </td>
+                <td PORT="15" bgcolor="red">15</td>
+            </tr>
+        </TABLE> >
+    ]
+    b--a:2[style=invis];
+    a:1:s--b--a:5:s[constraint=true];
+}
