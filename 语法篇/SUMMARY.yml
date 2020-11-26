@@ -30,11 +30,11 @@
   title: 类与对象
   path: 类与对象
 - 
+  title: 模板
+  path: 模板/index.md
+- 
   title: C++标准库函数:STL
   path: stl
-- 
-  title: C++高级特性
-  path: 高级
 - 
   title: C++11
   path: C++11/
