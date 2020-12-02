@@ -1,3 +1,14 @@
+---
+_id: "0143129a8d"
+title: string
+date: 2020-11-27 15:03
+update: 2020-11-27 15:03
+author: Rainboy
+video: ""
+titleEmojiTag: ":tv:"
+---
+
+@[toc]
 # string的使用
 
 ## string版的hello world
