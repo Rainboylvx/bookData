@@ -34,7 +34,6 @@ $$
 
 边界条件为$f[i,0]=a[i]$
 
-<!-- template start -->
 这样就可以在$O(nlogn)$的时间复杂度内预处理f数组:
 
 ```c
@@ -45,7 +44,6 @@ for(j=1;(1<<j)<=n;j++){ //1<<j 表示处理的范围
         f[i][j] = max (f[i][j-1],f[i+(1<<(j-1))][j-1]);
 }
 ```
-<!-- template end -->
 
 其中`i+(1<<j)-1`表示$i+2^j-1$表示所求的范围的最后一个值在原数组范围内
 
@@ -63,7 +61,6 @@ $[L,R]=[L,L+2^x-1] \cup [R-2^x+1,R]$，两个子区间元素个数都是$2^x$个
 
 ![2](./rmq2.png)
 
-<!-- template start -->
 $$
 RMQ(L,R)=max(f[L,x],f[R-2^x+1,x])
 $$
@@ -81,6 +78,32 @@ int query(int l,int r){
     //return max(f[l][k],f[r-(1<<k)+1][k]);
     return max(f[l][x],f[r-(1<<x)+1][x]);
 }
+```
+
+## 代码模板
+
+<!-- template start -->
+```c
+template<typename T,typename comp = greater<T> > //long long or int
+struct Rmq {
+    T f[maxn][50]; //f[i][j] --> i+2^j-1
+
+    Rmq(){}     //构造函数
+    Rmq(int n){
+        for(int i=1;i<=n;++i) f[i][0] = a[i];
+    }
+    void st(){ //得到f[i][j]
+        for(int j=1; (1<<j) <= n ;j++)
+            for(int i=1; i+(1<<j)-1 <=n;i++) //i+(1<<j)-1<=n 表示所求的范围的最后一个值在原数组范围内
+                f[i][j] = max<T,comp>(f[i][j],f[i+(1<<(j-1))][j-1]);
+    }
+
+    T query(int l,int r){ //查询区间最值
+        int k = int(log(r-l+1) / log(2));
+        return max<T,comp>(f[l][k],f[r-(1<<k)+1][k]);
+    }
+};
+Rmq<ll> rmq;
 ```
 <!-- template end -->
 

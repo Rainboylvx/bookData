@@ -121,12 +121,17 @@ sudo apt install ./google-chrome-stable_current_amd64.deb
 ## qq
 
 
-```
-git clone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
+lone https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu.git
 cd deepin-wine-for-ubuntu
 chmod +x install_2.8.22.sh
 ./install_2.8.22.sh
 wget http://packages.deepin.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_9.1.8deepin0_i386.deb
+https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_9.1.8deepin0_i386.deb
+sudo dpkg -i deepin.com.qq.im_9.1.8deepin0_i386.deb
+# 默认安装完成后，打开QQ和微信时无法最小化，需结合Topicons plus使用。
+sudo apt-get install gnome-shell-extension-top-icons-plus
+```
+```
 https://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_9.1.8deepin0_i386.deb
 sudo dpkg -i deepin.com.qq.im_9.1.8deepin0_i386.deb
 # 默认安装完成后，打开QQ和微信时无法最小化，需结合Topicons plus使用。

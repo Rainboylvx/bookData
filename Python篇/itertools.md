@@ -1,3 +1,12 @@
+---
+_id: "f9d79890c3"
+title: itertools
+date: 2020-12-02 22:46
+update: 2020-12-02 22:46
+author: Rainboy
+---
+
+
 无穷循环
 
 - count(start,[step]),数数
@@ -29,11 +38,11 @@
 
 结果
 
-|---------------------------------|----------------------------------------------------|
-| product()                       | p, q, ... [repeat=1] 笛卡尔积，相当于嵌套的for循环 |
-| permutations()                  | p[, r]                                             | 长度r元组，所有可能的排列，无重复元素 |
-| combinations()                  | p, r                                               | 长度r元组，有序，无重复元素           |
-| combinations_with_replacement() | p, r                                               | 长度r元组，有序，元素可重复           |
+|---------------------------------|-----------|------------------------------------------|
+| product()                       | p, q, ... | [repeat=1] 笛卡尔积，相当于嵌套的for循环 |
+| permutations()                  | p[, r]    | 长度r元组，所有可能的排列，无重复元素    |
+| combinations()                  | p, r      | 长度r元组，有序，无重复元素              |
+| combinations_with_replacement() | p, r      | 长度r元组，有序，元素可重复              |
 
 ```
 product('ABCD', repeat=2)

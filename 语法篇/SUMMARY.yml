@@ -38,6 +38,6 @@
 - 
   title: C++11
   path: C++11/
-- 
-  title: 其它
-  path: 其它/
+#- 
+  #title: 其它
+  #path: 其它/

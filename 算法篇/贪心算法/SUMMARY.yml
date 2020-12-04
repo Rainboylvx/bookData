@@ -1,36 +1,42 @@
+#- 
+  #title: 序
+  #path: index.md
 - 
-  title: 序
-  path: index.md
+  title: 简单贪心
+  path: 方格取数等.md
 - 
-  title: 入门
-  path: 入门
+  title: 练习题目
+  path: 练习题目.md
 - 
-  title: 区间问题
-  path: 区间问题
-- 
-  title: 删数字
-  path: 删数字.md
-- 
-  title: 排队取水
-  path: 排队取水.md
-- 
-  title: 均分纸牌
-  path: 均分纸牌.md
-- 
-  title: 纪念品分组
-  path: 纪念品分组.md
-- 
-  title: 钓鱼
-  path: 钓鱼.md
-- 
-  title: 田忌赛马
-  path: 田忌赛马.md
-- 
-  title: noip2012国王游戏
-  path: noip2012国王游戏.md
-- 
-  title: DVD服务请求
-  path: DVD服务请求.md
-- 
-  title: 删数问题2
-  path: 删数问题2.md
+  title: 总结
+  path: 总结.md
+#- 
+  #title: 区间问题
+  #path: 区间问题
+#- 
+  #title: 删数字
+  #path: 删数字.md
+#- 
+  #title: 排队取水
+  #path: 排队取水.md
+#- 
+  #title: 均分纸牌
+  #path: 均分纸牌.md
+#- 
+  #title: 纪念品分组
+  #path: 纪念品分组.md
+#- 
+  #title: 钓鱼
+  #path: 钓鱼.md
+#- 
+  #title: 田忌赛马
+  #path: 田忌赛马.md
+#- 
+  #title: noip2012国王游戏
+  #path: noip2012国王游戏.md
+#- 
+  #title: DVD服务请求
+  #path: DVD服务请求.md
+#- 
+  #title: 删数问题2
+  #path: 删数问题2.md

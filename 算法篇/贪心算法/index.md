@@ -1,5 +1,15 @@
-# 贪心算法
+---
+_id: "0efb229b3c"
+title: index
+date: 2020-12-02 12:21
+update: 2020-12-02 12:21
+author: Rainboy
+video: ""
+titleEmojiTag: ":tv:"
+cover: 
+---
 
+@[toc]
 ## 贪心策略的基本思想
 
 ### 定义
