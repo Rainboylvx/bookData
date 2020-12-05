@@ -1,8 +1,11 @@
 ---
+_id: "25f16b8b67"
 title: RMQ区间最值
 date: 2019-10-13 15:02
 update: 2019-10-13 15:02
 author: Rainboy
+video: "https://www.bilibili.com/video/BV1Ct4y1Y7cy/"
+titleEmojiTag: ":tv:"
 ---
 
 @[toc]
@@ -16,7 +19,12 @@ author: Rainboy
  - 从10开始往前数3个数,停下的数是:8,**8=10-3+1**
  - 从n开始往前数m个数,停下的数是:**n-m+1**
 
-## rmq原理:ST表
+## 关键字
+
+ - 不带修改的区间最值：rmq
+ - 特点：重叠并不会对区间最大值产生影响
+
+## rmq原理:ST表（sparse-table）
 
 我们设$f[i,j]$表示**从第i个元素开始的长度为$2^j$个元素的最值**
 
@@ -80,30 +88,49 @@ int query(int l,int r){
 }
 ```
 
+每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
+
+$$
+\left\{\begin{aligned}
+Logn[1] &=0, \\
+Logn\left[i\right] &=Logn[\frac{i}{2}] + 1.
+\end{aligned}\right.
+$$
+
+## 时间复杂度
+
+ - 对于预处理是$O(nlogn)$
+ - 对于查询是$O(1)$
+
 ## 代码模板
 
 <!-- template start -->
 ```c
-template<typename T,typename comp = greater<T> > //long long or int
+template<typename T,int N = maxn,typename Comp = greater<T>> //long long or int
 struct Rmq {
-    T f[maxn][50]; //f[i][j] --> i+2^j-1
-
-    Rmq(){}     //构造函数
-    Rmq(int n){
-        for(int i=1;i<=n;++i) f[i][0] = a[i];
+    T f[N][50]; //f[i][j] --> i+2^j-1
+    int logn[N] = {0,0,1};
+    Comp comp;
+    Rmq(){ memset(f,0,sizeof(f)); }
+    
+    inline T good(const T &a,const T &b) {
+        return comp(a,b) ? a : b;
     }
-    void st(){ //得到f[i][j]
-        for(int j=1; (1<<j) <= n ;j++)
+
+    void init(int n){
+        for(int i=3;i<=n;++i) logn[i] = logn[i/2] +1;
+        //for(int i=1;i<=n;++i) f[i][0] = a[i];
+        for(int j=1; (1<<j) <= n ;j++) //得到f[i][j]
             for(int i=1; i+(1<<j)-1 <=n;i++) //i+(1<<j)-1<=n 表示所求的范围的最后一个值在原数组范围内
-                f[i][j] = max<T,comp>(f[i][j],f[i+(1<<(j-1))][j-1]);
+                f[i][j] = good(f[i][j-1],f[i+(1<<(j-1))][j-1]);
     }
 
     T query(int l,int r){ //查询区间最值
-        int k = int(log(r-l+1) / log(2));
-        return max<T,comp>(f[l][k],f[r-(1<<k)+1][k]);
+        int k = logn[r-l+1];
+        return good(f[l][k],f[r-(1<<k)+1][k]);
     }
 };
-Rmq<ll> rmq;
+Rmq<int> rmq;
 ```
 <!-- template end -->
 
@@ -122,51 +149,7 @@ Rmq<ll> rmq;
 代码:
 
 ```c
-#include <cstdio>
-#include <cmath>
-
-#define N 10000
-
-int a[N];
-int f[N][32];
-
-int n,m;//n个数,m次查询
-
-
-int max(int a,int b){
-    if( a > b )
-        return a;
-    return b;
-}
-
-int query(int l,int r){
-    int x = int( log(r-l+1)/log(2));
-    return max(f[l][x],f[r-(1<<x)+1][x]);
-}
-
-void rmq(){ //预处理
-    int i,j;
-    for(i=1;i<=n;i++ ) f[i][0]  = a[i];
-    for(j=1;(1<<j)<=n;j++)
-        for(i=1;i+(1<<j)-1 <=n;i++){
-            f[i][j] = max(f[i][j-1],f[i+(1<<(j-1))][j-1]);
-        }
-}
-
-int main(){
-    int i,j;
-    scanf("%d%d",&n,&m);
-    //读入
-    for (i=1;i<=n;i++)
-        scanf("%d",&a[i]);
-    rmq();
-    for (i=1;i<=m;i++){
-        int t1,t2;
-        scanf("%d%d",&t1,&t2);
-        printf("%d\n",query(t1,t2));
-    }
-    return 0;
-}
+<%- include("code/1.cpp") %>
 ```
 
 ## 题目1:  luogu P3865 ST表
@@ -222,6 +205,10 @@ int main(){
 ## 题目2:luogu P1440 求m区间内的最小值
 
 todo
+
+## 参考/引用
+
+- [ST 表 - OI Wiki](https://oi-wiki.org/ds/sparse-table/)
 
 
 ## 练习题目
