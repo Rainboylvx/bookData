@@ -57,8 +57,6 @@ cover:
  - luogu P2096 最佳旅游线路
  - luogu P1208 [USACO1.3]混合牛奶 Mixing Milk
  - [UVA11292 Dragon of Loowater](https://www.luogu.org/problemnew/show/UVA11292) pcs 恶龙
- - [删数问题2](https://www.luogu.org/problemnew/show/1323)
- - [DVD服务请求](https://www.luogu.org/problemnew/show/1733)
 
 **进阶**
 
