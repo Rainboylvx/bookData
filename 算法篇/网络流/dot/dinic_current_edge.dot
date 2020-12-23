@@ -1,0 +1,20 @@
+digraph g {
+    node[shape=circle style=filled fillcolor=white colorscheme=accent8 ];
+    rankdir=LR;
+    T[height=2 fontsize=100];
+    edge [minlen=2];
+    a[label="s" fontsize=50]
+    a->b->c;
+    c->d[label="6" minlen=3]
+    d->T[minlen=4 style=dashed label=0];
+    d->T[minlen=4 style=dashed label=1];
+    d->T[minlen=4 style=dashed label=2];
+    d->T[minlen=4 style=dashed label=3];
+    {
+        rank=same;
+        d,d1,d2,d3;
+    }
+    c->{d1,d2,d3}[label=6];
+    {d1,d2,d3}->T[label=6];
+
+}

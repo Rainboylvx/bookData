@@ -2,14 +2,14 @@
   title: 序
   path: index.md
 - 
-  title: 排列组合与子集生成
-  path: 排列组合与子集生成.md
-- 
   title: 迷宫类问题
   path: 迷宫/
 - 
   title: 八皇后
   path: 八皇后.md
+- 
+  title: 排列组合与子集生成
+  path: 排列组合与子集生成.md
 - 
   title: 拆数字
   path: 拆数字.md
