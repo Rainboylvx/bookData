@@ -1,8 +1,7 @@
 - 
   title: 竞赛环境的准备
   path: 竞赛环境的准备
-- 
-  title: ":movie_camera: 录制视频索引"
+- title: ":movie_camera: 录制视频索引"
   path: 录制视频索引/index.md
 - 
   title: ":sunglasses: :sunglasses: :sunglasses: 与本书关联的内容"
@@ -37,3 +36,6 @@
 - 
   title: 洛谷日报索引
   path: 洛谷日报索引/
+- 
+  title: 学习竞赛你需要的东西
+  path: 学习竞赛你需要的东西.md

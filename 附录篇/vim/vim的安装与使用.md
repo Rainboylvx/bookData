@@ -214,6 +214,10 @@ Visual(选择模式)
 - 先选后删除,删除一列
 
 
+|----------------|-----------------------------------------------------------|
+| [[c {motion}]] | 将 {motion} 跨过的文本删除 [到寄存器 x 里] 并进入插入模式 |
+| [[cc]]         | 删除[[count]]行,并进入插入模式                            |
+| [[s]]          | 删除[[count]]个字符,并进入插入模式                        |
 
 ## 更改文本
 
@@ -232,6 +236,19 @@ Visual(选择模式)
 | {Visual}[[g]][[ctrl]]+[[x]]       | 超过一行，减额外[count]                                  |
 | :%s/pattern/replace/ | 全文替换                                                                      |
 | :.s/pattern/replace/ | 行内替换                                                                      |
+
+
+## 命令下的复制与剪切
+
+|--------------------------|
+| [[:copy]] [[:co]] [[:t]] |
+| [-5t.]                   |
+| [-5,-1t.]                |
+| [[:move]] [[:m]]         |
+| [-5m.]                   |
+| [-5m.]                   |
+| [-5,-1m.]                |
+
 
 ## 搜索
 
@@ -271,7 +288,16 @@ Visual(选择模式)
 | [[==]]        | 自动对齐当前行       |
 | [[{visual}=]] | 大范围自动对齐       |
 
+## 文本对象 text-object
 
+ - inner 内部
+ - around 周围
+
+|--------|--------|
+| [[i)]] | 内含块 |
+| [[i"]] | 内含块 |
+| [[a)]] | 内含块 |
+| [[a"]] | 内含块 |
 
 
 ## 挂起
@@ -298,6 +324,6 @@ vimtutor
 
 ## 说明
 
-参考自[Vim Commands Cheat Sheet](http://www.fprintf.net/vimCheatSheet.html),有删减
-
+ - 参考自[Vim Commands Cheat Sheet](http://www.fprintf.net/vimCheatSheet.html),有删减
+ - 参考了[vim实用技巧](https://raw.sevencdn.com/lijasonvip/Books_Reading/master/Vim%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7_%E9%AB%98%E6%B8%85_%E4%B8%AD%E6%96%87%E7%89%88.pdf)
 

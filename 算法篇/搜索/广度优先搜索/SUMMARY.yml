@@ -5,15 +5,6 @@
   title: 迷宫
   path: 迷宫.md
 - 
-  title: 仙岛求药
-  path: 仙岛求药.md
-- 
-  title: 马的遍历
-  path: 马的遍历.md
-- 
-  title: 抓住那头牛
-  path: 抓住那头牛.md
-- 
   title: 八数码
   path: 八数码.md
 - 
@@ -28,3 +19,6 @@
 - 
   title: 01BFS
   path: 01BFS
+- 
+  title: 练习题目
+  path: 练习题目.md

@@ -3,13 +3,15 @@
     name: 语法篇
     #cover: /cover/cppbook.jpg
     #cover: https://i.loli.net/2020/02/15/5BklbroGXx9Ua37.jpg
-    cover: https://pic.downk.cc/item/5f9f73de1cd1bbb86b505050.jpg
+    #cover: https://pic.downk.cc/item/5f9f73de1cd1bbb86b505050.jpg
+    cover: /cover/cppbook.jpg
 - 
     name: 算法篇
     path: 算法篇/
     #cover: /cover/noipbook.jpg
     #cover: https://cdnjs-hk.loli.net//2020/02/15/2jdGiyQUwsEhK5e.jpg
-    cover: https://pic.downk.cc/item/5f9f73e31cd1bbb86b5051b3.jpg
+    #cover: https://pic.downk.cc/item/5f9f73e31cd1bbb86b5051b3.jpg
+    cover: /cover/noipbook.jpg
 - 
     name: 数学篇
     path: 数学篇/

@@ -98,5 +98,6 @@ x1为M中所有权值为正的点的权值，x2为N中权值为正的点的权�
 
 ## 引用/参考
 
+- [P2762 太空飞行计划问题（网络流24题之一）](https://www.cnblogs.com/five20/p/8254024.html)
 - [Dilthey's Blog-最大权闭合子图 - 求最大点权的闭合子图 ](https://www.cnblogs.com/dilthey/p/7565206.html)
 - [网络流——最小割求最大权闭合子图](https://blog.csdn.net/can919/article/details/77603353)
