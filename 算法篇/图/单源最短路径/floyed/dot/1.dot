@@ -1,0 +1,17 @@
+digraph g {
+    node[shape=circle  style=filled fillcolor=white colorscheme=accent8 ];
+    edge[arrowhead=none]
+    rankdir=LR;
+    s->1->2->3;
+    k->4->5->t;
+    3->k;
+    l1[label="path(s,t)" shape=rects fillcolor=1]
+    l2[label="path(s,k)" shape=rects fillcolor=1]
+    l1->1[arrowhead=normal style=dotted minlen=2 ];
+    1->l2[arrowhead=normal dir=back style=dotted minlen=2];
+    edge [style=invis];
+    3->4;
+    2->4;
+    1->5[style=invis];
+    s->t[style=invis];
+}

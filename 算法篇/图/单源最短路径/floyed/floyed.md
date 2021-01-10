@@ -6,16 +6,92 @@ update: 2020-05-15 09:40
 author: Rainboy
 ---
 
-## floyed 算法原理
+@[toc]
 
-资料
-
-链接: http://pan.baidu.com/s/1jHIOxee 密码: 724i
+## 简介
 
 ::: info
 **floyed是用来求图上任意两点的最短路径的算法**
 :::
 
+## 问题引入
+
+如下图:
+
+![二个图](/images/二个图.png)
+
+**输入:**
+
+ - 第一行:n个点,m条边
+ - 第二行:起点s,终点t
+ - 以下m行:边的起点,终点,权值
+
+**输出:**
+
+ - 输出任意两点的最短路,格式如:`1 2 2`,每两个点占一行
+ - 输出s到t的最短的路径
+
+数据1:
+
+```plaintext
+5 7
+1 5
+1 2 2
+1 3 4
+1 4 7
+2 3 1
+3 4 1
+2 5 2
+3 5 6
+```
+
+输出
+
+```plaintext
+1 2 2
+1 3 3
+1 4 4
+1 5 4
+2 3 1
+2 4 2
+2 5 2
+3 4 1
+3 5 3
+4 5 4
+1 2 5
+```
+
+数据2:
+
+![2](./floyed2.png)
+
+```plaintext
+5 5
+1 3
+1 2 1
+1 5 10
+2 4 2
+4 3 3
+3 5 4
+```
+
+输出
+
+```plaintext
+1 2 1
+1 3 6
+1 4 3
+1 5 10
+2 3 5
+2 4 2
+2 5 9
+3 4 3
+3 5 4
+4 5 7
+1 2 4 3
+```
+
+## floyd 算法原理
 
 floyd算法是一个经典的动态规划算法。用通俗的语言来描述的话，首先我们的目标是寻找从点$i$到点$j$的最短路径。从动态规划的角度看问题，我们需要为这个目标重新做一个诠释（这个诠释正是动态规划最富创造力的精华所在），floyd算法加入了这个概念
 
@@ -23,7 +99,7 @@ $A^k(i,j)$：**表示从i到j中途不经过索引比k大的点的最短路径**
 
 这个限制的重要之处在于，它将最短路径的概念做了限制，使得该限制有机会满足迭代关系，这个迭代关系就在于研究：假设$A^{k-1}(i,j)$已知，是否可以借此推导出$A^{k}(i,j)$
 
-假设我现在要得到$A^k(i,j)$，而此时$A^k(i,j)$已知，那么我可以分两种情况来看待问题：
+假设我现在要得到$A^k(i,j)$，而此时$A^{k-1}(i,j)$已知，那么我可以分两种情况来看待问题：
 
  - $A^k(i,j)$沿途经过点k；
  - $A^k(i,j)$不经过点k。
@@ -41,7 +117,7 @@ $$
 
 ## 压缩一维(k维)
 
-原始的状态转移方程为: $A^k(i,j) = min \\{ A^{k-1}(i,j),A^{k-1}(i,k)+A^{k-1}(k,j) \\}$
+原始的状态转移方程为: $A^k(i,j) = min \{ A^{k-1}(i,j),A^{k-1}(i,k)+A^{k-1}(k,j) \}$
 
 因为$A^k(i,k) = A^{k-1}(i,k)$成立,所以我们在可以把$k$压缩掉.
 
@@ -69,18 +145,14 @@ floyd算法的原理: i,j 经过中间点k的最短路径,不停的枚举k
 
 <!-- template start -->
 ```c
-void floyd(){
-    int k,i,j;
-    for(k=1;k<=n;k++){ //k在最外层,枚举中间点
-        for (i=1;i<=n;i++)
-            for(j=1;j<=n;j++)
-                if(f[i][k]+f[k][j]<f[i][j]){ //松弛法,如果能更小,那就更小
-                    f[i][j] = f[i][k]+f[k][j]; 
-                }
-    }
-}
+<%- include("code/template.cpp") %>
 ```
 <!-- template end -->
+
+## 动画
+
+- [ Floyd-Warshall All-Pairs Shortest Path ](https://www.cs.usfca.edu/~galles/visualization/Floyd.html)
+- [Dynamic Programming - Floyd-Warshall's Shortest Path](https://algorithm-visualizer.org/dynamic-programming/floyd-warshalls-shortest-path)
 
 
 
@@ -88,12 +160,20 @@ void floyd(){
 ## 如何输出路径
 
 
-![3](./floyed3.png)
 
-如果我们要输出$s \rightarrow t$的最短路径,我们先设$path(i,j)$表示$ i \rightarrow j$的最短路上的$i$后面的那个点.
+如果我们要输出$s \rightarrow t$的最短路径,首先
 
-根据:$f(s,t) = min\\{f(s,t),f(s,k)+f(k,t)\\}$  
-如果$f(s,t)$能被$ f(s,k)+f(k,t)$更新,那么显然:$path(s,t) = path(s,k)$
+ - 设$path(i,j)$表示$i \rightarrow j$的最短路上的$i$后面的那个点.
+
+根据:
+
+ - $f(s,t) = min\{f(s,t),f(s,k)+f(k,t)\}$
+
+如果$f(s,t)$能被$f(s,k)+f(k,t)$更新,那么显然:$path(s,t) = path(s,k)$
+
+```viz-dot
+<%- include("dot/1.dot") %>
+```
 
 
 根据**最优子结构的性质**:如果路径$A$是$ s \rightarrow t $ 的最短路径.我们设$path(s,k) = x$,那么路径$A$的一部分$x \rightarrow t $ 一定是$x$到$t$最短的,所以最短路径$s \rightarrow t$的后一个点的后一个点一定是$path(x,t)$,这样不停的迭代下去就可以找可以路径$A$上的所有点。
@@ -114,49 +194,6 @@ if( f[i][j] == f[i][k]+ f[k][j]) //表示有多条最短路径
 ```
 
 ## 代码:
-
-
-如下图:
-
-![二个图](/book/images/二个图.png)
-
-**输入:**
-
- - 第一行:n个点,m条边
- - 第二行:起点s,终点t
- - 以下m行:边的起点,终点,权值
-
-**输出:**
- - 第一行:s到t的最短路
- - 第二行:输出s到t的最短的路径
-
-数据1:
-
-```c
-5 7
-1 5
-1 2 2
-1 3 4
-1 4 7
-2 3 1
-3 4 1
-2 5 2
-3 5 6
-```
-
-数据2:
-
-![2](./floyed2.png)
-
-```c
-5 5
-1 3
-1 2 1
-1 5 10
-2 4 2
-4 3 3
-3 5 4
-```
 
 
 代码:
@@ -230,7 +267,9 @@ int main(){
 }
 ```
 
+## 资料
 
+链接: http://pan.baidu.com/s/1jHIOxee 密码: 724i
 
 ## 练习题目
 
