@@ -57,201 +57,66 @@ Dijstra算法:**贪心**
 3 5 6
 ```
 
-**代码:向量星版本**
+## 代码-普通版
 
+时间复杂度：$O(n^2)$
+::: fold
 ```c
-/*-------------------------------------------------
-*  Author:Rainboy   time:2018-08-19 20:09
-*-------------------------------------------------*/
-#include <cstdio>
-#include <cstring>
-
-#define N 100
-#define inf 0x7f7f7f7f
-
-int n,m;
-int s,t;
-int dis[N]; //每个点到起点的最短距离
-bool flag[N] = {0}; //某个点是不是已经标记
-
-int first[N];
-int edge_cnt = 0;
-struct _e{
-    int u,v,w,next;
-}e[N<<2];
-
-void addEdge(int u,int v,int w){
-    edge_cnt++;
-    e[edge_cnt].u = u;
-    e[edge_cnt].v= v;
-    e[edge_cnt].w=w;
-    e[edge_cnt].next = first[u];
-    first[u] = edge_cnt;
-}
-
-void init(){
-    memset(first,-1,sizeof(first));
-    scanf("%d%d",&n,&m);
-    scanf("%d%d",&s,&t);
-    int i,j,k,l;
-    for (i=1;i<=m;i++){
-        scanf("%d%d%d",&j,&k,&l);
-        addEdge(j,k,l);
-        addEdge(k,j,l);
-    }
-
-    memset(dis,0x7f,sizeof(dis));
-    dis[s] =0;
-
-}
-
-void dijkstra(){
-    int i,j;
-    for (i=1;i<=n;i++){ //进行ｎ次循环，每次标记一个点
-        int min = inf; //记录最小值
-        int tmp =-1; // 记录dis最的末标记的点
-        for(j=1;j<=n;j++)
-            if( flag[j] == 0 && min > dis[j])
-                tmp = j, min = dis[j];
-
-        if( tmp == -1)  //证明tmp没有被更新
-             return;    //也就是有可能还存在末标记点
-                        //但是它的值是无穷，证明从起点到达不了这个点
-                        //那就不要再进行算法了
-
-        flag[tmp] = 1; //标记
-        //用新标记的点去更新它周围的末标记点
-        for(j=first[tmp];j!=-1;j=e[j].next){
-            int v  = e[j].v;
-            if( flag[v] == 0 && dis[v]>dis[tmp]+e[j].w)
-                dis[v]=dis[tmp]+e[j].w;
-        }
-    }
-}
-int main(){
-    init(); //读取数据
-    dijkstra();
-    //输出结果
-    printf("%d\n",dis[t]);
-    return 0;
-}
+<%- include("code/dijkstra_normal.cpp") %>
 ```
+:::
 
 
-**代码:邻接表版本**
+## Dijkstra + 堆优化
 
-```c
-/*-------------------------------------------------
-*  Author:Rainboy
-*  time: 2016-04-11 16:29
-*  © Copyright 2016 Rainboy. All Rights Reserved.
-*-------------------------------------------------*/
-
-/*
- *  Dijstra算法: -- >贪心
- *      有两个点的集合: A 确定的最短路径的点, B没有确定最短路径的点
- *      每一次从B中找到dis最小的点c,把c加入A
- *      不停这样下去,直到所有点都成为A
- * */
-
-#include <cstdio>
-#include <cstring>
-
-#define INF 0x7f7f7f7f
-#define max_e 999
-#define max_v 999
-
-int dis[max_v];
-bool vis[max_v]={0}; //判断是不是标记的点
-
-int G[max_v][max_v];//二维数组来存图
-int pre[max_v] ={0};
-
-int n,m;//点和边的数量
-int s,t;//起点 终点
-
-void diskstra(int s){
-
-    memset(dis,0x7f,sizeof(dis));
-    dis[s] = 0; //起点dis 为0
-    int i,j;
-
-    /* 计算n次,因为每一次加入一个数进vis */
-    for(i=1;i<=n;i++){
-        int tmp=-1,min = INF;
-
-        /* 找到未标记点中最小的 */
-        for(j=1;j<=n;j++)
-            if(!vis[j] && dis[j] < min)
-                min = dis[j] ,tmp=j;
-
-        if( tmp!= -1)//是否找到
-            vis[tmp]=1;
-        else 
-            break;
-
-        /* 用找到的tmp去更新其它点 */
-        for(j=1;j<=n;j++)
-            if(G[tmp][j] != INF && !vis[j] ) //相邻边,且可以更新
-                if(dis[j] >G[tmp][j]+dis[tmp]){
-                    dis[j] = dis[tmp]+G[tmp][j];
-                    pre[j] =tmp;
-                }
-    }
-}
-
-int main(){
-    int i,j,k;
-    scanf("%d%d",&n,&m);
-    scanf("%d%d",&s,&t);
-
-    //读取图
-    for(i=1;i<=n;i++)
-        for(j=1;j<=n;j++)
-            G[i][j]=INF;
-    for(i=1;i<=m;i++){
-        scanf("%d%d",&j,&k);
-        scanf("%d",&G[j][k]);
-        G[k][j]=G[j][k];
-    }
-
-    diskstra(s);
-
-    //输出
-    printf("dis[%d]=%d\n",t,dis[t]);
-    //输出路径
-    for(i=t;i!=0;i=pre[i])
-        printf("%d ",i);
-    return 0;
-}
-```
-
-
-
-## Dijkstra + 堆优化( 没有写完)
-
+代码模板：时间复杂度：$O(nlog(n))$
 <!-- template start -->
 ```c
-priority_queue <pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > >q;
-void dijkstra(int s){
-    for(int i=1;i<=n;i++){ dis[i]=inf; }
-    dis[s]=0;
-    q.push(make_pair(0,s));
-    while(!q.empty()){
-        int now=q.top().second;
-        q.pop();
-        if(vis[now])continue;
-        vis[now]=1;
-        for(int i=head[now];i!=-1;i=e[i].next){
-            if(dis[e[i].v]>dis[now]+e[i].w){
-                dis[e[i].v]=dis[now]+e[i].w;
-                q.push(make_pair(dis[e[i].v],e[i].v));
+struct Dijkstra {
+    int dis[maxn];
+    bool vis[maxn];
+    typedef pair<int,int> P; //第一个存dis，第二个存点编号
+    priority_queue<P,vector<P>,greater<P>> q; //优先队列
+    Dijkstra(){ //格构函数
+        memset(dis,0x7f,sizeof(dis)); //所有的点都是0x7f7f7f7f 代表无穷大
+        memset(vis,0,sizeof(vis));    //所有点都是没有标记的
+        //注意这里起点也未标记的
+    }
+
+    void work(int s){
+        dis[s] = 0; 
+        q.push(make_pair(0, s)); //把起点加入
+
+        while ( !q.empty() ) { //当优先队列不空时
+            int u = q.top().second;
+            q.pop();
+            if( vis[u] ) continue; //这个点已经标记过了，什么也不做
+            vis[u] = 1; //标记这个点
+
+            //用新标记的点去更新它周围的末标记点
+            for(int i=e.h[u];~i;i=e[i].next){
+                int &v = e[i].v, &w = e[i].w;
+                if( vis[v] == 0 && dis[v] > dis[u]+w){
+                    dis[v] = dis[u] + w;
+                    q.push(make_pair(dis[v], v)); //新更新的点加入队列
+                }
             }
         }
     }
-}
+} dijkstra;
 ```
 <!-- template end -->
+
+完整代码
+
+::: fold
+```c
+<%- include("code/dijkstra_better.cpp") %>
+```
+:::
+
+
+## 练习题目
 
 但我们发现每次找一个最近点有点耗时，因为要支持减值和求最小的操作，就用小根堆.
 
@@ -260,80 +125,7 @@ void dijkstra(int s){
 题目: [luogu P3371 【模板】单源最短路径（弱化版）](https://www.luogu.org/problemnew/show/P3371)
 
 ```c
-//dijkstra优先队列 堆优化
-#include <bits/stdc++.h>
-using namespace std;
-#define inf 2147483647
-#define N 200001
-#define maxn 500005
-
-int n,m,s;
-int dis[N];
-bool vis[N];
-
-priority_queue <pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > >q;
-
-
-/* ================= 向量星 =================*/
-int head[maxn];
-int edge_cnt = 0;
-struct _e{
-    int u,v,w,next;
-}e[maxn<<1];
-
-void inline xlx_init(){
-    edge_cnt = 0;
-    memset(head,-1,sizeof(head));
-}
-
-void addEdge(int u,int v,int w){
-    edge_cnt++;
-    e[edge_cnt].u = u;
-    e[edge_cnt].v= v;
-    e[edge_cnt].w=w;
-    e[edge_cnt].next = head[u];
-    head[u] = edge_cnt;
-}
-/* ================= 向量星 end =================*/
-
-
-void dijkstra(int s){
-    for(int i=1;i<=n;i++){
-        dis[i]=inf;
-    }
-    dis[s]=0;
-    q.push(make_pair(0,s));
-    while(!q.empty()){
-        int now=q.top().second;
-        q.pop();
-        if(vis[now])continue;
-        vis[now]=1;
-        for(int i=head[now];i!=-1;i=e[i].next){
-            if(dis[e[i].v]>dis[now]+e[i].w){
-                dis[e[i].v]=dis[now]+e[i].w;
-                q.push(make_pair(dis[e[i].v],e[i].v));
-            }
-        }
-    }
-}
-
-int main(){
-    memset(vis,0,sizeof(vis));
-    xlx_init();
-    scanf("%d%d%d",&n,&m,&s);
-    int t1,t2,t3;
-    for(int i=1;i<=m;i++){
-        scanf("%d%d%d",&t1,&t2,&t3);
-        addEdge(t1,t2,t3);
-    }
-
-    dijkstra(s);
-    for(int i=1;i<=n;i++){
-        printf("%d ",dis[i]);
-    }
-
-    return 0;
-}
+todo
 ```
 
 ## 练习题目
