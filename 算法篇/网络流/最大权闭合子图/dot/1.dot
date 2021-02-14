@@ -1,0 +1,24 @@
+digraph g {
+    node[shape=circle fixedsize=true style=filled fillcolor=white colorscheme=accent8 ];
+
+    s[label="S" pos="-2.5,0.25!"];
+    t[label="T" pos="3.0,0.25!"];
+    a[label="5" pos="-1,1!"];
+    b[label="-6" pos=".5,1!"];
+    c[label="-1" pos=".5,-.5!"];
+    e[label="7" pos="-1,-.5!"];
+    f[label="-3" pos="1.5,0.25!"];
+    edge[label="∞" color=red]
+    a->b[];
+    b->c;
+    b,c->{f};
+    a,e->c;
+
+    edge [style="solid",color="Blue"];
+    s->a[label=5];
+    s->e[label=7 style=dotted];
+
+    b->t[label=6 style=dotted];
+    c->t[label=1 style=dotted];
+    f->t[label=3 style=dotted];
+}

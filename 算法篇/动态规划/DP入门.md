@@ -1,3 +1,16 @@
+---
+_id: "044ee62778"
+title: DP入门
+date: 2021-01-20 09:57
+update: 2021-01-20 09:57
+author: Rainboy
+video: "https://www.bilibili.com/video/BV14X4y1K7UA?p=2"
+titleEmojiTag: ":tv:"
+---
+
+@[toc]
+
+
 ## 引入:数塔问题(NOIP)
 
 题目地址:
@@ -229,60 +242,39 @@ int main(){
 所以最终你只要倒过来查找一遍,然后正过来输出就ok了,具体看代码:
 
 ```c
-#include <cstdio>
+// f[i][j] = max{f[i+1][j],f[i+1][j+1]} + a[i][j]
+/* author: Rainboy email: rainboylvx@qq.com  time: 2021年 01月 15日 星期五 22:39:30 CST */
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int maxn = 1e6+5,maxe = 1e6+5; //点与边的数量
 
-//二维数组存数塔
-int s[100][100]={0};
-int f[100][100]={0};
-int path[100][100];//存路径
-int _path[100];
-int n;
-int max=0;
-int sum=0;
+int n,m;
+int a[1005][1005];
+int f[1005][1005];
 
 int main(){
     scanf("%d",&n);
-    int i,j;
-    for(i=1;i<=n;i++)//读入
-        for(j=1;j<=i;j++)
-            scanf("%d",&s[i][j]);
-    f[1][1] = s[1][1];
-    
-    for(i=2;i<=n;i++)
-        for(j=1;j<=i;j++){
-            int m;
-            if(f[i-1][j-1] >=f[i-1][j]){
-                m = f[i-1][j-1];
-                path[i][j] = j-1;
-            }
-            else {
-                m = f[i-1][j];
-                path[i][j] = j;
-            }
-            f[i][j] = s[i][j]+ m;
+    for(int i=1;i<=n;++i){ //行
+        for(int j=1;j<=i;++j){
+            scanf("%d",&a[i][j]);
         }
-    int _max = 0;
-    int _max_index; // 最后一层,最大的那个下标
-    for(i=1;i<=n;i++)
-        if(max < f[n][i])
-            max = f[n][i],_max_index = i;
-    printf("%d\n",max);
-
-    // 求路径
-    int idx;
-    _path[n] = s[n][_max_index];
-    idx = path[n][_max_index];
-    for(i=n-1;i>=1;i--){
-        _path[i] = s[i][idx];
-        idx = path[i][idx];
     }
-    for(i=1;i<=n;i++)
-        printf("%d ",_path[i]);
+    for(int i=1;i<=n;i++){ //求出边界
+        f[n][i]  = a[n][i];
+    }
+
+    // 开始Dp
+    for(int i = n-1;i>=1;i--){
+        for(int j=1;j<=i;++j){
+            f[i][j] = max(f[i+1][j],f[i+1][j+1]) + a[i][j];
+        }
+    }
+    printf("%d",f[1][1]);
     return 0;
 }
 ```
 
 ## 练习题目
 
- - luogu P1002 过河卒
- - luogu 挖地雷
+<wc-pcs-list-by-tags base="<%- USER.pcs%>" tags="luogu-P1002,luogu-P2196" match="ids" preifx=""></wc-pcs-list-by-tags>

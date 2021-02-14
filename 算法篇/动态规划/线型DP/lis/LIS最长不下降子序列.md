@@ -1,3 +1,16 @@
+---
+_id: "db0ee9dce5"
+title: LIS最长不下降子序列
+date: 2021-02-10 09:06
+update: 2021-02-10 09:06
+author: Rainboy
+video: ""
+titleEmojiTag: ":tv:"
+cover: 
+---
+
+@[toc]
+
 # LIS最长不下降子序列
 
 
@@ -267,59 +280,50 @@ f: 1 1 2 2 3  4 4 1　f[i],以a[i]为结尾的LIS的值
 7 2 9 3 4 10 6 1
 ```
 
+输出: 每个元素的编号和当前元素的lis值
+
+```
+1 1
+2 1
+3 2
+4 2
+5 3
+6 4
+7 4
+8 1
+```
+
 
 <!-- template start -->
 $nlogn$优化
 ```c
-// 求最长不下降子序列
-#include <cstdio>
-#include <cstring>
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int maxn = 1e6+5,maxe = 1e6+5; //点与边的数量
 
-int n;
-int a[100];
-int c[100],f[100];
-
-//[l,r)
-int upper_bound(int l,int r,int key){
-    while(l < r){
-        int m  = (l+r)>>1;
-        if( c[m] <= key)
-            l = m+1;
-        else
-            r = m;
-    }
-    return l;
-}
-
-void init(){
-    memset(c,0x7f,sizeof(c));
-    scanf("%d",&n);
-    int i;
-    for (i=1;i<=n;i++){
-        scanf("%d",&a[i]);
-    }
-}
+int n,m;
+int a[maxn]; //  原数组
+int c[maxn]; //c[i]表示: 所有 lis值 == i 那些元素中值最那个小的那个
+int f[maxn]; // f[i] = 第i个元素的lis值
 
 void lis(){
-    int i,j,k;
-    c[1] = a[1];
+    memset(c,0x7f,sizeof(c));
     f[1] = 1;
-    for(i=2;i<=n;i++){
-        int pos = upper_bound(1,i,a[i]);
-        pos--;
-        f[i] = pos+1;
-        if( c[ f[i] ]  > a[i])
-             c[ f[i] ]  = a[i];
+    c[1] = a[1];
+    for(int i=2;i<=n;++i){
+        f[i] = upper_bound(c+1, c+1+n, a[i]) - c;
+        c[f[i]] = min(c[f[i]],a[i]);
     }
 }
-int main(){
-    init();
-    lis();
-    int i;
-    for (i=1;i<=n;i++){
-        printf("%d %d\n",i,f[i]);
-    }
 
+int main(){
+    scanf("%d",&n);
+    for(int i=1;i<=n;++i)
+        scanf("%d",&a[i]);
+    lis();
+    for(int i=1;i<=n;++i)
+        printf("%d %d\n",i,f[i]);
     return 0;
 }
 ```
