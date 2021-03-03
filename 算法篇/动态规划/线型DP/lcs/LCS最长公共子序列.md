@@ -1,8 +1,17 @@
+---
+_id: "053ccc8781"
+title: LCS最长公共子序列
+date: 2021-02-16 10:05
+update: 2021-02-16 10:05
+author: Rainboy
+---
+
+@[toc]
+
+
 # LCS最长公共子序列(The longest common subsequence)
 
-## 题目
-
-cogs 476  
+## 问题
 
 ### 【问题描述】
 
