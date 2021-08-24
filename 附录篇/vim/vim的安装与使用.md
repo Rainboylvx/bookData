@@ -322,6 +322,14 @@ pr b // yy f a r b
 
 vimtutor
 
+## vim修改函数参数
+
+参考自这里： https://www.bilibili.com/video/BV1ar4y1w7hM?t=386
+
+ - f(ldf
+ - ct,
+ - cF,
+
 ## 说明
 
  - 参考自[Vim Commands Cheat Sheet](http://www.fprintf.net/vimCheatSheet.html),有删减
