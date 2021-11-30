@@ -1,3 +1,6 @@
 - 
   title: 使用GDB调试
   path: gdb调试.md
+- 
+  title: gdbgui的使用
+  path: gdbgui.md
