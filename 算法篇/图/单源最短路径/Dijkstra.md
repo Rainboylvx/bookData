@@ -83,7 +83,7 @@ struct Dijkstra {
         //注意这里起点也未标记的
     }
 
-    void work(int s){
+    void work(int s,linkList& e){
         dis[s] = 0; 
         q.push(make_pair(0, s)); //把起点加入
 
