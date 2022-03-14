@@ -13,3 +13,7 @@
 - 
   title: "马拉车 Manacher"
   path: manacher.md
+
+- 
+  title: "sam后缀自动机"
+  path: ./suffix-automaton/sam.md
