@@ -13,7 +13,7 @@ constexpr size_t sizeD(double a){
 }
 
 //靜态化动态
-template<typename T,size_t size = 100>
+template<typename T,size_t size = 200000>
 struct MeM {
     size_t idx{0};
     //std::vector<T> mem(1000);
@@ -22,6 +22,10 @@ struct MeM {
 };
 template<typename T,size_t deg=3>
 struct BTreeNode;
+
+
+
+
 
 template<typename T,size_t deg>
 struct BTreeNode
@@ -120,7 +124,6 @@ struct BTreeNode
         //递归查找
         return left(i)->search(k); 
     }
-
 };
 
 template<typename T,size_t deg=3>
@@ -157,16 +160,6 @@ struct BTree {
     }
 
 /* ===================== 删除 =====================*/
-    // 分成8个函数来使用
-    //1) remove
-    //2) removeFromLeaf
-    //3) removeFromNonLeaf
-    //4) getPred
-    //5) getSucc
-    //6) borrowFromPrev
-    //7) borrowFromNext
-    //8) merge
-    //9) findKey
 /* ===================== 删除 END =====================*/
 
     std::string  to_dot(){
@@ -177,6 +170,7 @@ struct BTree {
         return ss.str();
     }
     void __to_dot(node *p ,std::stringstream& ss){
+        if( p == nullptr) return;
         auto u = reinterpret_cast<uint64_t>(p);
         ss << u << "[label=\"";
         for( int i =0; i < p->n;i++){

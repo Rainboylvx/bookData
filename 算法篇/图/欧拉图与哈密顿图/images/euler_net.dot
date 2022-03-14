@@ -1,0 +1,6 @@
+digraph euler_net {
+    node[style=filled fillcolor=white colorscheme=accent8 ];
+    a[label="Eulerian path(欧拉路)"];
+    b[label="Eulerian trail"]
+    a->b;
+}

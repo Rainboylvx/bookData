@@ -1,0 +1,7 @@
+#
+#mode : book or pcs
+# 书的仓库列表
+books :
+  - 
+    name: bookData
+    url: https://github.com.cnpmjs.org/Rainboylvx/bookData.git
