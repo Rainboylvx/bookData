@@ -1,0 +1,6 @@
+digraph sam {
+    1->2[label="a",color=blue];
+1->2[color=red,style=dotted,dir=back];
+1[label="1 len=0"];
+2[label="2 len=1"];
+}
